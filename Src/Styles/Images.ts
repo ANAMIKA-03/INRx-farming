@@ -15,6 +15,6 @@ const Images = {
   chevronRight: require("../Assets/Icons/chevronRight.png"),
 
   arrowDown: require("../Assets/Icons/arrowDown.png"),
-
+  user: require("../Assets/Icons/user.png"),
 };
 export default Images;

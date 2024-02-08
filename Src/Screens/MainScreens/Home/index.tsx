@@ -30,6 +30,13 @@ const Home = (props: any) => {
           {/* Header */}
           <View style={Styles.headerContainer}>
             <View style={Styles.headerWrapper}>
+              <TouchableOpacity style={Styles.leftWrapper}>
+                <Image source={Images.user} style={Styles.userIcon} />
+                <Text style={Styles.userTitle}>{`David`}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image source={Images.notification} style={Styles.notifyIcon} />
+              </TouchableOpacity>
             </View>
           </View>
           {/* Main Content */}

@@ -26,19 +26,27 @@ const styles = StyleSheet.create({
     width: widthScreen / 1.2,
     alignSelf: "center",
     flexDirection: "row",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
   },
   leftWrapper: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
   },
-  userIcon:{
-
+  userIcon: {
+    width: 37,
+    height: 37,
+    borderRadius: 37
   },
-  userTitle:{
-    
+  userTitle: {
+    fontSize: 16,
+    color: Colors.Black,
+    fontFamily: "Inter-Medium",
+    marginLeft: hp(1)
+  },
+  notifyIcon: {
+    width: 37,
+    height: 37,
   }
 
 });
