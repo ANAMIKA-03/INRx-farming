@@ -16,6 +16,9 @@ import History from '../Screens/MainScreens/History';
 import Notification from '../Screens/MainScreens/Notification';
 import HistoryDetail from '../Screens/MainScreens/HistoryDetail';
 import Wallet from '../Screens/MainScreens/Wallet';
+import Received from '../Screens/MainScreens/Received';
+import Send from '../Screens/MainScreens/Send';
+
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -27,6 +30,8 @@ type RootStackParamList = {
   Notification: undefined,
   HistoryDetail: undefined,
   Wallet: undefined,
+  Received: undefined,
+  Send: undefined,
 };
 
 
@@ -76,8 +81,10 @@ export default function RootNavigator() {
         <RootStack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
         <RootStack.Screen name='HistoryDetail' component={HistoryDetail} options={{ headerShown: false }} />
         <RootStack.Screen name='Wallet' component={Wallet} options={{ headerShown: false }} />
+        <RootStack.Screen name='Received' component={Received} options={{ headerShown: false }} />
+        <RootStack.Screen name='Send' component={Send} options={{ headerShown: false }} />
 
-        {/*  Wallet */}
+        {/*  Send */}
       </RootStack.Navigator>
     </NavigationContainer>
 

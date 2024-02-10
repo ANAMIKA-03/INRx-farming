@@ -87,11 +87,11 @@ const Wallet = (props: any) => {
           </View>
 
           <View style={Styles.mainHeadContent}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => { navigation.navigate("Send") }}>
               <Image source={Images.send} style={Styles.sendIcon} />
               <Text style={Styles.sendText}>{`Send`}</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => { navigation.navigate("Received") }}>
               <Image source={Images.receive} style={Styles.sendIcon} />
               <Text style={Styles.sendText}>{`Receive`}</Text>
             </TouchableOpacity>

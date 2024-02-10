@@ -8,7 +8,8 @@ const colors = {
   Preto: "#231F20",
   TabColor: "#1B191A",
   DarkYellow: "#B8A607",
-  Parrot: "#11A249"
+  Parrot: "#11A249",
+  Grey: "#D9D9D9"
 };
 
 export default colors;

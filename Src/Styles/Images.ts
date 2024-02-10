@@ -21,6 +21,7 @@ const Images = {
   mail: require("../Assets/Icons/mail.png"),
   back: require("../Assets/Icons/back.png"),
   currencyLogo: require("../Assets/Icons/currencyLogo.png"),
+  convertInrx: require("../Assets/Icons/convertInrx.png"),
 
   // Bottom Icons
   bottomLeft: require("../Assets/Bottom/bottomLeft.png"),
@@ -39,6 +40,9 @@ const Images = {
   inrLogo: require("../Assets/Dummy/inrLogo.png"),
   usdtLogo: require("../Assets/Dummy/usdtLogo.png"),
   usdcLogo: require("../Assets/Dummy/usdcLogo.png"),
+  qr: require("../Assets/Dummy/qr.png"),
+  copyIcon: require("../Assets/Dummy/copyIcon.png"),
+  shareIcon: require("../Assets/Dummy/shareIcon.png"),
 
 
 };
