@@ -8,30 +8,25 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { enableScreens } from 'react-native-screens';
 import Metrics from '../Styles/Metrices';
 
-import BottomTabView from './BottomNavigation';
+// import BottomTabView from './BottomNavigation';
 
-import Login from '../Screens/Authentication/Login';
-import Register from '../Screens/Authentication/Register';
-import TermsCondition from '../Screens/Authentication/TermsCondition';
+import Home from '../Screens/MainScreens/Home';
+import Stats from '../Screens/MainScreens/Stats';
+import History from '../Screens/MainScreens/History';
+import Notification from '../Screens/MainScreens/Notification';
+import HistoryDetail from '../Screens/MainScreens/HistoryDetail';
+import Wallet from '../Screens/MainScreens/Wallet';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
 
 type RootStackParamList = {
-  Login: undefined,
-  Register: undefined,
-  TermsCondition: undefined,
-  BottomTabView: undefined,
-  // Success: undefined,
-  // DrawerStack: undefined,
-  // EditProfile: undefined,
-  // RequestListDetail: undefined,
-  // SubmitRequest: undefined,
-  // SignedContract: undefined,
-  // RequestDetail: undefined,
-  // ProfileViewer: undefined,
-  // Rate: undefined,
-  // ComplaintSubmit: undefined,
+  Home: undefined,
+  Stats: undefined,
+  History: undefined,
+  Notification: undefined,
+  HistoryDetail: undefined,
+  Wallet: undefined,
 };
 
 
@@ -52,7 +47,7 @@ export default function RootNavigator() {
   return (
 
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Login"
+      <RootStack.Navigator initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'transparent' },
@@ -74,26 +69,15 @@ export default function RootNavigator() {
           }),
           presentation: "modal"
         }}>
-        <RootStack.Screen name='Login' component={Login} options={{ headerShown: false }} />
-        <RootStack.Screen name='Register' component={Register} options={{ headerShown: false }} />
-        <RootStack.Screen name='TermsCondition' component={TermsCondition} options={{ headerShown: false }} />
-       
-        <RootStack.Screen name='BottomTabView' component={BottomTabView} options={{ headerShown: false }} />
-        {/* <RootStack.Screen name='Success' component={Success} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='SignUpSecond' component={SignUpSecond} options={{ headerShown: false }} /> */}
+        <RootStack.Screen name='Home' component={Home} options={{ headerShown: false }} />
+        <RootStack.Screen name='Stats' component={Stats} options={{ headerShown: false }} />
+        <RootStack.Screen name='History' component={History} options={{ headerShown: false }} />
 
-        {/* <RootStack.Screen name='DrawerStack' component={DrawerStack} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='EditProfile' component={EditProfile} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='RequestListDetail' component={RequestListDetail} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='SubmitRequest' component={SubmitRequest} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='SignedContract' component={SignedContract} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='RequestDetail' component={RequestDetail} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='ProfileViewer' component={ProfileViewer} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='Rate' component={Rate} options={{ headerShown: false }} /> */}
-        {/* <RootStack.Screen name='ComplaintSubmit' component={ComplaintSubmit} options={{ headerShown: false }} /> */}
+        <RootStack.Screen name='Notification' component={Notification} options={{ headerShown: false }} />
+        <RootStack.Screen name='HistoryDetail' component={HistoryDetail} options={{ headerShown: false }} />
+        <RootStack.Screen name='Wallet' component={Wallet} options={{ headerShown: false }} />
 
-
-        {/*   */}
+        {/*  Wallet */}
       </RootStack.Navigator>
     </NavigationContainer>
 
