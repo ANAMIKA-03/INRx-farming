@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   balanceContainer: {
-    width: hp(23),
+    width: hp("25%"),
     height: hp(33.7),
     borderRadius: 27,
     backgroundColor: Colors.Green,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
 
   rightBalanceWrap: {
-    width: hp(20),
+    width: hp("20%"),
     height: hp(33.7),
   },
   rightBalanceHeader: {

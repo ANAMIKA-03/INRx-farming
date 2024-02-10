@@ -108,14 +108,14 @@ const Styles = StyleSheet.create({
     alignItems: "flex-end"
   },
   innerWrapper: {
+    position: 'absolute',
     width: widthScreen / 1.2,
-    // alignSelf: "center",
+    alignSelf: "center",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    position: 'absolute',
     bottom: hp(3),
-    left: hp(2.5),
+    // left: hp(2.5),
   },
   transactionIcon: {
     width: hp(4),
