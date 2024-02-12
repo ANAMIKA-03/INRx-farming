@@ -11,6 +11,7 @@ import Metrics from '../Styles/Metrices';
 // import BottomTabView from './BottomNavigation';
 
 import Home from '../Screens/MainScreens/Home';
+import Menu from '../Screens/MainScreens/Menu';
 import Stats from '../Screens/MainScreens/Stats';
 import History from '../Screens/MainScreens/History';
 import Notification from '../Screens/MainScreens/Notification';
@@ -18,6 +19,8 @@ import HistoryDetail from '../Screens/MainScreens/HistoryDetail';
 import Wallet from '../Screens/MainScreens/Wallet';
 import Received from '../Screens/MainScreens/Received';
 import Send from '../Screens/MainScreens/Send';
+import ConvertCurrency from '../Screens/MainScreens/ConvertCurrency';
+import Profile from '../Screens/MainScreens/Profile';
 
 
 const heightScreen = Dimensions.get('window').height;
@@ -25,6 +28,7 @@ const widthScreen = Dimensions.get('window').width;
 
 type RootStackParamList = {
   Home: undefined,
+  Menu: undefined,
   Stats: undefined,
   History: undefined,
   Notification: undefined,
@@ -32,6 +36,8 @@ type RootStackParamList = {
   Wallet: undefined,
   Received: undefined,
   Send: undefined,
+  ConvertCurrency: undefined,
+  Profile: undefined,
 };
 
 
@@ -75,6 +81,7 @@ export default function RootNavigator() {
           presentation: "modal"
         }}>
         <RootStack.Screen name='Home' component={Home} options={{ headerShown: false }} />
+        <RootStack.Screen name='Menu' component={Menu} options={{ headerShown: false }} />
         <RootStack.Screen name='Stats' component={Stats} options={{ headerShown: false }} />
         <RootStack.Screen name='History' component={History} options={{ headerShown: false }} />
 
@@ -83,8 +90,10 @@ export default function RootNavigator() {
         <RootStack.Screen name='Wallet' component={Wallet} options={{ headerShown: false }} />
         <RootStack.Screen name='Received' component={Received} options={{ headerShown: false }} />
         <RootStack.Screen name='Send' component={Send} options={{ headerShown: false }} />
+        <RootStack.Screen name='ConvertCurrency' component={ConvertCurrency} options={{ headerShown: false }} />
+        <RootStack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
 
-        {/*  Send */}
+        {/*  Menu */}
       </RootStack.Navigator>
     </NavigationContainer>
 

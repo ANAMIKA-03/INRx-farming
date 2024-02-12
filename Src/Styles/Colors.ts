@@ -9,7 +9,8 @@ const colors = {
   TabColor: "#1B191A",
   DarkYellow: "#B8A607",
   Parrot: "#11A249",
-  Grey: "#D9D9D9"
+  Grey: "#D9D9D9",
+  MediumParot: "#ABECB2",
 };
 
 export default colors;

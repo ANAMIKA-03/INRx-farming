@@ -56,7 +56,7 @@ const Wallet = (props: any) => {
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar barStyle={'dark-content'} />
       <View style={Styles.mainContainer}>
 
         {/* Header */}

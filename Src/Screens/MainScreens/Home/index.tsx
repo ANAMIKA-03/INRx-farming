@@ -15,7 +15,6 @@ import Colors from '../../../Styles/Colors';
 import Styles from './Styles';
 import BottomBar from "../../../Navigation/BottomBar";
 
-
 export type Props = {
   navigation: any;
 };
@@ -43,13 +42,14 @@ const Home = (props: any) => {
   return (
     <ImageBackground source={Images.background} style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
-        <StatusBar barStyle={'light-content'} />
+        <StatusBar barStyle={'dark-content'} />
         <View style={Styles.mainContainer}>
 
           {/* Header */}
           <View style={Styles.headerContainer}>
             <View style={Styles.headerWrapper}>
-              <TouchableOpacity style={Styles.leftWrapper}>
+              <TouchableOpacity onPress={() => { navigation.navigate("Profile") }}
+                style={Styles.leftWrapper}>
                 <Image source={Images.user} style={Styles.userIcon} />
                 <Text style={Styles.userTitle}>{`David`}</Text>
               </TouchableOpacity>
@@ -108,7 +108,7 @@ const Home = (props: any) => {
                       </TouchableOpacity>
                     </View>
                     <View style={Styles.iconsContainer}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => { navigation.navigate("ConvertCurrency") }}>
                         <Image source={Images.curreny} style={Styles.iconStyle} />
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() => { navigation.navigate("Wallet") }}>

@@ -34,18 +34,35 @@ const BottomBar = (props: any) => {
   );
 
   const updateValue = (value: any) => {
-    if (value == 1) {
-      setCurrentValue(value)
-      props.navigation.navigate('History')
+    if (profileTab == false) {
+      if (value == 1) {
+        setCurrentValue(value)
+        props.navigation.navigate('History')
+      }
+      else if (value == 2) {
+        setCurrentValue(value)
+        props.navigation.navigate('Menu')
+      }
+      else {
+        setCurrentValue(value)
+        props.navigation.navigate('Stats')
+      }
     }
-    else if (value == 2) {
-      setCurrentValue(value)
-      props.navigation.navigate('Home')
+    else{
+      if (value == 1) {
+        setCurrentValue(value)
+        props.navigation.navigate('History')
+      }
+      else if (value == 2) {
+        setCurrentValue(value)
+        props.navigation.navigate('Stats')
+      }
+      else {
+        setCurrentValue(value)
+        props.navigation.navigate('Home')
+      }
     }
-    else {
-      setCurrentValue(value)
-      props.navigation.navigate('Stats')
-    }
+
   }
 
   return (
@@ -58,12 +75,12 @@ const BottomBar = (props: any) => {
         </ImageBackground>
 
         <TouchableOpacity onPress={() => updateValue(2)}>
-          <Image source={Images.menu} style={Styles.menuIcon} />
+          <Image source={Images.statsBlack} style={Styles.menuIcon} />
         </TouchableOpacity>
 
         <ImageBackground source={Images.bottomRight} style={Styles.backgroundWrapperRight}>
           <TouchableOpacity onPress={() => updateValue(3)}>
-            <Image source={Images.stats} style={Styles.barIcon} />
+            <Image source={Images.menu} style={Styles.barIcon} />
           </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -108,11 +125,11 @@ const Styles = StyleSheet.create({
     alignItems: "flex-end"
   },
   innerWrapper: {
-    position: 'absolute',
     width: widthScreen / 1.2,
     alignSelf: "center",
+    position: 'absolute',
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     bottom: hp(3),
     // left: hp(2.5),

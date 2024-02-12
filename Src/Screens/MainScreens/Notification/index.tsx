@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Styles from './Styles';
-
+import BottomBar from "../../../Navigation/BottomBar";
 
 export type Props = {
 	navigation: any;
@@ -43,7 +43,7 @@ const Notification = (props: any) => {
 
 	return (
 		<SafeAreaView style={Styles.safeAreaContainer}>
-			<StatusBar barStyle={'light-content'} />
+			<StatusBar barStyle={'dark-content'} />
 			<View style={Styles.mainContainer}>
 
 				{/* Header */}
@@ -83,11 +83,11 @@ const Notification = (props: any) => {
 							})
 						}
 
-
 					</View>
 				</ScrollView>
-
 			</View>
+			
+			<BottomBar profileTab={true} page={1} navigation={navigation} />
 		</SafeAreaView>
 	);
 }

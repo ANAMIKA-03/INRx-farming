@@ -23,6 +23,10 @@ const Images = {
   currencyLogo: require("../Assets/Icons/currencyLogo.png"),
   convertInrx: require("../Assets/Icons/convertInrx.png"),
 
+  profileUser: require("../Assets/Icons/profileUser.png"),
+
+  profileBackground: require("../Assets/Icons/profileBackground.png"),
+
   // Bottom Icons
   bottomLeft: require("../Assets/Bottom/bottomLeft.png"),
   bottomRight: require("../Assets/Bottom/bottomRight.png"),
@@ -44,6 +48,22 @@ const Images = {
   copyIcon: require("../Assets/Dummy/copyIcon.png"),
   shareIcon: require("../Assets/Dummy/shareIcon.png"),
 
+
+  // Menu
+  mintMenu: require("../Assets/Menu/mintMenu.png"),
+  convertMenu: require("../Assets/Menu/convertMenu.png"),
+  earnMenu: require("../Assets/Menu/earnMenu.png"),
+  notifyMenu: require("../Assets/Menu/notifyMenu.png"),
+  transactionMenu: require("../Assets/Menu/transactionMenu.png"),
+  auditMenu: require("../Assets/Menu/auditMenu.png"),
+  walletMenu: require("../Assets/Menu/walletMenu.png"),
+  transparencyMenu: require("../Assets/Menu/transparencyMenu.png"),
+  collateralMenu: require("../Assets/Menu/collateralMenu.png"),
+  aboutMenu: require("../Assets/Menu/aboutMenu.png"),
+  settingMenu: require("../Assets/Menu/settingMenu.png"),
+  profileMenu: require("../Assets/Menu/profileMenu.png"),
+
+  menuBackground: require("../Assets/Menu/menuBackground.png"),
 
 };
 export default Images;

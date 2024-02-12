@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     marginTop: hp(2),
     marginLeft: hp(5),
     height: 60,
+    marginBottom: hp(2)
   },
   intrestFlat: {
     backgroundColor: Colors.White,

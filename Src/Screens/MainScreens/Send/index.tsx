@@ -28,7 +28,7 @@ const Send = (props: any) => {
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
-      <StatusBar barStyle={'light-content'} />
+      <StatusBar barStyle={'dark-content'} />
       <View style={Styles.mainContainer}>
 
         {/* Header */}
@@ -109,7 +109,7 @@ const Send = (props: any) => {
             <View style={Styles.downBottomWrap}>
 
               <TouchableOpacity style={Styles.sendButton}>
-              <Text style={Styles.sendTitle}>{`Send`}</Text>
+                <Text style={Styles.sendTitle}>{`Send`}</Text>
               </TouchableOpacity>
 
             </View>
