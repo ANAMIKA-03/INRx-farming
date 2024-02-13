@@ -100,7 +100,7 @@ const Home = (props: any) => {
                   {/* Icons Data */}
                   <View style={Styles.rightBalanceHeader}>
                     <View style={Styles.iconsContainer}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => { navigation.navigate("FarmingRewards") }}>
                         <Image source={Images.tag} style={Styles.iconStyle} />
                       </TouchableOpacity>
                       <TouchableOpacity>

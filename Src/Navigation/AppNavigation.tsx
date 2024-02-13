@@ -21,7 +21,7 @@ import Received from '../Screens/MainScreens/Received';
 import Send from '../Screens/MainScreens/Send';
 import ConvertCurrency from '../Screens/MainScreens/ConvertCurrency';
 import Profile from '../Screens/MainScreens/Profile';
-
+import FarmingRewards from '../Screens/MainScreens/FarmingRewards';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -38,6 +38,7 @@ type RootStackParamList = {
   Send: undefined,
   ConvertCurrency: undefined,
   Profile: undefined,
+  FarmingRewards: undefined,
 };
 
 
@@ -92,8 +93,9 @@ export default function RootNavigator() {
         <RootStack.Screen name='Send' component={Send} options={{ headerShown: false }} />
         <RootStack.Screen name='ConvertCurrency' component={ConvertCurrency} options={{ headerShown: false }} />
         <RootStack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
+        <RootStack.Screen name='FarmingRewards' component={FarmingRewards} options={{ headerShown: false }} />
 
-        {/*  Menu */}
+        {/*  FarmingRewards */}
       </RootStack.Navigator>
     </NavigationContainer>
 

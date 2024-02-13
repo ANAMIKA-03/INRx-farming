@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    marginTop: hp(2),
+    marginTop: hp(3),
     justifyContent: "center",
     alignItems: "center",
     marginBottom: hp(2)

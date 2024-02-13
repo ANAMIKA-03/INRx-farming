@@ -37,7 +37,7 @@ const Images = {
   send: require("../Assets/Bottom/send.png"),
   receive: require("../Assets/Bottom/receive.png"),
   buy: require("../Assets/Bottom/buy.png"),
-
+  gift: require("../Assets/Bottom/gift.png"),
 
   // Dummy
   inrxLogo: require("../Assets/Dummy/inrxLogo.png"),
