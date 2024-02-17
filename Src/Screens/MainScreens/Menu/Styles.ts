@@ -83,15 +83,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   menuInnerData: {
-    flex: 1,
+    flex: 0.85,
     justifyContent: "center",
     alignItems: "center",
   },
   mainFlat: {
     width: widthScreen / 1.14,
     alignSelf: 'center',
-    marginTop: hp(1),
-    marginBottom: hp(4),
+    // marginTop: hp(1),
+    // marginBottom: hp(4),
   },
   viewFlat: {
     marginTop: hp(2),

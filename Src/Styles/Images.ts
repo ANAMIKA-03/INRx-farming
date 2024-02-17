@@ -1,5 +1,11 @@
 const Images = {
   // Icons
+  logo: require("../Assets/Icons/logo.png"),
+  onboard_one: require("../Assets/Icons/onboard_one.png"),
+  onboard_two: require("../Assets/Icons/onboard_two.png"),
+  onboard_three: require("../Assets/Icons/onboard_three.png"),
+
+
   transaction: require("../Assets/Icons/transaction.png"),
 
   stats: require("../Assets/Icons/stats.png"),
@@ -38,6 +44,15 @@ const Images = {
   receive: require("../Assets/Bottom/receive.png"),
   buy: require("../Assets/Bottom/buy.png"),
   gift: require("../Assets/Bottom/gift.png"),
+
+  document: require("../Assets/Bottom/document.png"),
+  like: require("../Assets/Bottom/like.png"),
+  share: require("../Assets/Bottom/share.png"),
+  updateCheck: require("../Assets/Bottom/updateCheck.png"),
+
+  telegram: require("../Assets/Bottom/telegram.png"),
+  twitter: require("../Assets/Bottom/twitter.png"),
+  collateralPic: require("../Assets/Bottom/collateralPic.png"),
 
   // Dummy
   inrxLogo: require("../Assets/Dummy/inrxLogo.png"),

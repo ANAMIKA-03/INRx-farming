@@ -22,54 +22,105 @@ const Menu = (props: any) => {
 
 	const MENU_DATA = [
 		{
+			id: "1",
 			icon: Images.mintMenu,
 			title: "Mint"
 		},
 		{
+			id: "2",
 			icon: Images.convertMenu,
 			title: "Convert"
 		},
 		{
+			id: "3",
 			icon: Images.earnMenu,
 			title: "Earn"
 		},
 		{
+			id: "4",
 			icon: Images.notifyMenu,
 			title: "Notification"
 		},
 		{
+			id: "5",
 			icon: Images.transactionMenu,
 			title: "Transaction"
 		},
 		{
+			id: "6",
 			icon: Images.auditMenu,
 			title: "Audit"
 		},
 		{
+			id: "7",
 			icon: Images.walletMenu,
 			title: "Wallet"
 		},
 		{
+			id: "8",
 			icon: Images.transparencyMenu,
 			title: "Transparency"
 		},
 		{
+			id: "9",
 			icon: Images.collateralMenu,
 			title: "Collateral"
 		},
 		{
+			id: "10",
 			icon: Images.aboutMenu,
 			title: "About"
 		},
 		{
+			id: "11",
 			icon: Images.settingMenu,
 			title: "Setting"
 		},
 		{
+			id: "12",
 			icon: Images.profileMenu,
 			title: "Profile"
 		},
 	]
+
+	const goToMenu = (data: any) => {
+		if (data?.id == "1") {
+
+		}
+		else if (data?.id == "2") {
+			navigation.navigate("ConvertCurrency")
+		}
+		else if (data?.id == "3") {
+			navigation.navigate("FarmingRewards")
+		}
+		else if (data?.id == "4") {
+			navigation.navigate("Notification")
+		}
+		else if (data?.id == "5") {
+			navigation.navigate("History")
+		}
+		else if (data?.id == "6") {
+			navigation.navigate("Audit")
+		}
+		else if (data?.id == "7") {
+			navigation.navigate("Wallet")
+		}
+		else if (data?.id == "8") {
+			navigation.navigate("")
+		}
+		else if (data?.id == "9") {
+			navigation.navigate("Collateral")
+		}
+		else if (data?.id == "10") {
+			navigation.navigate("About")
+		}
+		else if (data?.id == "11") {
+			navigation.navigate("Settings")
+		}
+		else {
+			navigation.navigate("Profile")
+		}
+	}
 
 	return (
 		<SafeAreaView style={Styles.safeAreaContainer}>
@@ -112,7 +163,9 @@ const Menu = (props: any) => {
 									showsHorizontalScrollIndicator={false}
 									numColumns={3}
 									renderItem={({ item, index }) => (
-										<TouchableOpacity key={index} style={Styles.viewFlat}>
+										<TouchableOpacity key={index}
+											onPress={() => { goToMenu(item) }}
+											style={Styles.viewFlat}>
 											<Image source={item?.icon} style={Styles.flatIcon} />
 											<Text style={Styles.iconTitle}>{item?.title}</Text>
 										</TouchableOpacity>

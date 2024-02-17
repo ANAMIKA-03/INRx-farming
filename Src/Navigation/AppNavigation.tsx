@@ -8,7 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { enableScreens } from 'react-native-screens';
 import Metrics from '../Styles/Metrices';
 
-// import BottomTabView from './BottomNavigation';
+
+import Splash from '../Screens/Splash';
+import Onboarding from '../Screens/Onboarding';
+import Login from '../Screens/Authentication/Login';
 
 import Home from '../Screens/MainScreens/Home';
 import Menu from '../Screens/MainScreens/Menu';
@@ -22,11 +25,18 @@ import Send from '../Screens/MainScreens/Send';
 import ConvertCurrency from '../Screens/MainScreens/ConvertCurrency';
 import Profile from '../Screens/MainScreens/Profile';
 import FarmingRewards from '../Screens/MainScreens/FarmingRewards';
+import About from '../Screens/MainScreens/About';
+import Settings from '../Screens/MainScreens/Settings';
+import Audit from '../Screens/MainScreens/Audit';
+import Collateral from '../Screens/MainScreens/Collateral';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
 
 type RootStackParamList = {
+  Splash: undefined,
+  Onboarding: undefined,
+  Login: undefined,
   Home: undefined,
   Menu: undefined,
   Stats: undefined,
@@ -39,6 +49,10 @@ type RootStackParamList = {
   ConvertCurrency: undefined,
   Profile: undefined,
   FarmingRewards: undefined,
+  About: undefined,
+  Settings: undefined,
+  Audit: undefined,
+  Collateral: undefined,
 };
 
 
@@ -59,7 +73,7 @@ export default function RootNavigator() {
   return (
 
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Home"
+      <RootStack.Navigator initialRouteName="Splash"
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: 'transparent' },
@@ -81,6 +95,10 @@ export default function RootNavigator() {
           }),
           presentation: "modal"
         }}>
+        <RootStack.Screen name='Splash' component={Splash} options={{ headerShown: false }} />
+        <RootStack.Screen name='Onboarding' component={Onboarding} options={{ headerShown: false }} />
+        <RootStack.Screen name='Login' component={Login} options={{ headerShown: false }} />
+
         <RootStack.Screen name='Home' component={Home} options={{ headerShown: false }} />
         <RootStack.Screen name='Menu' component={Menu} options={{ headerShown: false }} />
         <RootStack.Screen name='Stats' component={Stats} options={{ headerShown: false }} />
@@ -95,7 +113,12 @@ export default function RootNavigator() {
         <RootStack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
         <RootStack.Screen name='FarmingRewards' component={FarmingRewards} options={{ headerShown: false }} />
 
-        {/*  FarmingRewards */}
+        <RootStack.Screen name='About' component={About} options={{ headerShown: false }} />
+        <RootStack.Screen name='Settings' component={Settings} options={{ headerShown: false }} />
+        <RootStack.Screen name='Audit' component={Audit} options={{ headerShown: false }} />
+        <RootStack.Screen name='Collateral' component={Collateral} options={{ headerShown: false }} />
+
+        {/*  undefined,  */}
       </RootStack.Navigator>
     </NavigationContainer>
 

@@ -11,7 +11,9 @@ const colors = {
   Parrot: "#11A249",
   Grey: "#D9D9D9",
   MediumParot: "#ABECB2",
-  DarkParrot: "#3B9D3A"
+  DarkParrot: "#3B9D3A",
+  DarkGreen: "#34BB78",
+  LightParot: "#F0FCF1"
 };
 
 export default colors;
