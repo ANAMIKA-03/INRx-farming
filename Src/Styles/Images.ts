@@ -54,6 +54,11 @@ const Images = {
   twitter: require("../Assets/Bottom/twitter.png"),
   collateralPic: require("../Assets/Bottom/collateralPic.png"),
 
+  ethereum: require("../Assets/Bottom/ethereum.png"),
+  bsc: require("../Assets/Bottom/bsc.png"),
+  polygon: require("../Assets/Bottom/polygon.png"),
+
+
   // Dummy
   inrxLogo: require("../Assets/Dummy/inrxLogo.png"),
   inrLogo: require("../Assets/Dummy/inrLogo.png"),
@@ -79,6 +84,7 @@ const Images = {
   profileMenu: require("../Assets/Menu/profileMenu.png"),
 
   menuBackground: require("../Assets/Menu/menuBackground.png"),
+  rocket: require("../Assets/Menu/rocket.png"),
 
 };
 export default Images;

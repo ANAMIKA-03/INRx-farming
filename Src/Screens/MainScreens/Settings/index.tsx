@@ -78,7 +78,7 @@ const Settings = (props: any) => {
 								</View>
 								<SwitchToggle
 									switchOn={sms}
-									onPress={() => setSms(!push)}
+									onPress={() => setSms(!sms)}
 									circleColorOff={Colors.White}
 									circleColorOn={Colors.White}
 									backgroundColorOn='#11A249'
@@ -99,7 +99,7 @@ const Settings = (props: any) => {
 								</View>
 								<SwitchToggle
 									switchOn={whatsApp}
-									onPress={() => setWhatsApp(!push)}
+									onPress={() => setWhatsApp(!whatsApp)}
 									circleColorOff={Colors.White}
 									circleColorOn={Colors.White}
 									backgroundColorOn='#11A249'
@@ -120,7 +120,7 @@ const Settings = (props: any) => {
 								</View>
 								<SwitchToggle
 									switchOn={security}
-									onPress={() => setSecurity(!push)}
+									onPress={() => setSecurity(!security)}
 									circleColorOff={Colors.White}
 									circleColorOn={Colors.White}
 									backgroundColorOn='#11A249'

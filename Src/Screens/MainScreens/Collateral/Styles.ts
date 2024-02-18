@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     // backgroundColor: Colors.LightGreen,
     // marginBottom: hp(2),
     alignSelf: "center",
-    marginTop: hp(3),
+    // marginTop: hp(3),
   },
   aboutLogo: {
     width: 44.97,

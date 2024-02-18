@@ -89,6 +89,69 @@ const Supply = (props: any) => {
 
             <ScrollView showsVerticalScrollIndicator={false}>
               <View style={Styles.scrollContainer}>
+
+
+                <View style={Styles.mainContainerMike}>
+                  <View style={Styles.innerMike}>
+                    {/* Eth Icon */}
+                    <View style={Styles.innerHeadLeft}>
+                      <Image source={Images.ethereum} style={Styles.cryptoIcon} />
+                    </View>
+                     {/* Eth Icon */}
+                     <View style={Styles.innerHeadLeft}>
+                      <Image source={Images.bsc} style={Styles.cryptoIcon} />
+                    </View>
+                     {/* Eth Icon */}
+                     <View style={Styles.innerHeadLeft}>
+                      <Image source={Images.polygon} style={Styles.cryptoIcon} />
+                    </View>
+                  </View>
+
+                  <View style={Styles.outerMike}>
+                    <View style={Styles.innerHeadRight}>
+                      {/* Ethereum */}
+                      <View style={Styles.rightOuterMain}>
+                        <Text style={Styles.iconTitle}>{`Ethereum`}</Text>
+                        <View style={Styles.rightMainWrapper}>
+                          <View style={Styles.rightLeftInner}>
+                            <Text style={Styles.percentTitle}>{`30%`}</Text>
+                          </View>
+                          <View style={Styles.rightInner}>
+                            <Text style={Styles.inrxAmountText}>{`30,00000 INRx`}</Text>
+                          </View>
+                        </View>
+                      </View>
+                      {/* BSC */}
+                      <View style={Styles.rightOuterMain}>
+                        <Text style={Styles.iconTitle}>{`BSC`}</Text>
+                        <View style={Styles.rightMainWrapper}>
+                          <View style={Styles.rightLeftInner}>
+                            <Text style={Styles.percentTitle}>{`30%`}</Text>
+                          </View>
+                          <View style={Styles.rightInner}>
+                            <Text style={Styles.inrxAmountText}>{`30,00000 INRx`}</Text>
+                          </View>
+                        </View>
+                      </View>
+                      {/* Polygon */}
+                      <View style={Styles.rightOuterMain}>
+                        <Text style={Styles.iconTitle}>{`Polygon`}</Text>
+                        <View style={Styles.bottomRightWrapper}>
+                          <View style={Styles.rightLeftInner}>
+                            <Text style={Styles.percentTitle}>{`30%`}</Text>
+                          </View>
+                          <View style={Styles.rightInner}>
+                            <Text style={Styles.inrxAmountText}>{`30,00000 INRx`}</Text>
+                          </View>
+                        </View>
+                      </View>
+
+                    </View>
+                  </View>
+
+                </View>
+
+
               </View>
             </ScrollView>
 

@@ -85,7 +85,7 @@ const Menu = (props: any) => {
 
 	const goToMenu = (data: any) => {
 		if (data?.id == "1") {
-
+			navigation.navigate("Supply")
 		}
 		else if (data?.id == "2") {
 			navigation.navigate("ConvertCurrency")
@@ -106,7 +106,7 @@ const Menu = (props: any) => {
 			navigation.navigate("Wallet")
 		}
 		else if (data?.id == "8") {
-			navigation.navigate("")
+			navigation.navigate("Supply")
 		}
 		else if (data?.id == "9") {
 			navigation.navigate("Collateral")

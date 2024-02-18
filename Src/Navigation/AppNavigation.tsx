@@ -29,6 +29,7 @@ import About from '../Screens/MainScreens/About';
 import Settings from '../Screens/MainScreens/Settings';
 import Audit from '../Screens/MainScreens/Audit';
 import Collateral from '../Screens/MainScreens/Collateral';
+import Supply from '../Screens/MainScreens/Supply';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -53,6 +54,7 @@ type RootStackParamList = {
   Settings: undefined,
   Audit: undefined,
   Collateral: undefined,
+  Supply: undefined,
 };
 
 
@@ -117,8 +119,10 @@ export default function RootNavigator() {
         <RootStack.Screen name='Settings' component={Settings} options={{ headerShown: false }} />
         <RootStack.Screen name='Audit' component={Audit} options={{ headerShown: false }} />
         <RootStack.Screen name='Collateral' component={Collateral} options={{ headerShown: false }} />
+        <RootStack.Screen name='Supply' component={Supply} options={{ headerShown: false }} />
 
-        {/*  undefined,  */}
+
+        {/*  Supply  */}
       </RootStack.Navigator>
     </NavigationContainer>
 

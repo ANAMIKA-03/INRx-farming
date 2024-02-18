@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   headerWrapper: {
     width: widthScreen / 1.14,
     alignSelf: "center",
-    marginBottom: hp(3),
+    // marginBottom: hp(3),
     marginTop: hp(3),
   },
   leftWrapper: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 37
   },
   scrollContainer: {
-    marginBottom: hp("16%"),
+    marginBottom: hp("6%"),
     marginTop: hp(2),
   },
   aboutWrapper: {
@@ -63,11 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.Black,
     fontFamily: "Inter-SemiBold",
-    textAlign: "center"
+    textAlign: "center",
+    marginTop: hp(1),
   },
 
   dataContainer: {
-    marginTop: hp(2),
+    // marginTop: hp(2),
     width: widthScreen / 1.14,
     alignSelf: 'center',
     marginBottom: hp(2)
@@ -89,38 +90,12 @@ const styles = StyleSheet.create({
     fontFamily: "Inter-SemiBold",
     marginLeft: hp(1)
   },
-  mainFlat: {
-    width: widthScreen / 1.17,
-    alignSelf: 'center',
-    marginTop: hp(1),
-    // marginBottom: hp("16%"),
-  },
-  viewFlat: {
-    marginTop: hp(2),
-    marginBottom: hp(2),
-    width: widthScreen / 2.7,
-    // alignSelf: 'center',
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderRadius: 7,
-    borderColor: Colors.LightParot,
-    backgroundColor: Colors.LightParot,
-    height: hp(17),
-    marginLeft: hp(1),
-    marginRight: hp(1)
-  },
-  flatIcon: {
-    width: 34,
-    alignSelf: "center",
-    height: 44.3,
-  },
+
   iconTitle: {
-    fontSize: 14,
+    fontSize: 16,
     color: "rgba(0, 0, 0, 0.5)",
-    fontFamily: "Inter-Medium",
-    marginTop: hp(1.5),
-    textAlign: "center"
+    fontFamily: "Inter-Regular",
+    marginBottom: hp(1.5),
   },
   productDes: {
     fontSize: 9,
@@ -138,6 +113,7 @@ const styles = StyleSheet.create({
     marginTop: hp(1),
     borderRadius: 10,
     backgroundColor: "rgba(88, 174, 143, 0.25)",
+    alignSelf: "center"
   },
   amountIcon: {
     color: "rgba(88, 174, 143, 0.5)",
@@ -153,5 +129,88 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
   },
+
+  mainContainerMike: {
+    width: widthScreen / 1.14,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  innerMike: {
+    backgroundColor: "#F0FCF1",
+    width: '12%',
+    alignItems: "center",
+    height: hp("32%"),
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginTop: hp(4),
+  },
+  innerHeadLeft: {
+    marginTop: hp(1.5),
+    marginBottom: hp(1.5)
+  },
+  innerHeadRight: {
+    width: '100%',
+  },
+  outerMike: {
+    width: '78%',
+  },
+  rightOuterMain: {
+    width: '100%',
+  },
+  rightMainWrapper: {
+    width: '100%',
+    backgroundColor: "#F0FCF1",
+    borderRadius: 10,
+    height: hp(6.5),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: hp(2)
+  },
+  rightLeftInner: {
+    width: '30%',
+    backgroundColor: Colors.Parrot,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    height: hp(6.5),
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  rightInner: {
+    width: '70%',
+    backgroundColor: "#F0FCF1",
+    borderRadius: 10,
+    height: hp(6.5),
+    alignItems: "center",
+    justifyContent: "center",
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  percentTitle: {
+    fontSize: 16,
+    color: Colors.White,
+    fontFamily: "Inter-SemiBold",
+  },
+  inrxAmountText: {
+    fontSize: 18,
+    color: Colors.Black,
+    fontFamily: "Inter-Regular",
+  },
+  cryptoIcon: {
+    width: 31,
+    height: 31
+  },
+  bottomRightWrapper: {
+    width: '100%',
+    backgroundColor: "#F0FCF1",
+    borderRadius: 10,
+    height: hp(6.5),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
 });
 export default styles;

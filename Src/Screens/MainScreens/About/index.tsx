@@ -14,6 +14,7 @@ import Ionic from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Styles from './Styles';
 import FollowPopup from '../../../Components/FollowPopup';
+import UpdatePopup from '../../../Components/UpdatePopup';
 
 export type Props = {
 	navigation: any;
@@ -22,10 +23,15 @@ export type Props = {
 const About = (props: any) => {
 	const { navigation } = props;
 	const [openSocial, setOpenSocial] = useState(false)
+	const [openUpdate, setOpenUpdate] = useState(false)
 
 
 	const closeSocial = () => {
 		setOpenSocial(false)
+	}
+
+	const closeUpdate = () => {
+		setOpenUpdate(false)
 	}
 
 	return (
@@ -97,7 +103,8 @@ const About = (props: any) => {
 							</TouchableOpacity>
 
 							{/* Check Updates */}
-							<TouchableOpacity style={Styles.listContainer}>
+							<TouchableOpacity onPress={() => { setOpenUpdate(true) }}
+								style={Styles.listContainer}>
 								<View style={Styles.listWrapper}>
 									<Image source={Images.updateCheck} style={Styles.updateIcon} />
 									<Text style={Styles.listTitle}>{"Check for updates"}</Text>
@@ -113,6 +120,11 @@ const About = (props: any) => {
 					{
 						openSocial == true ?
 							<FollowPopup open={openSocial} close={closeSocial} />
+							: null
+					}
+					{
+						openUpdate == true ?
+							<UpdatePopup open={openUpdate} close={closeUpdate} />
 							: null
 					}
 				</View>
