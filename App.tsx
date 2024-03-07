@@ -1,9 +1,7 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import Root from './Src/setup';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 const App = () => {
-
   return (
     <SafeAreaProvider>
       <Root />
