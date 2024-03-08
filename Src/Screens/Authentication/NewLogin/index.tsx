@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
+  Linking,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
@@ -21,11 +22,13 @@ export type Props = {
 const NewLogin = (props: any) => {
   const {navigation} = props;
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onSubmit = () => {
-    navigation.navigate('Home');
+  const openTrustIdApp = () => {
+    const TrustIdScheme = 'trustid://?ref=manp1234';
+    try {
+      return Linking.openURL(TrustIdScheme); // Open in default browser if Chrome is not installed
+    } catch (e) {
+      console.log(e, 'Error in open TrustId app');
+    }
   };
 
   const goToSignUp = () => {
@@ -34,7 +37,7 @@ const NewLogin = (props: any) => {
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White}/>
+      <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White} />
       <KeyboardAwareScrollView
         showsVerticalScrollIndicator={false}
         enableOnAndroid={true}
@@ -79,7 +82,7 @@ const NewLogin = (props: any) => {
               <View style={Styles.buttonWrapper}>
                 <TouchableOpacity
                   onPress={() => {
-                    onSubmit();
+                    openTrustIdApp();
                   }}
                   style={Styles.sendButton}>
                   <Text style={Styles.sendTitle}>{`Trust Id Access`}</Text>
