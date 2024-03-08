@@ -28,6 +28,7 @@ import Settings from '../Screens/MainScreens/Settings';
 import Audit from '../Screens/MainScreens/Audit';
 import Collateral from '../Screens/MainScreens/Collateral';
 import Supply from '../Screens/MainScreens/Supply';
+import NewLogin from '../Screens/Authentication/NewLogin';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -103,7 +104,7 @@ export default function RootNavigator() {
         />
         <RootStack.Screen
           name="Login"
-          component={Login}
+          component={NewLogin}
           options={{headerShown: false}}
         />
 

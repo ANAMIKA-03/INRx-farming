@@ -4,7 +4,8 @@ const Images = {
   onboard_one: require("../Assets/Icons/onboard_one.png"),
   onboard_two: require("../Assets/Icons/onboard_two.png"),
   onboard_three: require("../Assets/Icons/onboard_three.png"),
-
+  trustid_app:require("../Assets/Icons/trustid_app.png"),
+  swap_thin:require("../Assets/Icons/swap_thin.png"),
 
   transaction: require("../Assets/Icons/transaction.png"),
 
