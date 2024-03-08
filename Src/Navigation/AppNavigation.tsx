@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -29,6 +29,7 @@ import Audit from '../Screens/MainScreens/Audit';
 import Collateral from '../Screens/MainScreens/Collateral';
 import Supply from '../Screens/MainScreens/Supply';
 import NewLogin from '../Screens/Authentication/NewLogin';
+import {useDeepLink} from '../hooks/DeepLink';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -66,7 +67,13 @@ export const setNavigator = (nav: any) => {
   const navigator = nav;
 };
 
-export default function RootNavigator() {
+export default function RootNavigator(props: any) {
+  const {deeplink, setDeepLink}: any = useDeepLink();
+
+  useEffect(() => {
+    console.log(deeplink, 'deeplink');
+  }, [deeplink]);
+
   return (
     <NavigationContainer>
       <RootStack.Navigator

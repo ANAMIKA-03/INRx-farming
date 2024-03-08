@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
   },
   bottomHeadContainer: {
     width: widthScreen,
-    flex: 0.7,
-    justifyContent: "space-evenly",
+    flex: 0.82,
+    justifyContent: "space-around",
     alignItems: 'center',        
   },  
   buttonWrapper: {
-    marginTop: hp(5)
+    // marginTop: hp(8)
   }, 
   dontHaveText: {
     fontFamily: "Inter-Regular",

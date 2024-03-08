@@ -47,15 +47,6 @@ const NewLogin = (props: any) => {
         contentContainerStyle={Styles.safeAreaContainer}>
         <View style={Styles.mainContainer}>
           <View style={Styles.backgroundWrapper}>
-            <View style={Styles.mainHeadContainer}>
-              {/* <TouchableOpacity
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Image source={Images.back} style={Styles.backIcon} />
-              </TouchableOpacity> */}
-            </View>
-
             <View style={Styles.bottomHeadContainer}>
               <View>
                 <Text style={Styles.welcomeText}>{`Log In`}</Text>
