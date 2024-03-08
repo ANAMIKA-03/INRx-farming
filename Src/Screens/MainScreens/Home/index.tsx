@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,52 +8,59 @@ import {
   TouchableOpacity,
   Platform,
   ImageBackground,
-  FlatList
+  FlatList,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
 import Styles from './Styles';
-import BottomBar from "../../../Navigation/BottomBar";
+import BottomBar from '../../../Navigation/BottomBar';
 
 export type Props = {
   navigation: any;
 };
 
 const Home = (props: any) => {
-  const { navigation } = props;
+  const {navigation} = props;
 
-  const [tab, setTab] = useState(1)
+  const [tab, setTab] = useState(1);
 
   const DATA = [
     {
-      name: "24hours"
+      name: '24hours',
     },
     {
-      name: "Weekly"
+      name: 'Weekly',
     },
     {
-      name: "Monthly"
+      name: 'Monthly',
     },
     {
-      name: "Yearly"
-    }
-  ]
+      name: 'Yearly',
+    },
+  ];
 
   return (
-    <ImageBackground source={Images.background} style={Styles.backgroundContainer}>
+    <ImageBackground
+      source={Images.background}
+      style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
         <StatusBar barStyle={'dark-content'} />
         <View style={Styles.mainContainer}>
-
           {/* Header */}
           <View style={Styles.headerContainer}>
             <View style={Styles.headerWrapper}>
-              <TouchableOpacity onPress={() => { navigation.navigate("Profile") }}
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Profile');
+                }}
                 style={Styles.leftWrapper}>
                 <Image source={Images.user} style={Styles.userIcon} />
                 <Text style={Styles.userTitle}>{`David`}</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { navigation.navigate("Notification") }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Notification');
+                }}>
                 <Image source={Images.notification} style={Styles.notifyIcon} />
               </TouchableOpacity>
             </View>
@@ -61,7 +68,6 @@ const Home = (props: any) => {
           {/* Main Content */}
 
           <View style={Styles.mainDataContainer}>
-
             <View style={Styles.mainHeadContent}>
               {/* Balance Content */}
               <View style={Styles.balanceContainer}>
@@ -76,17 +82,43 @@ const Home = (props: any) => {
 
                     <View style={Styles.tabWrapContainer}>
                       <View style={Styles.tabsWrap}>
-                        <TouchableOpacity onPress={() => { setTab(1) }}
-                          style={[Styles.tabButton, {
-                            backgroundColor: tab == 1 ? Colors.TabColor : "transparent"
-                          }]}>
-                          <Text style={[Styles.monthText, { color: tab == 1 ? Colors.White : Colors.Preto }]}>{'Daily'}</Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setTab(1);
+                          }}
+                          style={[
+                            Styles.tabButton,
+                            {
+                              backgroundColor:
+                                tab == 1 ? Colors.TabColor : 'transparent',
+                            },
+                          ]}>
+                          <Text
+                            style={[
+                              Styles.monthText,
+                              {color: tab == 1 ? Colors.White : Colors.Preto},
+                            ]}>
+                            {'Daily'}
+                          </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { setTab(2) }}
-                          style={[Styles.tabButton, {
-                            backgroundColor: tab == 2 ? Colors.TabColor : "transparent"
-                          }]}>
-                          <Text style={[Styles.monthText, { color: tab == 2 ? Colors.White : Colors.Preto }]}>{'Weekly'}</Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setTab(2);
+                          }}
+                          style={[
+                            Styles.tabButton,
+                            {
+                              backgroundColor:
+                                tab == 2 ? Colors.TabColor : 'transparent',
+                            },
+                          ]}>
+                          <Text
+                            style={[
+                              Styles.monthText,
+                              {color: tab == 2 ? Colors.White : Colors.Preto},
+                            ]}>
+                            {'Weekly'}
+                          </Text>
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -100,19 +132,37 @@ const Home = (props: any) => {
                   {/* Icons Data */}
                   <View style={Styles.rightBalanceHeader}>
                     <View style={Styles.iconsContainer}>
-                      <TouchableOpacity onPress={() => { navigation.navigate("FarmingRewards") }}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate('FarmingRewards');
+                        }}>
                         <Image source={Images.tag} style={Styles.iconStyle} />
                       </TouchableOpacity>
                       <TouchableOpacity>
-                        <Image source={Images.statsCircle} style={Styles.iconStyle} />
+                        <Image
+                          source={Images.statsCircle}
+                          style={Styles.iconStyle}
+                        />
                       </TouchableOpacity>
                     </View>
                     <View style={Styles.iconsContainer}>
-                      <TouchableOpacity onPress={() => { navigation.navigate("ConvertCurrency") }}>
-                        <Image source={Images.curreny} style={Styles.iconStyle} />
+                      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate('ConvertCurrency');
+                        }}>
+                        <Image
+                          source={Images.curreny}
+                          style={Styles.iconStyle}
+                        />
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={() => { navigation.navigate("Wallet") }}>
-                        <Image source={Images.wallet} style={Styles.iconStyle} />
+                      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate('Wallet');
+                        }}>
+                        <Image
+                          source={Images.wallet}
+                          style={Styles.iconStyle}
+                        />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -124,15 +174,12 @@ const Home = (props: any) => {
                       <Text style={Styles.visitTitle}>{`k`}</Text>
                     </Text>
                   </View>
-
                 </View>
               </View>
-
             </View>
             {/* Center Graph Data */}
 
             <View style={Styles.graphContainer}>
-
               <Image source={Images.graphCircle} style={Styles.graphIcon} />
 
               <View style={Styles.graphDataWrap}>
@@ -146,7 +193,6 @@ const Home = (props: any) => {
                   <Text style={Styles.graphTitle}>{`%47.7`}</Text>
                 </View>
               </View>
-
             </View>
 
             {/* Tabs Filter */}
@@ -158,22 +204,19 @@ const Home = (props: any) => {
                 horizontal={true}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item, index }: any) => (
+                renderItem={({item, index}: any) => (
                   <View key={index} style={Styles.intrestFlat}>
                     <Text style={Styles.TextFlatView}>{item.name}</Text>
                   </View>
                 )}
               />
             </View>
-
           </View>
-
-
         </View>
         <BottomBar profileTab={false} page={1} navigation={navigation} />
       </SafeAreaView>
     </ImageBackground>
   );
-}
+};
 
 export default Home;

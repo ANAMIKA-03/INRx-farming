@@ -67,7 +67,7 @@ export const setNavigator = (nav: any) => {
   const navigator = nav;
 };
 
-export default function RootNavigator(props: any) {
+export default function RootNavigator() {
   const {deeplink, setDeepLink}: any = useDeepLink();
 
   useEffect(() => {
