@@ -32,7 +32,7 @@ const NewLogin = (props: any) => {
   };
 
   const goToSignUp = () => {
-    navigation.navigate('Register');
+    navigation.navigate('Home');
   };
 
   return (
@@ -73,7 +73,8 @@ const NewLogin = (props: any) => {
               <View style={Styles.buttonWrapper}>
                 <TouchableOpacity
                   onPress={() => {
-                    openTrustIdApp();
+                    // openTrustIdApp();
+                    goToSignUp();
                   }}
                   style={Styles.sendButton}>
                   <Text style={Styles.sendTitle}>{`Trust Id Access`}</Text>
