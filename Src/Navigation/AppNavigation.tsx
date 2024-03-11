@@ -69,7 +69,7 @@ export const setNavigator = (nav: any) => {
 
 export default function RootNavigator() {
   const {deeplink, setDeepLink}: any = useDeepLink();
-
+  
   useEffect(() => {
     console.log(deeplink, 'deeplink');
   }, [deeplink]);

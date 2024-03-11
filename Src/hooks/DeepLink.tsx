@@ -1,6 +1,5 @@
 import {Linking} from 'react-native';
 import React, {createContext, useContext, useEffect, useState} from 'react';
-
 const DeepLinkContext = createContext({});
 
 const DeepLink = ({children}: any) => {
