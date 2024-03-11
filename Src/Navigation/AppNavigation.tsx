@@ -30,6 +30,8 @@ import Collateral from '../Screens/MainScreens/Collateral';
 import Supply from '../Screens/MainScreens/Supply';
 import NewLogin from '../Screens/Authentication/NewLogin';
 import {useDeepLink} from '../hooks/DeepLink';
+import {useSelector} from 'react-redux';
+import {RootState} from '../Services/Redux/store';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -69,9 +71,10 @@ export const setNavigator = (nav: any) => {
 
 export default function RootNavigator() {
   const {deeplink, setDeepLink}: any = useDeepLink();
-  
+  const {sessionId} = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
-    console.log(deeplink, 'deeplink');
+    console.log(deeplink, sessionId, 'deeplink');
   }, [deeplink]);
 
   return (
