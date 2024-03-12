@@ -1,0 +1,1 @@
+export const APIURL="https://trst.ink/business/protected-route";

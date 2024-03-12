@@ -1,16 +1,27 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 
+export interface User {
+  mobileNumber: String;
+  userId: String;
+  name: String;
+  dob: String;
+}
 export interface AuthSliceStates {
   login: boolean;
-  user: Object;
+  user: User;
   sessionId: String;
   apikey: String;
 }
 
 const initialState: AuthSliceStates = {
   login: false,
-  user: {},
+  user: {
+    mobileNumber: '+910000000000',
+    userId: '',
+    name: '',
+    dob:''
+  },
   sessionId: '',
   apikey: '',
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -9,11 +9,17 @@ import {
   TextInput,
   Platform,
   Linking,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Styles from './Styles';
+import {useDeepLink} from '../../../hooks/DeepLink';
+import {getUserDetails} from '../../../Services/Apis/apis';
+import {useDispatch} from 'react-redux';
+import {setAuthInfo} from '../../../Services/Redux/authSlice';
 
 export type Props = {
   navigation: any;
@@ -21,9 +27,13 @@ export type Props = {
 
 const NewLogin = (props: any) => {
   const {navigation} = props;
+  const {deeplink, setDeepLink}: any = useDeepLink();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const openTrustIdApp = () => {
-    const TrustIdScheme = 'trustid://?ref=manp1234';
+    const TrustIdScheme =
+      'trustid://?ref=inrx_app_login/business_name="INRX Business Inc"';
     try {
       return Linking.openURL(TrustIdScheme); // Open in default browser if Chrome is not installed
     } catch (e) {
@@ -34,6 +44,65 @@ const NewLogin = (props: any) => {
   const goToSignUp = () => {
     navigation.navigate('Home');
   };
+
+  function decodeDeeplinkData(deeplink: String) {
+    const urlString = deeplink;
+
+    // Extract the JSON string from the URL
+    const jsonStartIndex = urlString.indexOf('data=') + 'data='.length;
+    const jsonEndIndex = urlString.length;
+    const jsonString = decodeURIComponent(
+      urlString.substring(jsonStartIndex, jsonEndIndex),
+    );
+
+    // Parse the JSON string
+    try {
+      const jsonObject = JSON.parse(jsonString);
+      if (jsonObject?.status && jsonObject?.data) {
+        getUserDetails(jsonObject?.data)
+          .then((resp: any) => {
+            if (resp?.status) {
+              const userobj = {
+                user: {
+                  mobileNumber: resp?.data?.mobileNumber,
+                  userId: resp?.data?.userId,
+                  name: resp?.data?.name ? resp?.data?.name : 'N/A',
+                  dob: resp?.data?.dob ? resp?.data?.dob : 'N/A'
+                },
+                login: true,
+              };
+              dispatch(setAuthInfo(userobj));
+              setDeepLink({});
+              setLoading(false);
+              // goToSignUp();
+            }
+          })
+          .catch((er: any) => {
+            setLoading(false);
+            console.log(er, 'er');
+          });
+      } else {
+        setLoading(false);
+        Alert.alert('Something went wrong!');
+      }
+    } catch (error: any) {
+      setLoading(false);
+      console.error('Error parsing JSON:', error.message);
+    }
+  }
+
+  useEffect(() => {
+    // console.log(deeplink, 'deeplink in login with trustid screen');
+    if (deeplink) {
+      if (typeof deeplink !== 'object') {
+        // Your input string
+        setTimeout(() => {
+          setLoading(true);
+          decodeDeeplinkData(deeplink);
+        }, 1000);
+      }
+    }
+  }, [deeplink]);
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
@@ -74,10 +143,13 @@ const NewLogin = (props: any) => {
                 <TouchableOpacity
                   onPress={() => {
                     // openTrustIdApp();
-                    goToSignUp();
+                    if (!loading) openTrustIdApp();
                   }}
                   style={Styles.sendButton}>
-                  <Text style={Styles.sendTitle}>{`Trust Id Access`}</Text>
+                  {loading ? <ActivityIndicator /> : null}
+                  <Text style={Styles.sendTitle}>
+                    {loading ? `Authenticating` : `Trust Id Access`}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>

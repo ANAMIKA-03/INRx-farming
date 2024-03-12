@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
     marginTop: hp(1)
   },
   tickIcon: {
-    color: Colors.Parrot,
+    // color: Colors.Parrot,
   },
 
   verifyText: {
     fontSize: hp(1.6),
-    color: Colors.Parrot,
+    // color: Colors.Parrot,
     fontFamily: "Inter-Medium",
   },
   scrollContainer: {

@@ -14,6 +14,8 @@ import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
 import Styles from './Styles';
 import BottomBar from '../../../Navigation/BottomBar';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../Services/Redux/store';
 
 export type Props = {
   navigation: any;
@@ -22,6 +24,7 @@ export type Props = {
 const Home = (props: any) => {
   const {navigation} = props;
 
+  const {user} = useSelector((state: RootState) => state.auth);
   const [tab, setTab] = useState(1);
 
   const DATA = [
@@ -55,7 +58,9 @@ const Home = (props: any) => {
                 }}
                 style={Styles.leftWrapper}>
                 <Image source={Images.user} style={Styles.userIcon} />
-                <Text style={Styles.userTitle}>{`David`}</Text>
+                <Text style={Styles.userTitle}>
+                  {user?.name ? user?.name : `David`}
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {

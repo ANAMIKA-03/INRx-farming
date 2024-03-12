@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Dimensions} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {enableScreens} from 'react-native-screens';
@@ -29,7 +31,6 @@ import Audit from '../Screens/MainScreens/Audit';
 import Collateral from '../Screens/MainScreens/Collateral';
 import Supply from '../Screens/MainScreens/Supply';
 import NewLogin from '../Screens/Authentication/NewLogin';
-import {useDeepLink} from '../hooks/DeepLink';
 import {useSelector} from 'react-redux';
 import {RootState} from '../Services/Redux/store';
 
@@ -70,17 +71,12 @@ export const setNavigator = (nav: any) => {
 };
 
 export default function RootNavigator() {
-  const {deeplink, setDeepLink}: any = useDeepLink();
-  const {sessionId} = useSelector((state: RootState) => state.auth);
-
-  useEffect(() => {
-    console.log(deeplink, sessionId, 'deeplink');
-  }, [deeplink]);
+  const {login} = useSelector((state: RootState) => state.auth);
 
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName="Splash"
+        initialRouteName={login ? 'Home' : 'Splash'}
         screenOptions={{
           headerShown: false,
           cardStyle: {backgroundColor: 'transparent'},
@@ -102,21 +98,25 @@ export default function RootNavigator() {
           }),
           presentation: 'modal',
         }}>
-        <RootStack.Screen
-          name="Splash"
-          component={Splash}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          name="Onboarding"
-          component={Onboarding}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          name="Login"
-          component={NewLogin}
-          options={{headerShown: false}}
-        />
+        {!login ? (
+          <>
+            <RootStack.Screen
+              name="Splash"
+              component={Splash}
+              options={{headerShown: false}}
+            />
+            <RootStack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={{headerShown: false}}
+            />
+            <RootStack.Screen
+              name="Login"
+              component={NewLogin}
+              options={{headerShown: false}}
+            />
+          </>
+        ) : null}
 
         <RootStack.Screen
           name="Home"

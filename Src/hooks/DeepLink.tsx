@@ -7,7 +7,7 @@ const DeepLink = ({children}: any) => {
 
   useEffect(() => {
     const handleDeepLink = (url: any) => {
-      console.log('Received deep link:', url);
+      // console.log('Received deep link:', url);
       setDeepLink(url);
     };
 
