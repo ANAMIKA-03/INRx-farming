@@ -41,7 +41,7 @@ const Home = (props: any) => {
       name: 'Yearly',
     },
   ];
-
+  
   return (
     <ImageBackground
       source={Images.background}
@@ -225,3 +225,4 @@ const Home = (props: any) => {
 };
 
 export default Home;
+

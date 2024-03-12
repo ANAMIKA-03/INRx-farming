@@ -19,7 +19,7 @@ import Styles from './Styles';
 import {useDeepLink} from '../../../hooks/DeepLink';
 import {getUserDetails} from '../../../Services/Apis/apis';
 import {useDispatch} from 'react-redux';
-import {setAuthInfo} from '../../../Services/Redux/authSlice';
+import {setAuthInfo, setSession} from '../../../Services/Redux/authSlice';
 
 export type Props = {
   navigation: any;
@@ -61,20 +61,26 @@ const NewLogin = (props: any) => {
       if (jsonObject?.status && jsonObject?.data) {
         getUserDetails(jsonObject?.data)
           .then((resp: any) => {
+            // console.log(resp, 'resp');
             if (resp?.status) {
               const userobj = {
                 user: {
-                  mobileNumber: resp?.data?.mobileNumber,
+                  mobileNumber: resp?.data?.mobile,
                   userId: resp?.data?.userId,
                   name: resp?.data?.name ? resp?.data?.name : 'N/A',
-                  dob: resp?.data?.dob ? resp?.data?.dob : 'N/A'
+                  dob: resp?.data?.dob ? resp?.data?.dob : 'N/A',
                 },
                 login: true,
               };
+              dispatch(
+                setSession(resp?.data?.tokenId ? resp?.data?.tokenId : ''),
+              );
               dispatch(setAuthInfo(userobj));
               setDeepLink({});
               setLoading(false);
               // goToSignUp();
+            } else {
+              setLoading(false);
             }
           })
           .catch((er: any) => {

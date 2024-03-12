@@ -10,7 +10,7 @@ export interface User {
 export interface AuthSliceStates {
   login: boolean;
   user: User;
-  sessionId: String;
+  tokenId: String;
   apikey: String;
 }
 
@@ -20,9 +20,9 @@ const initialState: AuthSliceStates = {
     mobileNumber: '+910000000000',
     userId: '',
     name: '',
-    dob:''
+    dob:'',
   },
-  sessionId: '',
+  tokenId: '',
   apikey: '',
 };
 
@@ -35,7 +35,7 @@ export const authSlice = createSlice({
       state.login = action.payload.login;
     },
     setSession: (state, action: PayloadAction<String>) => {
-      state.sessionId = action.payload;
+      state.tokenId = action.payload;
     },
   },
 });
