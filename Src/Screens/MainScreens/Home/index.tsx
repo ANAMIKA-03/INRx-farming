@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -16,6 +16,7 @@ import Styles from './Styles';
 import BottomBar from '../../../Navigation/BottomBar';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../Services/Redux/store';
+import {createWallet} from '../../../Services/Apis/apis';
 
 export type Props = {
   navigation: any;
@@ -41,7 +42,17 @@ const Home = (props: any) => {
       name: 'Yearly',
     },
   ];
-  
+
+  useEffect(() => {
+    createWallet(user.mobileNumber)
+      .then((res: any) => {
+        console.log(res, 'create wallet');
+      })
+      .catch((e: any) => {
+        console.log(e, 'Error in wallet create in homescreen');
+      });
+  }, []);
+
   return (
     <ImageBackground
       source={Images.background}
@@ -225,4 +236,3 @@ const Home = (props: any) => {
 };
 
 export default Home;
-
