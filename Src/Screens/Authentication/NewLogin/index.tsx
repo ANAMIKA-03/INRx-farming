@@ -17,7 +17,7 @@ import Colors from '../../../Styles/Colors';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Styles from './Styles';
 import {useDeepLink} from '../../../hooks/DeepLink';
-import {getUserDetails} from '../../../Services/Apis/apis';
+import {createUser, getUserDetails} from '../../../Services/Apis/apis';
 import {useDispatch} from 'react-redux';
 import {setAuthInfo, setSession} from '../../../Services/Redux/authSlice';
 
@@ -60,8 +60,9 @@ const NewLogin = (props: any) => {
       const jsonObject = JSON.parse(jsonString);
       if (jsonObject?.status && jsonObject?.data) {
         getUserDetails(jsonObject?.data)
-          .then((resp: any) => {
+          .then(async (resp: any) => {
             // console.log(resp, 'resp');
+
             if (resp?.status) {
               const userobj = {
                 user: {
@@ -72,12 +73,21 @@ const NewLogin = (props: any) => {
                 },
                 login: true,
               };
-              dispatch(
-                setSession(resp?.data?.tokenId ? resp?.data?.tokenId : ''),
-              );
-              dispatch(setAuthInfo(userobj));
+              let result = await saveData({
+                ...userobj.user,
+                tokenId: resp?.data?.tokenId,
+              });
+              if (result) {
+                dispatch(
+                  setSession(resp?.data?.tokenId ? resp?.data?.tokenId : ''),
+                );
+                dispatch(setAuthInfo(userobj));
+              } else {
+                Alert.alert('Register failed!');
+              }
               setDeepLink({});
               setLoading(false);
+
               // goToSignUp();
             } else {
               setLoading(false);
@@ -94,6 +104,29 @@ const NewLogin = (props: any) => {
     } catch (error: any) {
       setLoading(false);
       console.error('Error parsing JSON:', error.message);
+    }
+  }
+
+  async function saveData(data: any) {
+    try {
+      const params = {
+        mobile: data?.mobileNumber,
+        userId: data?.userId,
+        name: data?.name ? data?.name : 'N/A',
+        dob: data?.dob ? data?.dob : 'N/A',
+        tokenId: data?.tokenId,
+      };
+      // console.log(params, ' params data');
+      const res = await createUser(params);
+
+      Alert.alert(res.message);
+      if (res?.status == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e: any) {
+      console.log(e, 'Error in saveData try:catch::NewLoginScreen');
     }
   }
 
