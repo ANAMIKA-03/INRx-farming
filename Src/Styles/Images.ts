@@ -6,6 +6,8 @@ const Images = {
   onboard_three: require("../Assets/Icons/onboard_three.png"),
   trustid_app:require("../Assets/Icons/trustid_app.png"),
   swap_thin:require("../Assets/Icons/swap_thin.png"),
+  ethericon:require("../Assets/Icons/ethereum.png"),
+  tronicon:require("../Assets/Icons/tronscan.png"),
 
   transaction: require("../Assets/Icons/transaction.png"),
 

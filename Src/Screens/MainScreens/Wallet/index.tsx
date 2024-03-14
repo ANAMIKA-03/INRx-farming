@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,20 +8,29 @@ import {
   TouchableOpacity,
   Platform,
   ScrollView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
 import Styles from './Styles';
-
+import {RootState} from '../../../Services/Redux/store';
+import {useSelector} from 'react-redux';
+import SelectChainPopup from '../../../Components/SelectChainPopup';
+import Ionic from 'react-native-vector-icons/Ionicons';
+import {Asset} from '../../../Services/Redux/walletSlice';
 
 export type Props = {
   navigation: any;
 };
 
 const Wallet = (props: any) => {
-  const { navigation } = props;
-
+  const {navigation} = props;
+  const {wallets, activeWallet, assets} = useSelector(
+    (state: RootState) => state.wallet,
+  );
+  const wallet = wallets[activeWallet ? activeWallet : 0];
+  const [openSelectChain, setOpenSelectChain] = useState(false);
+  const [coins, setCoins] = useState<Asset[]>([]);
 
   const WALLET_DATA = [
     {
@@ -29,36 +38,46 @@ const Wallet = (props: any) => {
       title: `INRx`,
       description: `Inrx`,
       amount: `₹4,120.54`,
-      amountRate: `0024.54inrx`
+      amountRate: `0024.54inrx`,
     },
     {
       icon: Images.inrLogo,
       title: `INR`,
       description: `Inr`,
       amount: `₹64,520.54`,
-      amountRate: `4524.54inr`
+      amountRate: `4524.54inr`,
     },
     {
       icon: Images.usdtLogo,
       title: `USDT`,
       description: `Usdt`,
       amount: `₹55,520.54`,
-      amountRate: `4625.84usdt`
+      amountRate: `4625.84usdt`,
     },
     {
       icon: Images.usdcLogo,
       title: `USDC`,
       description: `Usdc`,
       amount: `₹4,520.54`,
-      amountRate: `45.84usdc`
+      amountRate: `45.84usdc`,
+    },
+  ];
+
+  const closeSocial = () => {
+    setOpenSelectChain(false);
+  };
+
+  useEffect(() => {
+    if (assets?.length > 0) {
+      const arr = assets.filter(it => it.blockchain == wallet?.blockchain);
+      setCoins(arr);
     }
-  ]
+  }, [assets, activeWallet]);
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
       <StatusBar barStyle={'dark-content'} />
       <View style={Styles.mainContainer}>
-
         {/* Header */}
         <View style={Styles.headerContainer}>
           <View style={Styles.headerWrapper}>
@@ -66,7 +85,10 @@ const Wallet = (props: any) => {
               <Image source={Images.user} style={Styles.userIcon} />
               <Text style={Styles.userTitle}>{`David`}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { navigation.goBack() }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}>
               <Image source={Images.chevronUp} style={Styles.notifyIcon} />
             </TouchableOpacity>
           </View>
@@ -74,24 +96,39 @@ const Wallet = (props: any) => {
         {/* Main Content */}
 
         <View style={Styles.mainDataContainer}>
-
+          <TouchableOpacity
+            style={Styles.dropDownWrapper}
+            onPress={() => {
+              setOpenSelectChain(true);
+            }}>
+            <Text style={Styles.listTitle}>Chain : {wallet?.blockchain}</Text>
+            <Ionic name={'chevron-down'} size={18} style={Styles.dotIcon} />
+          </TouchableOpacity>
           <View style={Styles.walletWrapper}>
             <Image source={Images.currencyLogo} style={Styles.currencyIcon} />
-            <Text style={Styles.inrTitle}>{`14,545.44`}</Text>
+            <Text style={Styles.inrTitle}>
+              {wallet?.totalinr ? wallet?.totalinr : `0.000`}
+            </Text>
           </View>
 
           <View style={Styles.amountWrapper}>
             <Text style={Styles.solutionText}>{`+`}</Text>
             <Image source={Images.currencyLogo} style={Styles.amountIcon} />
-            <Text style={Styles.solutionText}>{`5243.54`}</Text>
+            <Text style={Styles.solutionText}>{`0000.00`}</Text>
           </View>
 
           <View style={Styles.mainHeadContent}>
-            <TouchableOpacity onPress={() => { navigation.navigate("Send") }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Send');
+              }}>
               <Image source={Images.send} style={Styles.sendIcon} />
               <Text style={Styles.sendText}>{`Send`}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { navigation.navigate("Received") }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Received');
+              }}>
               <Image source={Images.receive} style={Styles.sendIcon} />
               <Text style={Styles.sendText}>{`Receive`}</Text>
             </TouchableOpacity>
@@ -105,42 +142,53 @@ const Wallet = (props: any) => {
         {/* Bottom Data */}
         <View style={Styles.bottomContainer}>
           <View style={Styles.bottomWrapper}>
-
             <ScrollView showsVerticalScrollIndicator={false}>
               <View style={Styles.scrollContainer}>
-
-
-                {
-                  WALLET_DATA?.map((item, keyID) => {
-                    return (
-                      <View key={keyID} style={Styles.listContainer}>
-                        <View style={Styles.completeWrap}>
-                          <Image source={item?.icon} style={Styles.listIcon} />
-                          <View style={Styles.seperateWrap}>
-                            <Text style={Styles.listTitle}>{item?.title}</Text>
-                            <Text style={Styles.listDescription}>{item?.description}</Text>
-                          </View>
-                        </View>
-
-                        <View>
-                          <Text style={Styles.listTitle}>{item?.amount}</Text>
-                          <Text style={Styles.listDescription}>{item?.amountRate}</Text>
+                {coins?.map((item, keyID) => {
+                  return (
+                    <View
+                      key={keyID + 'wallet_assets'}
+                      style={Styles.listContainer}>
+                      <View style={Styles.completeWrap}>
+                        <Image
+                          source={
+                            item?.symbol == 'INRx'
+                              ? Images.inrxLogo
+                              : {uri: item?.icon}
+                          }
+                          style={Styles.listIcon}
+                          resizeMode="contain"
+                        />
+                        <View style={Styles.seperateWrap}>
+                          <Text style={Styles.listTitle}>{item?.symbol}</Text>
+                          <Text style={Styles.listDescription}>
+                            {item?.name} {`(${item.blockchain})`}
+                          </Text>
                         </View>
                       </View>
-                    )
-                  })
-                }
 
+                      <View>
+                        <Text style={Styles.listTitle}>{`₹${
+                          item?.totalinr ? item?.totalinr : '000.00'
+                        }`}</Text>
+                        <Text style={Styles.listDescription}>
+                          {item?.balance ? item?.balance : '000.00'}{' '}
+                          {` ${item?.symbol}`}
+                        </Text>
+                      </View>
+                    </View>
+                  );
+                })}
               </View>
             </ScrollView>
-
           </View>
         </View>
-
-
       </View>
+      {openSelectChain == true ? (
+        <SelectChainPopup open={openSelectChain} close={closeSocial} />
+      ) : null}
     </SafeAreaView>
   );
-}
+};
 
 export default Wallet;

@@ -1,5 +1,4 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import authSlice from './authSlice';
 import {
   FLUSH,
   PAUSE,
@@ -11,15 +10,18 @@ import {
   persistStore,
 } from 'redux-persist';
 import {reduxStorage} from './persist';
+import authSlice from './authSlice';
+import walletSlice from './walletSlice';
 
 const reducers = combineReducers({
   auth: authSlice,
+  wallet: walletSlice,
 });
 
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'wallet'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

@@ -45,8 +45,8 @@ export function fetchUser(mobile: String) {
     });
 }
 
-export function createWallet(mobile: String) {
-  return fetch(WALLET_API_URL + '/create-wallet', {
+export function fetchWallet(mobile: String) {
+  return fetch(WALLET_API_URL + '/fetch-wallet', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,6 +56,6 @@ export function createWallet(mobile: String) {
   })
     .then(res => res.json())
     .catch(e => {
-      console.log(e, 'Error in createWallet()::apis.tsx');
+      console.log(e, 'Error in fetchWallet()::apis.tsx');
     });
 }

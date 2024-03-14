@@ -55,6 +55,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  dropDownWrapper: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  listTitle: {
+    fontSize: hp(1.7),
+    color: Colors.Black,
+    fontFamily: 'Inter-SemiBold',
+  },
+  dotIcon: {
+    color: Colors.Black,
+    paddingHorizontal:wp(1.3)
+  },
   mainHeadContent: {
     width: widthScreen / 1.14,
     alignSelf: "center",
@@ -128,7 +143,8 @@ const styles = StyleSheet.create({
     color: "rgba(0, 0, 0, 0.5)",
     fontFamily: "Inter-Regular",
     marginTop: hp(0.5),
-    textAlign: "center"
+    textAlign: "center",
+    width:wp(70)
   },
 
   qrIcon: {
