@@ -9,14 +9,8 @@ export interface Wallet {
 }
 export interface Asset {
   balance: number;
-  blockchain: string;
-  contract: string;
-  decimal: number;
   icon: string;
-  name: string;
   symbol: string;
-  totalinr: number;
-  totalusd: number;
 }
 
 export interface WalletSliceStates {

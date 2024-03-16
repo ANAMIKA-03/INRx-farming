@@ -11,12 +11,9 @@ import {
   FlatList,
 } from 'react-native';
 import Images from '../../../Styles/Images';
-import Colors from '../../../Styles/Colors';
 import Styles from './Styles';
 import {RootState} from '../../../Services/Redux/store';
 import {useSelector} from 'react-redux';
-import SelectChainPopup from '../../../Components/SelectChainPopup';
-import Ionic from 'react-native-vector-icons/Ionicons';
 import {Asset} from '../../../Services/Redux/walletSlice';
 
 export type Props = {
@@ -28,8 +25,8 @@ const Wallet = (props: any) => {
   const {wallets, activeWallet, assets} = useSelector(
     (state: RootState) => state.wallet,
   );
+  const {user} = useSelector((state: RootState) => state.auth);
   const wallet = wallets[activeWallet ? activeWallet : 0];
-  const [openSelectChain, setOpenSelectChain] = useState(false);
   const [coins, setCoins] = useState<Asset[]>([]);
 
   const WALLET_DATA = [
@@ -61,18 +58,13 @@ const Wallet = (props: any) => {
       amount: `₹4,520.54`,
       amountRate: `45.84usdc`,
     },
-  ];
-
-  const closeSocial = () => {
-    setOpenSelectChain(false);
-  };
+  ];  
 
   useEffect(() => {
     if (assets?.length > 0) {
-      const arr = assets.filter(it => it.blockchain == wallet?.blockchain);
-      setCoins(arr);
+      setCoins(assets);
     }
-  }, [assets, activeWallet]);
+  }, [assets]);
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
@@ -83,7 +75,7 @@ const Wallet = (props: any) => {
           <View style={Styles.headerWrapper}>
             <TouchableOpacity style={Styles.leftWrapper}>
               <Image source={Images.user} style={Styles.userIcon} />
-              <Text style={Styles.userTitle}>{`David`}</Text>
+              <Text style={Styles.userTitle}>{`${user.name}`}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -96,14 +88,6 @@ const Wallet = (props: any) => {
         {/* Main Content */}
 
         <View style={Styles.mainDataContainer}>
-          <TouchableOpacity
-            style={Styles.dropDownWrapper}
-            onPress={() => {
-              setOpenSelectChain(true);
-            }}>
-            <Text style={Styles.listTitle}>Chain : {wallet?.blockchain}</Text>
-            <Ionic name={'chevron-down'} size={18} style={Styles.dotIcon} />
-          </TouchableOpacity>
           <View style={Styles.walletWrapper}>
             <Image source={Images.currencyLogo} style={Styles.currencyIcon} />
             <Text style={Styles.inrTitle}>
@@ -162,17 +146,15 @@ const Wallet = (props: any) => {
                         <View style={Styles.seperateWrap}>
                           <Text style={Styles.listTitle}>{item?.symbol}</Text>
                           <Text style={Styles.listDescription}>
-                            {item?.name} {`(${item.blockchain})`}
+                            {item?.symbol}
                           </Text>
                         </View>
                       </View>
 
                       <View>
-                        <Text style={Styles.listTitle}>{`₹${
-                          item?.totalinr ? item?.totalinr : '000.00'
-                        }`}</Text>
+                        <Text style={Styles.listTitle}>{`₹${'000.00'}`}</Text>
                         <Text style={Styles.listDescription}>
-                          {item?.balance ? item?.balance : '000.00'}{' '}
+                          {item?.balance > 0 ? item?.balance : '000.00'}{' '}
                           {` ${item?.symbol}`}
                         </Text>
                       </View>
@@ -184,9 +166,6 @@ const Wallet = (props: any) => {
           </View>
         </View>
       </View>
-      {openSelectChain == true ? (
-        <SelectChainPopup open={openSelectChain} close={closeSocial} />
-      ) : null}
     </SafeAreaView>
   );
 };

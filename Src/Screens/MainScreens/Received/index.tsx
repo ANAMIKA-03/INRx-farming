@@ -52,14 +52,6 @@ const Received = (props: any) => {
             <View style={Styles.empty} />
           </View>
 
-          <TouchableOpacity
-            style={Styles.dropDownWrapper}
-            onPress={() => {
-              setOpenSelectChain(true);
-            }}>
-            <Text style={Styles.listTitle}>Chain : {wallet?.blockchain}</Text>
-            <Ionic name={'chevron-down'} size={18} style={Styles.dotIcon} />
-          </TouchableOpacity>
           <View style={Styles.walletWrapper}>
             <Image source={Images.currencyLogo} style={Styles.currencyIcon} />
             <Text style={Styles.inrTitle}>
@@ -100,9 +92,14 @@ const Received = (props: any) => {
             ) : (
               <Image source={Images.qr} style={Styles.qrIcon} />
             )}
-            <Text style={Styles.hashTitle}>
-              {wallet?.blockchain + ' Wallet Address'}
-            </Text>
+            <TouchableOpacity
+              style={Styles.dropDownWrapper}
+              onPress={() => {
+                setOpenSelectChain(true);
+              }}>
+              <Text style={Styles.listTitle}>Chain : {wallet?.blockchain}</Text>
+              <Ionic name={'chevron-down'} size={18} style={Styles.dotIcon} />
+            </TouchableOpacity>
             <Text style={Styles.hashTitle}>
               {wallet?.address
                 ? wallet?.address.slice(0, 10) +

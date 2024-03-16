@@ -16,8 +16,10 @@ import Styles from './Styles';
 import BottomBar from '../../../Navigation/BottomBar';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../Services/Redux/store';
-import {fetchWallet} from '../../../Services/Apis/apis';
-import {setAssets, setWallet} from '../../../Services/Redux/walletSlice';
+import {
+  balanceUpdate,
+  updateWalletAndAssets,
+} from '../../../utils/actionHandlers';
 
 export type Props = {
   navigation: any;
@@ -27,6 +29,7 @@ const Home = (props: any) => {
   const {navigation} = props;
 
   const {user} = useSelector((state: RootState) => state.auth);
+  const {activeWallet} = useSelector((state: RootState) => state.wallet);
   const [tab, setTab] = useState(1);
   const dispatch = useDispatch();
   const DATA = [
@@ -44,23 +47,21 @@ const Home = (props: any) => {
     },
   ];
 
+  var t: any;
   useEffect(() => {
-    fetchWallet(user.mobileNumber)
-      .then((res: any) => {
-        // console.log(res.assets, 'assets');
-        if (res?.status == 200) {
-          dispatch(
-            setWallet({wallet: res?.wallets?.length > 0 ? res?.wallets : []}),
-          );
-          dispatch(
-            setAssets({assets: res?.assets?.length > 0 ? res?.assets : []}),
-          );
-        }
-      })
-      .catch((e: any) => {
-        console.log(e, 'Error in wallet fetch in homescreen');
-      });
-  }, []);
+    clearInterval(t);
+    if (user.mobileNumber) {
+      // t = setInterval(() => {
+        balanceUpdate(user.mobileNumber, () => {
+          updateWalletAndAssets(user.mobileNumber, dispatch);
+        });
+      // }, 10000);
+    }
+    return () => {
+      // console.log('screen disposed')
+      clearInterval(t);
+    };
+  }, [activeWallet, user]);
 
   return (
     <ImageBackground
