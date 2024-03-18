@@ -154,7 +154,7 @@ const Wallet = (props: any) => {
                       <View>
                         <Text style={Styles.listTitle}>{`₹${'000.00'}`}</Text>
                         <Text style={Styles.listDescription}>
-                          {item?.balance > 0 ? item?.balance : '000.00'}{' '}
+                          {item?.available > 0 ? item?.available : '000.00'}{' '}
                           {` ${item?.symbol}`}
                         </Text>
                       </View>

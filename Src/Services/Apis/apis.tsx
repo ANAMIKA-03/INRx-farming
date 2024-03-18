@@ -1,5 +1,5 @@
 import {AUTH_API_URL, TRUSTAPP_API, WALLET_API_URL} from '../../../env';
-import { TRANSFERTOKEN } from '../../utils/constants';
+import {TRANSFERTOKEN} from '../../utils/constants';
 
 export function getUserDetails(apiKey: String) {
   return fetch(TRUSTAPP_API, {
@@ -53,7 +53,7 @@ export function fetchWallet(mobile: String) {
       'Content-Type': 'application/json',
       'allow-access-control-origin': '*',
     },
-    body: JSON.stringify({mobile:mobile}),
+    body: JSON.stringify({mobile: mobile}),
   })
     .then(res => res.json())
     .catch(e => {
@@ -61,14 +61,14 @@ export function fetchWallet(mobile: String) {
     });
 }
 
-export function updateBalance(mobile: String){
+export function updateBalance(mobile: String) {
   return fetch(WALLET_API_URL + '/update-wallet', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'allow-access-control-origin': '*',
     },
-    body: JSON.stringify({mobile:mobile}),
+    body: JSON.stringify({mobile: mobile}),
   })
     .then(res => res.json())
     .catch(e => {
@@ -76,7 +76,7 @@ export function updateBalance(mobile: String){
     });
 }
 
-export function transferToken(data: TRANSFERTOKEN){
+export function transferToken(data: TRANSFERTOKEN) {
   return fetch(WALLET_API_URL + '/transfer-token', {
     method: 'POST',
     headers: {
@@ -88,5 +88,20 @@ export function transferToken(data: TRANSFERTOKEN){
     .then(res => res.json())
     .catch(e => {
       console.log(e, 'Error in transferToken()::apis.tsx');
+    });
+}
+
+export function withdrawList(mobile: String) {
+  return fetch(WALLET_API_URL + '/withdraw-list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify({mobile: mobile}),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in withdrawList()::apis.tsx');
     });
 }

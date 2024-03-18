@@ -1,4 +1,9 @@
-import {fetchWallet, transferToken, updateBalance} from '../Services/Apis/apis';
+import {
+  fetchWallet,
+  transferToken,
+  updateBalance,
+  withdrawList,
+} from '../Services/Apis/apis';
 import {setAssets, setWallet} from '../Services/Redux/walletSlice';
 import {TRANSFERTOKEN} from './constants';
 
@@ -80,4 +85,22 @@ export function transferTokenAction(data: TRANSFERTOKEN, cb: any) {
     }
     console.log(e, '::CatchError in transferTokenAction::actionHandlers.tsx');
   }
+}
+
+export function sendHistory(mobile: String, setWithdrawList: any, cb: any) {
+  withdrawList(mobile)
+    .then(resp => {
+      if (resp?.status == 200) {
+        setWithdrawList(resp.data);
+      }
+      if (cb) {
+        cb();
+      }
+    })
+    .catch(e => {
+      if (cb) {
+        cb();
+      }
+      console.log(e, 'Error in sendHistory():actionHandlers.tsx');
+    });
 }

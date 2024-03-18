@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: hp(4),
   },
   mainDataContainer: {
-    flex: 0.7,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    flex: 1,
+    flex: 0.7,
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: hp(-4),

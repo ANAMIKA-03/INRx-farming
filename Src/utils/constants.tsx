@@ -7,3 +7,12 @@ export interface TRANSFERTOKEN {
   tokenId: String;
   userId: String;
 }
+
+export interface WITHDRAWLIST {
+  amount:number;
+  reciever: string;
+  type:string;
+  icon:string;
+  createdAt:string;
+  symbol:string;
+}

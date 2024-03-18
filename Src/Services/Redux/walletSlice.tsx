@@ -11,6 +11,7 @@ export interface Asset {
   balance: number;
   icon: string;
   symbol: string;
+  available: number;
 }
 
 export interface WalletSliceStates {
