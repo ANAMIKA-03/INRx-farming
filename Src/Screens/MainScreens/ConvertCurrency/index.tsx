@@ -47,10 +47,11 @@ const ConvertCurrency = (props: any) => {
 
   const onSelectPayToken = (tokenIndex: number) => {
     const token = assets[tokenIndex];
+
     if (token?.symbol?.toLowerCase() == getToken?.symbol?.toLowerCase()) {
       setGetToken(payToken);
     }
-    setPayToken(token);
+    setPayToken(token);    
   };
 
   const onSelectGetToken = (tokenIndex: number) => {
@@ -82,35 +83,6 @@ const ConvertCurrency = (props: any) => {
     }
   }
 
-  useEffect(() => {
-    const inrtoken = assets.find(it => it.symbol == 'INR');
-    const inrxtoken = assets.find(it => it.symbol == 'INRx');
-    setPayToken(inrtoken);
-    setGetToken(inrxtoken);
-  }, []);
-
-  useEffect(() => {
-    if (payToken && getToken) {
-      const paytoken = assets.find(it => it.symbol == payToken?.symbol);
-      const gettoken = assets.find(it => it.symbol == getToken?.symbol);
-      setPayToken(paytoken);
-      setGetToken(gettoken);
-    }
-  }, [assets]);
-
-  useEffect(() => {
-    if (
-      payToken?.symbol?.toLowerCase() != 'inr' &&
-      payToken?.symbol?.toLowerCase() != 'inrx'
-    ) {
-      if (payToken?.symbol) {
-        calulateToken(payToken?.symbol);
-      }
-    } else {
-      setTokenPrice(1);
-    }
-  }, [payToken]);
-
   function payamounttype(val: any) {
     if (val && Number(val) > 0) {
       const getamt = Number(val) * Number(tokenprice);
@@ -138,7 +110,7 @@ const ConvertCurrency = (props: any) => {
   function swap() {
     try {
       if (!loading) {
-        // setLoading(true);
+        setLoading(true);
         if (
           payToken &&
           getToken &&
@@ -181,6 +153,53 @@ const ConvertCurrency = (props: any) => {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    const inrtoken = assets.find(it => it.symbol == 'INR');
+    const inrxtoken = assets.find(it => it.symbol == 'INRx');
+    setPayToken(inrtoken);
+    setGetToken(inrxtoken);
+  }, []);
+
+  useEffect(() => {
+    if (payToken && getToken) {
+      const paytoken = assets.find(it => it.symbol == payToken?.symbol);
+      const gettoken = assets.find(it => it.symbol == getToken?.symbol);
+      setPayToken(paytoken);
+      setGetToken(gettoken);
+    }
+  }, [assets]);
+
+  useEffect(() => {
+    if (
+      payToken?.symbol?.toLowerCase() != 'inr' &&
+      payToken?.symbol?.toLowerCase() != 'inrx'
+    ) {
+      if (payToken?.symbol) {
+        calulateToken(payToken?.symbol);
+      }
+    } else {
+      setTokenPrice(1);
+    }
+  }, [payToken]);
+
+  useEffect(() => {
+    const amt = Number(payAmount) * tokenprice;
+    const famt = amt.toString().indexOf('.') > -1 ? amt.toFixed(2) : amt;
+    setGetAmount(famt.toString());
+  }, [tokenprice]);
+  
+  useEffect(()=>{
+    const isAllowed = ['INRX', 'INR'].some(
+      it => it == getToken?.symbol?.toUpperCase(),
+    );
+    // console.log(isAllowed, getToken?.symbol, payToken?.symbol)
+    if (!isAllowed) {
+      let tt = getToken;
+      setGetToken(payToken);
+      setPayToken(tt);
+    }
+  },[payToken, getToken])
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
