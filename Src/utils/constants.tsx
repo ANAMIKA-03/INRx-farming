@@ -9,10 +9,19 @@ export interface TRANSFERTOKEN {
 }
 
 export interface WITHDRAWLIST {
-  amount:number;
+  amount: number;
   reciever: string;
-  type:string;
-  icon:string;
-  createdAt:string;
-  symbol:string;
+  type: string;
+  icon: string;
+  createdAt: string;
+  symbol: string;
+}
+
+export interface CONVERTTOKENPARAMS {
+  mobile: String;
+  token: String;
+  sendToken: String;
+  recieveToken: String;
+  sendAmount: number;
+  recieveAmount: number;
 }

@@ -153,12 +153,12 @@ const Send = (props: any) => {
                       flexDirection: 'row',
                       alignItems: 'center',
                       justifyContent: 'space-around',
+                      paddingTop: 12,
                     }}>
                     <View
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        paddingTop: 12,
                       }}>
                       <TouchableOpacity
                         key={'ethereum'}

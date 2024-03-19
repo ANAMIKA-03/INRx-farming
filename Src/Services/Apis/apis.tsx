@@ -1,5 +1,5 @@
 import {AUTH_API_URL, TRUSTAPP_API, WALLET_API_URL} from '../../../env';
-import {TRANSFERTOKEN} from '../../utils/constants';
+import {CONVERTTOKENPARAMS, TRANSFERTOKEN} from '../../utils/constants';
 
 export function getUserDetails(apiKey: String) {
   return fetch(TRUSTAPP_API, {
@@ -99,6 +99,37 @@ export function withdrawList(mobile: String) {
       'allow-access-control-origin': '*',
     },
     body: JSON.stringify({mobile: mobile}),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in withdrawList()::apis.tsx');
+    });
+}
+
+export function getTokenPriceInINR(token:string) {
+  const final_third_party_api_url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${token}&convert=INR`;
+
+  return fetch(final_third_party_api_url, {
+    headers: {
+      "Content-Type": "Application/json",
+      "X-CMC_PRO_API_KEY": "cce264e5-5460-4b08-9bd3-2256aef37446",
+    },
+  })
+    .then((res) => res.json())
+
+    .catch((e) => {
+      console.log(e, "Erro in inr price fetch api");
+    });
+}
+
+export function convertToken(data: CONVERTTOKENPARAMS) {
+  return fetch(WALLET_API_URL + '/convert-token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
   })
     .then(res => res.json())
     .catch(e => {

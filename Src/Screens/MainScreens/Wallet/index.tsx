@@ -151,10 +151,10 @@ const Wallet = (props: any) => {
                         </View>
                       </View>
 
-                      <View>
+                      <View style={{alignItems:"flex-end"}}>
                         <Text style={Styles.listTitle}>{`₹${'000.00'}`}</Text>
                         <Text style={Styles.listDescription}>
-                          {item?.available > 0 ? item?.available : '000.00'}{' '}
+                          {item?.available > 0 ? item?.available?.toFixed(2) : '000.00'}{' '}
                           {` ${item?.symbol}`}
                         </Text>
                       </View>
