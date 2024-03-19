@@ -51,7 +51,7 @@ const ConvertCurrency = (props: any) => {
     if (token?.symbol?.toLowerCase() == getToken?.symbol?.toLowerCase()) {
       setGetToken(payToken);
     }
-    setPayToken(token);    
+    setPayToken(token);
   };
 
   const onSelectGetToken = (tokenIndex: number) => {
@@ -188,18 +188,20 @@ const ConvertCurrency = (props: any) => {
     const famt = amt.toString().indexOf('.') > -1 ? amt.toFixed(2) : amt;
     setGetAmount(famt.toString());
   }, [tokenprice]);
-  
-  useEffect(()=>{
-    const isAllowed = ['INRX', 'INR'].some(
-      it => it == getToken?.symbol?.toUpperCase(),
-    );
-    // console.log(isAllowed, getToken?.symbol, payToken?.symbol)
-    if (!isAllowed) {
-      let tt = getToken;
-      setGetToken(payToken);
-      setPayToken(tt);
+
+  useEffect(() => {
+    if (payToken && getToken) {
+      const isAllowed = ['INRX', 'INR'].some(
+        it => it == getToken?.symbol?.toUpperCase(),
+      );
+      // console.log(isAllowed, getToken?.symbol, payToken?.symbol)
+      if (!isAllowed) {
+        let tt = getToken;
+        setGetToken(payToken);
+        setPayToken(tt);
+      }
     }
-  },[payToken, getToken])
+  }, [payToken, getToken]);
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
