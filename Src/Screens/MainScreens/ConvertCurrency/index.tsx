@@ -160,6 +160,8 @@ const ConvertCurrency = (props: any) => {
               if (res.status == 200) {
                 console.log(res, 'Succcess:: swap');
                 updateWalletAndAssets(user.mobileNumber, dispatch);
+                setPayAmount('');
+                setGetAmount('');
               } else {
                 console.log(res, 'Failed:: swap');
               }
