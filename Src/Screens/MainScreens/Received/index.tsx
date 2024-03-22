@@ -18,6 +18,8 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../Services/Redux/store';
 import SelectChainPopup from '../../../Components/SelectChainPopup';
 import QRCode from 'react-native-qrcode-svg';
+import Clipboard from '@react-native-community/clipboard';
+import {copyToClipboard} from '../../../utils/actionHandlers';
 
 export type Props = {
   navigation: any;
@@ -29,8 +31,8 @@ const Received = (props: any) => {
     (state: RootState) => state.wallet,
   );
   const wallet = wallets[activeWallet ? activeWallet : 0];
-
   const [openSelectChain, setOpenSelectChain] = useState(false);
+  const [copied, setCopied] = useState(false);
   const closeSocial = () => {
     setOpenSelectChain(false);
   };
@@ -107,9 +109,29 @@ const Received = (props: any) => {
                   wallet?.address.slice(wallet?.blockchain == 'Tron' ? 25 : 32)
                 : '0x00000...000000'}
             </Text>
-
+            {copied ? (
+              <Text
+                style={{
+                  color: '#000',
+                  padding: 10,
+                  borderRadius: 10,
+                  backgroundColor: 'rgba(0,0,0,0.2)',
+                  position: 'absolute',
+                  top: '62%',
+                }}>{`Copied`}</Text>
+            ) : null}
             <View style={Styles.bottomButton}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  if (wallet.address) {
+                    copyToClipboard(wallet.address, () => {
+                      setCopied(true);
+                      setTimeout(() => {
+                        setCopied(false);
+                      }, 2000);
+                    });
+                  }
+                }}>
                 <Image source={Images.copyIcon} style={Styles.sendIcon} />
               </TouchableOpacity>
 

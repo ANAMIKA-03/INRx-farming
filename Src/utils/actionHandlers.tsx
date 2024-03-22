@@ -10,6 +10,7 @@ import {
 import {User} from '../Services/Redux/authSlice';
 import {setAssets, setStakes, setWallet} from '../Services/Redux/walletSlice';
 import {GETDATA, TRANSFERTOKEN} from './constants';
+import Clipboard from '@react-native-community/clipboard';
 
 export function updateWalletAndAssets(mobile: String, dispatch: any) {
   fetchWallet(mobile)
@@ -152,3 +153,10 @@ export function claimToken(user: User, tokenId: String, cb: any) {
       });
   }
 }
+
+export const copyToClipboard = (string: string, cb: any) => {
+  Clipboard.setString(string);
+  if (cb) {
+    cb();
+  }
+};
