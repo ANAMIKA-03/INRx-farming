@@ -1,5 +1,5 @@
-import {AUTH_API_URL, TRUSTAPP_API, WALLET_API_URL} from '../../../env';
-import {CONVERTTOKENPARAMS, TRANSFERTOKEN} from '../../utils/constants';
+import {AUTH_API_URL, STAKE_API_URL, TRUSTAPP_API, WALLET_API_URL} from '../../../env';
+import {CONVERTTOKENPARAMS, GETDATA, STAKETOKEN, TRANSFERTOKEN} from '../../utils/constants';
 
 export function getUserDetails(apiKey: String) {
   return fetch(TRUSTAPP_API, {
@@ -134,5 +134,50 @@ export function convertToken(data: CONVERTTOKENPARAMS) {
     .then(res => res.json())
     .catch(e => {
       console.log(e, 'Error in withdrawList()::apis.tsx');
+    });
+}
+
+export function stakeINRXToken(data: STAKETOKEN) {
+  return fetch(STAKE_API_URL + '/stake-token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in stakeToken()::apis.tsx');
+    });
+}
+
+export function getStakeData(data: GETDATA) {
+  return fetch(STAKE_API_URL + '/get-all-stakes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in getStakeData()::apis.tsx');
+    });
+}
+
+export function claimReward(data: GETDATA) {
+  return fetch(STAKE_API_URL + '/claim-token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in claimReward()::apis.tsx');
     });
 }

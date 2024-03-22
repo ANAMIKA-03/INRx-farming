@@ -1,11 +1,15 @@
+import {Alert} from 'react-native';
 import {
+  claimReward,
   fetchWallet,
+  getStakeData,
   transferToken,
   updateBalance,
   withdrawList,
 } from '../Services/Apis/apis';
-import {setAssets, setWallet} from '../Services/Redux/walletSlice';
-import {TRANSFERTOKEN} from './constants';
+import {User} from '../Services/Redux/authSlice';
+import {setAssets, setStakes, setWallet} from '../Services/Redux/walletSlice';
+import {GETDATA, TRANSFERTOKEN} from './constants';
 
 export function updateWalletAndAssets(mobile: String, dispatch: any) {
   fetchWallet(mobile)
@@ -103,4 +107,48 @@ export function sendHistory(mobile: String, setWithdrawList: any, cb: any) {
       }
       console.log(e, 'Error in sendHistory():actionHandlers.tsx');
     });
+}
+
+export function stakeHistory(user: User, dispatch: any, tokenId: String) {
+  if (user.userId) {
+    const data: GETDATA = {
+      mobile: user.mobileNumber,
+      tokenId: tokenId,
+    };
+    getStakeData(data)
+      .then(resp => {
+        // console.log(resp.stakes,' stakelist')
+        if (resp.status == 200) {
+          dispatch(setStakes({stakes: resp.data, allstakes: resp.stakes}));
+        } else {
+          dispatch(setStakes({stakes: [], allstakes: {}}));
+        }
+      })
+      .catch((e: any) => {
+        console.log(e, 'Error');
+      });
+  }
+}
+
+export function claimToken(user: User, tokenId: String, cb: any) {
+  if (user.userId) {
+    const data: GETDATA = {
+      mobile: user.mobileNumber,
+      tokenId: tokenId,
+    };
+    claimReward(data)
+      .then(resp => {
+        // console.log(resp.stakes,' stakelist')
+        Alert.alert(resp.message);
+        if (cb) {
+          cb();
+        }
+      })
+      .catch((e: any) => {
+        if (cb) {
+          cb();
+        }
+        console.log(e, 'Error');
+      });
+  }
 }

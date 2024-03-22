@@ -1,9 +1,7 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
 
-import {
-  NavigationContainer,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {enableScreens} from 'react-native-screens';
@@ -33,6 +31,7 @@ import Supply from '../Screens/MainScreens/Supply';
 import NewLogin from '../Screens/Authentication/NewLogin';
 import {useSelector} from 'react-redux';
 import {RootState} from '../Services/Redux/store';
+import StakeForm from '../Screens/MainScreens/StakeFormScreen/StakeForm';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -58,6 +57,7 @@ type RootStackParamList = {
   Audit: undefined;
   Collateral: undefined;
   Supply: undefined;
+  StakeForm: undefined;
 };
 
 enableScreens();
@@ -177,6 +177,12 @@ export default function RootNavigator() {
         <RootStack.Screen
           name="FarmingRewards"
           component={FarmingRewards}
+          options={{headerShown: false}}
+        />
+
+        <RootStack.Screen
+          name="StakeForm"
+          component={StakeForm}
           options={{headerShown: false}}
         />
 

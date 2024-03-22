@@ -217,7 +217,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: hp(3),
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor:'rgba(0,0,0,0.1)',
+    width:'65%',
+    alignSelf:"center",
+    paddingVertical:hp(1.2),
+    borderRadius:6
   },
   dotIcon: {
     color: Colors.DarkParrot

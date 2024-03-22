@@ -25,3 +25,15 @@ export interface CONVERTTOKENPARAMS {
   sendAmount: number;
   recieveAmount: number;
 }
+
+export interface STAKETOKEN {
+  mobile: String;
+  symbol: String;
+  amount: String;
+  tokenId:String;
+}
+
+export interface  GETDATA{
+  mobile: String;
+  tokenId:String;
+}
