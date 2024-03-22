@@ -148,9 +148,6 @@ const History = (props: any) => {
     }
   }, [user, tab]);
 
-  useEffect(() => {
-    console.log(stakes, 'stakes');
-  }, [stakes]);
 
   const SwapList = ({item, i}: any) => {
     return (
@@ -295,6 +292,7 @@ const History = (props: any) => {
         {/* Main Content */}
         {/* <ScrollView showsVerticalScrollIndicator={false}> */}
         <View style={Styles.scrollContainer}>
+
           <View style={Styles.dataContainer}>
             <View style={Styles.tabContainer}>
               <Text style={Styles.inrTitle}>{`INRx`}</Text>
