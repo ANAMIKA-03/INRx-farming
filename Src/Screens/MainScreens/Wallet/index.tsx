@@ -15,6 +15,7 @@ import Styles from './Styles';
 import {RootState} from '../../../Services/Redux/store';
 import {useSelector} from 'react-redux';
 import {Asset} from '../../../Services/Redux/walletSlice';
+import { totalInrCalculator } from '../../../utils/actionHandlers';
 
 export type Props = {
   navigation: any;
@@ -28,6 +29,7 @@ const Wallet = (props: any) => {
   const {user} = useSelector((state: RootState) => state.auth);
   const wallet = wallets[activeWallet ? activeWallet : 0];
   const [coins, setCoins] = useState<Asset[]>([]);
+  const [totalinr, setTotalINR] = useState(0.000);
 
   const WALLET_DATA = [
     {
@@ -58,12 +60,15 @@ const Wallet = (props: any) => {
       amount: `₹4,520.54`,
       amountRate: `45.84usdc`,
     },
-  ];  
+  ];
 
   useEffect(() => {
     if (assets?.length > 0) {
       setCoins(assets);
     }
+    totalInrCalculator(assets, (res:any)=>{
+      setTotalINR(res);
+    })
   }, [assets]);
 
   return (
@@ -91,7 +96,7 @@ const Wallet = (props: any) => {
           <View style={Styles.walletWrapper}>
             <Image source={Images.currencyLogo} style={Styles.currencyIcon} />
             <Text style={Styles.inrTitle}>
-              {wallet?.totalinr ? wallet?.totalinr : `0.000`}
+              {totalinr ? totalinr.toFixed(3) : `0.000`}
             </Text>
           </View>
 

@@ -109,6 +109,7 @@ const Send = (props: any) => {
       keyboardDidHideListener.remove();
     };
   }, []);
+  
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
       <StatusBar barStyle={'dark-content'} />
@@ -305,7 +306,7 @@ const Send = (props: any) => {
                   </View>
                   <Text style={{color: '#000'}}>
                     {' '}
-                    Balance : {activeasset?.available}
+                    Balance : {Number(activeasset?.available)>0?Number(activeasset?.available).toFixed(3):0}
                     {` `}
                     {activeasset?.symbol}
                   </Text>

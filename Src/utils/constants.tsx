@@ -17,6 +17,22 @@ export interface WITHDRAWLIST {
   symbol: string;
 }
 
+export interface SWAPLIST {
+  payAmount: number;
+  getAmount: number;
+  payToken: string;
+  getToken: string;
+  createdAt: string;
+  price: number;
+}
+
+export interface CLAIMLIST {
+  symbol: string;
+  amount: number;
+  stakeId: number;
+  createdAt: string;
+}
+
 export interface CONVERTTOKENPARAMS {
   mobile: String;
   token: String;
@@ -30,10 +46,10 @@ export interface STAKETOKEN {
   mobile: String;
   symbol: String;
   amount: String;
-  tokenId:String;
+  tokenId: String;
 }
 
-export interface  GETDATA{
+export interface GETDATA {
   mobile: String;
-  tokenId:String;
+  tokenId: String;
 }

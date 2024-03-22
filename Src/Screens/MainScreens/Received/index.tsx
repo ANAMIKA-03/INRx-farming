@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
   FlatList,
+  Share,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
@@ -30,12 +31,35 @@ const Received = (props: any) => {
   const {wallets, activeWallet} = useSelector(
     (state: RootState) => state.wallet,
   );
+  const {user} = useSelector((state: RootState) => state.auth);
   const wallet = wallets[activeWallet ? activeWallet : 0];
   const [openSelectChain, setOpenSelectChain] = useState(false);
   const [copied, setCopied] = useState(false);
   const closeSocial = () => {
     setOpenSelectChain(false);
   };
+
+  function shareaddress() {
+    try {
+      Share.share(
+        {
+          title: 'INRX Farming ' + wallet?.blockchain + ' Wallet Address',
+          message:
+            'Hello,I am ' +
+            user.name +
+            ' This is my ' +
+            wallet?.blockchain +
+            ' wallet address ' +
+            wallet?.address,
+        },
+        Platform.OS == 'android'
+          ? {dialogTitle: 'INRx Farming Wallet Address'}
+          : {},
+      );
+    } catch (e: any) {
+      console.log(e, 'error in share');
+    }
+  }
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
@@ -135,7 +159,12 @@ const Received = (props: any) => {
                 <Image source={Images.copyIcon} style={Styles.sendIcon} />
               </TouchableOpacity>
 
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  if (wallet.address) {
+                    shareaddress();
+                  }
+                }}>
                 <Image source={Images.shareIcon} style={Styles.sendIcon} />
               </TouchableOpacity>
             </View>

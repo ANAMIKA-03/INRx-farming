@@ -181,3 +181,33 @@ export function claimReward(data: GETDATA) {
       console.log(e, 'Error in claimReward()::apis.tsx');
     });
 }
+
+export function swapHistory(data: GETDATA) {
+  return fetch(WALLET_API_URL + '/convert-list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in claimReward()::apis.tsx');
+    });
+}
+
+export function claimHistory(data: GETDATA) {
+  return fetch(STAKE_API_URL + '/claim-list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in claimReward()::apis.tsx');
+    });
+}

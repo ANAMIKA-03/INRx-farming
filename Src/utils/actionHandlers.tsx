@@ -1,8 +1,11 @@
 import {Alert} from 'react-native';
 import {
+  claimHistory,
   claimReward,
   fetchWallet,
   getStakeData,
+  getTokenPriceInINR,
+  swapHistory,
   transferToken,
   updateBalance,
   withdrawList,
@@ -131,6 +134,44 @@ export function stakeHistory(user: User, dispatch: any, tokenId: String) {
   }
 }
 
+export function convertHistory(data: GETDATA, setSwapList: any, cb: any) {
+  swapHistory(data)
+    .then(resp => {
+      // console.log(resp)
+      if (resp?.status == 200) {
+        setSwapList(resp.data);
+      }
+      if (cb) {
+        cb();
+      }
+    })
+    .catch(e => {
+      if (cb) {
+        cb();
+      }
+      console.log(e, 'Error in sendHistory():actionHandlers.tsx');
+    });
+}
+
+export function claimListData(data: GETDATA, setClaimList: any, cb: any) {
+  claimHistory(data)
+    .then(resp => {
+      // console.log(resp)
+      if (resp?.status == 200) {
+        setClaimList(resp.data);
+      }
+      if (cb) {
+        cb();
+      }
+    })
+    .catch(e => {
+      if (cb) {
+        cb();
+      }
+      console.log(e, 'Error in sendHistory():actionHandlers.tsx');
+    });
+}
+
 export function claimToken(user: User, tokenId: String, cb: any) {
   if (user.userId) {
     const data: GETDATA = {
@@ -160,3 +201,44 @@ export const copyToClipboard = (string: string, cb: any) => {
     cb();
   }
 };
+
+export async function getINRPriceOfToken(token: string) {
+  try {
+    const coin = token?.toUpperCase();
+    const price = await getTokenPriceInINR(coin);
+    if (price && price?.data) {
+      if (price?.data[coin]?.quote && price?.data[coin]?.quote['INR']) {
+        const prc =
+          price?.data[coin]?.quote && price?.data[coin]?.quote['INR'].price;
+        return prc;
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  } catch (e) {
+    console.log(e, 'Error in getINRPriceOfToken()::actionHandlers.tsx');
+    return 0;
+  }
+}
+
+export async function totalInrCalculator(assets: any, cb: any) {
+  let totalinr = 0;
+  assets.forEach(async (item: any, i: number) => {
+    let price = 0;
+    if (item.symbol != 'INR' && item.symbol != 'INRx') {
+      price = await getINRPriceOfToken(item.symbol);
+    } else {
+      price = 1;
+    }
+
+    if (price > 0) {
+    // console.log(price, item.symbol, item.available, 'dd')
+      totalinr += price * item.available;
+      if (i == assets.length - 1) {
+        cb(totalinr);
+      }
+    }
+  });
+}
