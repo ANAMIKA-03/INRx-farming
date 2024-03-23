@@ -30,15 +30,15 @@ const SelectTokenPopup = (props: any) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    let tokenarr = [];
-    if (type == 1) {
-      tokenarr = assets.filter(
-        (it: Asset) =>
-          it.symbol.toUpperCase() == 'INR' || it.symbol.toUpperCase() == 'INRX',
-      );
-    } else {
-      tokenarr = assets;
-    }
+    let tokenarr = [...assets];
+    // if (type == 1) {
+    //   tokenarr = assets.filter(
+    //     (it: Asset) =>
+    //       it.symbol.toUpperCase() == 'INR' || it.symbol.toUpperCase() == 'INRX',
+    //   );
+    // } else {
+    //   tokenarr = assets;
+    // }
     if (input && input?.length > 0) {
       const tokens = tokenarr.filter(
         (it: Asset) =>
@@ -77,32 +77,43 @@ const SelectTokenPopup = (props: any) => {
 
         <View style={Styles.dataWrapper}>
           <ScrollView>
-            {alltoken.map((item: Asset, i: number) => {
-              return (
-                <TouchableOpacity
-                  style={Styles.iconContainer}
-                  onPress={() => {
-                    onSelect(i);
-                    close();
-                  }}
-                  key={i + 'converlisttoken'}>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Image source={{uri: item.icon}} style={Styles.flatIcon} />
-                    <Text
-                      style={[
-                        Styles.iconTitle,
-                        {
-                          fontSize: hp(1.6),
-                          fontWeight: '700',
-                          paddingHorizontal: wp(2.5),
-                        },
-                      ]}>
-                      {item.symbol}
+            {assets.map((item: Asset, i: number) => {
+              if (
+                (item.symbol.toUpperCase() == 'INR' ||
+                  item.symbol.toUpperCase() == 'INRX') ||
+                type == 0
+              ) {
+                return (
+                  <TouchableOpacity
+                    style={Styles.iconContainer}
+                    onPress={() => {
+                      onSelect(i);
+                      close();
+                    }}
+                    key={i + 'converlisttoken'}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Image
+                        source={{uri: item.icon}}
+                        style={Styles.flatIcon}
+                      />
+                      <Text
+                        style={[
+                          Styles.iconTitle,
+                          {
+                            fontSize: hp(1.6),
+                            fontWeight: '700',
+                            paddingHorizontal: wp(2.5),
+                          },
+                        ]}>
+                        {item.symbol}
+                      </Text>
+                    </View>
+                    <Text style={Styles.iconTitle}>
+                      {item?.available?.toFixed(2)}
                     </Text>
-                  </View>
-                  <Text style={Styles.iconTitle}>{item?.available?.toFixed(2)}</Text>
-                </TouchableOpacity>
-              );
+                  </TouchableOpacity>
+                );
+              }
             })}
           </ScrollView>
         </View>

@@ -118,7 +118,7 @@ const NewLogin = (props: any) => {
       };
       // console.log(params, ' params data');
       const res = await createUser(params);
-
+      console.log(res,'createuser');
       Alert.alert(res.message);
       if (res?.status == 200) {
         return true;
@@ -127,6 +127,7 @@ const NewLogin = (props: any) => {
       }
     } catch (e: any) {
       console.log(e, 'Error in saveData try:catch::NewLoginScreen');
+      return false;
     }
   }
 
