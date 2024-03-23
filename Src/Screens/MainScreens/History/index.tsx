@@ -120,6 +120,7 @@ const History = (props: any) => {
         setloading(false);
       });
     }
+    
     if (user.mobileNumber && tab == 3) {
       const data: GETDATA = {
         mobile: user.mobileNumber,
@@ -133,7 +134,9 @@ const History = (props: any) => {
 
     if (user.mobileNumber && tab == 4) {
       setloading(true);
-      stakeHistory(user, dispatch, tokenId);
+      stakeHistory(user, dispatch, tokenId, () => {
+        setloading(false);
+      });
     }
 
     if (user.mobileNumber && tab == 5) {
@@ -147,7 +150,6 @@ const History = (props: any) => {
       });
     }
   }, [user, tab]);
-
 
   const SwapList = ({item, i}: any) => {
     return (
@@ -292,7 +294,6 @@ const History = (props: any) => {
         {/* Main Content */}
         {/* <ScrollView showsVerticalScrollIndicator={false}> */}
         <View style={Styles.scrollContainer}>
-
           <View style={Styles.dataContainer}>
             <View style={Styles.tabContainer}>
               <Text style={Styles.inrTitle}>{`INRx`}</Text>
@@ -303,138 +304,158 @@ const History = (props: any) => {
                 style={Styles.solutionText}>{`Check solutions here >  `}</Text>
             </View>
           </View>
-
-          {tab == 2 ? (
-            <FlatList
-              data={withdrawList}
-              renderItem={({item, index}) => {
-                return (
-                  <TouchableOpacity
-                    key={index + 'Withdrwalist'}
-                    onPress={() => {
-                      navigation.navigate('HistoryDetail');
-                    }}
-                    style={Styles.listContainer}>
-                    <View>
-                      <Text style={Styles.listTitle}>{item?.symbol}</Text>
-                      <Text style={Styles.listDescription}>
-                        {new Date(item?.createdAt).toLocaleDateString()}
-                        {` `}
-                        {new Date(item?.createdAt).toLocaleTimeString()}
-                      </Text>
-                    </View>
-                    <View>
-                      <Text style={Styles.priceTitle}>{item?.amount}</Text>
-                      <View style={Styles.completeWrap}>
-                        <Ionic
-                          name={'ellipse'}
-                          size={6}
-                          style={Styles.dotIcon}
-                        />
-                        <Text style={Styles.completeText}>{`Completed`}</Text>
+          <View style={{flex:1}}>
+            {tab == 2 ? (
+              <FlatList
+                data={withdrawList}
+                renderItem={({item, index}) => {
+                  return (
+                    <TouchableOpacity
+                      key={index + 'Withdrwalist'}
+                      onPress={() => {
+                        navigation.navigate('HistoryDetail');
+                      }}
+                      style={Styles.listContainer}>
+                      <View>
+                        <Text style={Styles.listTitle}>{item?.symbol}</Text>
+                        <Text style={Styles.listDescription}>
+                          {new Date(item?.createdAt).toLocaleDateString()}
+                          {` `}
+                          {new Date(item?.createdAt).toLocaleTimeString()}
+                        </Text>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          ) : null}
-          {tab == 3 ? (
-            <FlatList
-              data={swapList}
-              renderItem={item => {
-                return (
-                  <SwapList
-                    item={item.item}
-                    i={item.index}
-                    key={item.index + 'swaplist'}
-                  />
-                );
-              }}
-            />
-          ) : null}
-
-          {tab == 4 ? (
-            <FlatList
-              data={stakes}
-              renderItem={({item, index}) => {
-                return (
-                  <TouchableOpacity
-                    key={index + 'Withdrwalist'}
-                    onPress={() => {
-                      navigation.navigate('HistoryDetail');
-                    }}
-                    style={Styles.listContainer}>
-                    <View>
-                      <Text style={Styles.listTitle}>{item?.symbol}{`- Amount: `}{item?.tokenAmount}</Text>
-                      <Text style={Styles.listDescription}>
-                        {new Date(
-                          item?.startTimestamp * 1000,
-                        ).toLocaleDateString()}
-                        {` `}
-                        {new Date(
-                          item?.startTimestamp * 1000,
-                        ).toLocaleTimeString()}
-                      </Text>
-                    </View>
-                    <View>
-                      <Text style={Styles.priceTitle}>
-                        {(item?.stakeAmount).toFixed(3)}
-                        {` INRx`}
-                      </Text>
-                      <View style={Styles.completeWrap}>
-                        <Ionic
-                          name={'ellipse'}
-                          size={6}
-                          style={[Styles.dotIcon,{color:item.isStakeCompleted?'rgba(200,0,0,7)':Colors.Parrot}]}
-                        />
-                        <Text style={Styles.completeText}>{item.isStakeCompleted? `Not active` :`Active`}</Text>
+                      <View>
+                        <Text style={Styles.priceTitle}>{item?.amount}</Text>
+                        <View style={Styles.completeWrap}>
+                          <Ionic
+                            name={'ellipse'}
+                            size={6}
+                            style={Styles.dotIcon}
+                          />
+                          <Text style={Styles.completeText}>{`Completed`}</Text>
+                        </View>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          ) : null}
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+            ) : null}
+            {tab == 3 ? (
+              <FlatList
+                data={swapList}
+                renderItem={item => {
+                  return (
+                    <SwapList
+                      item={item.item}
+                      i={item.index}
+                      key={item.index + 'swaplist'}
+                    />
+                  );
+                }}
+              />
+            ) : null}
 
-          {tab == 5 ? (
-            <FlatList
-              data={claimList}
-              renderItem={({item, index}) => {
-                return (
-                  <TouchableOpacity
-                    key={index + 'Withdrwalist'}
-                    onPress={() => {
-                      navigation.navigate('HistoryDetail');
-                    }}
-                    style={Styles.listContainer}>
-                    <View>
-                      <Text style={Styles.listTitle}>{item?.symbol}</Text>
-                      <Text style={Styles.listDescription}>
-                        {new Date(item?.createdAt).toLocaleDateString()}
-                        {` `}
-                        {new Date(item?.createdAt).toLocaleTimeString()}
-                      </Text>
-                    </View>
-                    <View>
-                      <Text style={Styles.priceTitle}>
-                        {(item?.amount).toFixed(3)}
-                        {` INRx`}
-                      </Text>
-                      <View style={Styles.completeWrap}>
-                        <Ionic
-                          name={'ellipse'}
-                          size={6}
-                          style={Styles.dotIcon}
-                        />
-                        <Text style={Styles.completeText}>{`Completed`}</Text>
+            {tab == 4 ? (
+              <FlatList
+                data={stakes}
+                renderItem={({item, index}) => {
+                  return (
+                    <TouchableOpacity
+                      key={index + 'Withdrwalist'}
+                      onPress={() => {
+                        navigation.navigate('HistoryDetail');
+                      }}
+                      style={Styles.listContainer}>
+                      <View>
+                        <Text style={Styles.listTitle}>
+                          {item?.symbol}
+                          {`- Amount: `}
+                          {item?.tokenAmount}
+                        </Text>
+                        <Text style={Styles.listDescription}>
+                          {new Date(
+                            item?.startTimestamp * 1000,
+                          ).toLocaleDateString()}
+                          {` `}
+                          {new Date(
+                            item?.startTimestamp * 1000,
+                          ).toLocaleTimeString()}
+                        </Text>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          ) : null}
+                      <View>
+                        <Text style={Styles.priceTitle}>
+                          Stake: {(item?.stakeAmount).toFixed(3)}
+                          {` INRx`}
+                        </Text>
+                        <Text style={Styles.completeText}>
+                          Reward:{' '}
+                          {item.totalAmount
+                            ? Number(item.totalAmount).toFixed(3)
+                            : 0}
+                        </Text>
+                        <View style={Styles.completeWrap}>
+                          <Ionic
+                            name={'ellipse'}
+                            size={6}
+                            style={[
+                              Styles.dotIcon,
+                              {
+                                color: item.isStakeCompleted
+                                  ? 'rgba(200,0,0,7)'
+                                  : Colors.Parrot,
+                              },
+                            ]}
+                          />
+                          <Text style={Styles.completeText}>
+                            {item.isStakeCompleted ? `Not active` : `Active`}
+                          </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+            ) : null}
+
+            {tab == 5 ? (
+              <FlatList
+                data={claimList}
+                renderItem={({item, index}) => {
+                  return (
+                    <TouchableOpacity
+                      key={index + 'Withdrwalist'}
+                      onPress={() => {
+                        navigation.navigate('HistoryDetail');
+                      }}
+                      style={Styles.listContainer}>
+                      <View>
+                        <Text style={Styles.listTitle}>{item?.symbol}</Text>
+                        <Text style={Styles.listDescription}>
+                          {new Date(item?.createdAt).toLocaleDateString()}
+                          {` `}
+                          {new Date(item?.createdAt).toLocaleTimeString()}
+                        </Text>
+                      </View>
+                      <View>
+                        <Text style={Styles.priceTitle}>
+                          {(item?.amount).toFixed(3)}
+                          {` INRx`}
+                        </Text>
+                        <View style={Styles.completeWrap}>
+                          <Ionic
+                            name={'ellipse'}
+                            size={6}
+                            style={Styles.dotIcon}
+                          />
+                          <Text style={Styles.completeText}>{`Completed`}</Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+            ) : null}
+          </View>
         </View>
         {/* </ScrollView> */}
       </View>

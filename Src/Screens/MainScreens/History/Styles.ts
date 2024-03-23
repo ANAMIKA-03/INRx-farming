@@ -72,10 +72,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: hp(0.12),
     backgroundColor: "rgba(0, 0, 0, 0.25)",
-    marginTop: hp(2),
+    marginTop: hp(1),
   },
   scrollContainer: {
-    marginBottom: hp("10%"),
+    flex:1,
+    paddingBottom: hp("1%"),
     marginTop: hp(1)
   },
   dataContainer: {

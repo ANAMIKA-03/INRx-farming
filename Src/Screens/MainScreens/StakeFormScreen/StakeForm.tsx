@@ -112,7 +112,7 @@ const StakeForm = (props: any) => {
           setinrxAmount('');
           updateWalletAndAssets(user.mobileNumber, dispatch);
           setTimeout(() => {
-            stakeHistory(user, dispatch, tokenId);            
+            stakeHistory(user, dispatch, tokenId,()=>{});            
           }, 1500);
         }
         setLoading(false);

@@ -113,7 +113,7 @@ export function sendHistory(mobile: String, setWithdrawList: any, cb: any) {
     });
 }
 
-export function stakeHistory(user: User, dispatch: any, tokenId: String) {
+export function stakeHistory(user: User, dispatch: any, tokenId: String,cb:any) {
   if (user.userId) {
     const data: GETDATA = {
       mobile: user.mobileNumber,
@@ -121,14 +121,20 @@ export function stakeHistory(user: User, dispatch: any, tokenId: String) {
     };
     getStakeData(data)
       .then(resp => {
-        // console.log(resp.stakes,' stakelist')
+        // console.log(resp.data,' stakelist')
         if (resp.status == 200) {
           dispatch(setStakes({stakes: resp.data, allstakes: resp.stakes}));
         } else {
           dispatch(setStakes({stakes: [], allstakes: {}}));
         }
+        if(cb){
+          cb();
+        }
       })
       .catch((e: any) => {
+        if(cb){
+          cb();
+        }
         console.log(e, 'Error');
       });
   }

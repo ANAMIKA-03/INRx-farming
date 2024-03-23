@@ -68,9 +68,9 @@ const FarmingRewards = (props: any) => {
 
   useEffect(() => {
     const tt = setInterval(() => {
-      stakeHistory(user, dispatch, tokenId);
+      stakeHistory(user, dispatch, tokenId,()=>{});
     }, 15000);
-    stakeHistory(user, dispatch, tokenId);
+    stakeHistory(user, dispatch, tokenId,()=>{});
     return () => {
       clearInterval(tt);
     };
@@ -81,7 +81,7 @@ const FarmingRewards = (props: any) => {
     claimToken(user, tokenId, () => {
       setLoading(false);
       setTimeout(() => {
-        stakeHistory(user, dispatch, tokenId);
+        stakeHistory(user, dispatch, tokenId,()=>{});
       }, 1500);
     });
   }
