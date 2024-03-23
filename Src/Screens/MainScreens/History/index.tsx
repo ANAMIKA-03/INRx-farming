@@ -120,7 +120,7 @@ const History = (props: any) => {
         setloading(false);
       });
     }
-    
+
     if (user.mobileNumber && tab == 3) {
       const data: GETDATA = {
         mobile: user.mobileNumber,
@@ -155,9 +155,9 @@ const History = (props: any) => {
     return (
       <TouchableOpacity
         key={i + 'Convert_list'}
-        onPress={() => {
-          navigation.navigate('HistoryDetail');
-        }}
+        // onPress={() => {
+        //   navigation.navigate('HistoryDetail',{...item});
+        // }}
         style={Styles.listContainer}>
         <View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -235,7 +235,7 @@ const History = (props: any) => {
           <ScrollView horizontal={true}>
             <TouchableOpacity
               onPress={() => selectTab(1)}
-              style={{paddingHorizontal: 15}}>
+              style={{paddingHorizontal: 10}}>
               <Text
                 style={[
                   tab == 1 ? Styles.innerActiveTab : Styles.innerInActiveTab,
@@ -246,7 +246,7 @@ const History = (props: any) => {
 
             <TouchableOpacity
               onPress={() => selectTab(2)}
-              style={{paddingHorizontal: 15}}>
+              style={{paddingHorizontal: 10}}>
               <Text
                 style={[
                   tab == 2 ? Styles.innerActiveTab : Styles.innerInActiveTab,
@@ -257,7 +257,7 @@ const History = (props: any) => {
 
             <TouchableOpacity
               onPress={() => selectTab(3)}
-              style={{paddingHorizontal: 15}}>
+              style={{paddingHorizontal: 10}}>
               <Text
                 style={[
                   tab == 3 ? Styles.innerActiveTab : Styles.innerInActiveTab,
@@ -268,7 +268,7 @@ const History = (props: any) => {
 
             <TouchableOpacity
               onPress={() => selectTab(4)}
-              style={{paddingHorizontal: 15}}>
+              style={{paddingHorizontal: 10}}>
               <Text
                 style={[
                   tab == 4 ? Styles.innerActiveTab : Styles.innerInActiveTab,
@@ -279,7 +279,7 @@ const History = (props: any) => {
 
             <TouchableOpacity
               onPress={() => selectTab(5)}
-              style={{paddingHorizontal: 15}}>
+              style={{paddingHorizontal: 10}}>
               <Text
                 style={[
                   tab == 5 ? Styles.innerActiveTab : Styles.innerInActiveTab,
@@ -312,9 +312,9 @@ const History = (props: any) => {
                   return (
                     <TouchableOpacity
                       key={index + 'Withdrwalist'}
-                      onPress={() => {
-                        navigation.navigate('HistoryDetail');
-                      }}
+                      // onPress={() => {
+                      //   navigation.navigate('HistoryDetail',{...item});
+                      // }}
                       style={Styles.listContainer}>
                       <View>
                         <Text style={Styles.listTitle}>{item?.symbol}</Text>
@@ -362,9 +362,9 @@ const History = (props: any) => {
                   return (
                     <TouchableOpacity
                       key={index + 'Withdrwalist'}
-                      onPress={() => {
-                        navigation.navigate('HistoryDetail');
-                      }}
+                      // onPress={() => {
+                      //   navigation.navigate('HistoryDetail',{...item});
+                      // }}
                       style={Styles.listContainer}>
                       <View>
                         <Text style={Styles.listTitle}>
@@ -424,9 +424,9 @@ const History = (props: any) => {
                   return (
                     <TouchableOpacity
                       key={index + 'Withdrwalist'}
-                      onPress={() => {
-                        navigation.navigate('HistoryDetail');
-                      }}
+                      // onPress={() => {
+                      //   navigation.navigate('HistoryDetail',{...item});
+                      // }}
                       style={Styles.listContainer}>
                       <View>
                         <Text style={Styles.listTitle}>{item?.symbol}</Text>
