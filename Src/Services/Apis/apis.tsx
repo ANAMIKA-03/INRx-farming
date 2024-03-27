@@ -108,7 +108,7 @@ export function withdrawList(mobile: String) {
 
 export function getTokenPriceInINR(token:string) {
   const final_third_party_api_url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${token}&convert=INR`;
-
+  console.log(final_third_party_api_url,' api');
   return fetch(final_third_party_api_url, {
     headers: {
       "Content-Type": "Application/json",

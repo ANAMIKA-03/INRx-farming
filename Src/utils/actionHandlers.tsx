@@ -233,17 +233,18 @@ export async function totalInrCalculator(assets: any, cb: any) {
   let totalinr = 0;
   assets.forEach(async (item: any, i: number) => {
     let price = 0;
-    if (item.symbol != 'INR' && item.symbol != 'INRx') {
-      price = await getINRPriceOfToken(item.symbol);
-    } else {
-      price = 1;
-    }
+    // if (item.symbol != 'INR' && item.symbol != 'INRx') {
+    //   price = await getINRPriceOfToken(item.symbol);
+    //   console.log('symbol',item.symbol,price);
+    // } else {
+    //   price = 1;
+    // }
 
     if (price > 0) {
-    // console.log(price, item.symbol, item.available, 'dd')
+    console.log(price, item.symbol, item.available, 'dd')
       totalinr += price * item.available;
       if (i == assets.length - 1) {
-        cb(totalinr);
+        cb(0);
       }
     }
   });
