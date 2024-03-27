@@ -116,7 +116,7 @@ const FarmingRewards = (props: any) => {
                 }}
                 style={Styles.leftWrapper}>
                 <Image source={Images.user} style={Styles.userIcon} />
-                <Text style={Styles.userTitle}>{`David`}</Text>
+                <Text style={Styles.userTitle}>{user.name?user.name:`David`}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {

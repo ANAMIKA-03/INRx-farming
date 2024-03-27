@@ -16,6 +16,8 @@ import Styles from './Styles';
 import BottomBar from "../../../Navigation/BottomBar";
 import { CandlestickChart } from 'react-native-wagmi-charts';
 import stockData from './stockData.json';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../Services/Redux/store';
 
 export type Props = {
   navigation: any;
@@ -27,7 +29,7 @@ const widthScreen = Dimensions.get('window').width;
 const Stats = (props: any) => {
   const { navigation } = props;
   const [tab, setTab] = useState(1)
-
+  const { user } = useSelector((state:RootState)=>state.auth);
   const DATA = [
     {
       name: "24hours"
@@ -75,7 +77,7 @@ const Stats = (props: any) => {
             <TouchableOpacity onPress={() => { navigation.navigate("Profile") }}
               style={Styles.leftWrapper}>
               <Image source={Images.user} style={Styles.userIcon} />
-              <Text style={Styles.userTitle}>{`David`}</Text>
+              <Text style={Styles.userTitle}>{user.name?user.name:`David`}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { navigation.navigate("Notification") }}>
               <Image source={Images.notification} style={Styles.notifyIcon} />

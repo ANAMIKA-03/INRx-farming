@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
 
   sendIcon: {
     width: 65,
-    height: 65
+    height: 65,
   },
   qrText: {
     fontSize: 16,

@@ -12,6 +12,8 @@ import {
 import Images from '../../../Styles/Images';
 import Styles from './Styles';
 import BottomBar from "../../../Navigation/BottomBar";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../Services/Redux/store';
 
 export type Props = {
 	navigation: any;
@@ -19,6 +21,7 @@ export type Props = {
 
 const Notification = (props: any) => {
 	const { navigation } = props;
+    const { user } = useSelector((state:RootState)=>state.auth);
 
 	const NOTIFY_DATA = [
 		{
@@ -51,7 +54,7 @@ const Notification = (props: any) => {
 					<View style={Styles.headerWrapper}>
 						<TouchableOpacity style={Styles.leftWrapper}>
 							<Image source={Images.user} style={Styles.userIcon} />
-							<Text style={Styles.userTitle}>{`David`}</Text>
+							<Text style={Styles.userTitle}>{user.name?user.name:`David`}</Text>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={() => { navigation.goBack() }}>
 							<Image source={Images.chevronUp} style={Styles.notifyIcon} />

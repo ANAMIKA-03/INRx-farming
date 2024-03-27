@@ -123,7 +123,7 @@ const Send = (props: any) => {
               }}>
               <Image source={Images.back} style={Styles.userIcon} />
             </TouchableOpacity>
-            <Text style={Styles.userTitle}>{`Received`}</Text>
+            <Text style={Styles.userTitle}>{`Send`}</Text>
             <View style={Styles.empty} />
           </View>
 
