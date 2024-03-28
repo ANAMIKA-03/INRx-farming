@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045933567507",
+    "project_id": "inrxfarming",
+    "storage_bucket": "inrxfarming.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045933567507:android:b7aabbff09126d7b7d19e6",
+        "android_client_info": {
+          "package_name": "com.inrxfarming"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlX6u1Dce7TtpU7fOpookUTW8iSKJLVnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

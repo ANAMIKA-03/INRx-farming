@@ -32,6 +32,7 @@ import NewLogin from '../Screens/Authentication/NewLogin';
 import {useSelector} from 'react-redux';
 import {RootState} from '../Services/Redux/store';
 import StakeForm from '../Screens/MainScreens/StakeFormScreen/StakeForm';
+import {NotificationListener} from '../Push-Notification/NotificationHandler';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -75,6 +76,7 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer>
+      <NotificationListener />
       <RootStack.Navigator
         initialRouteName={login ? 'Home' : 'Splash'}
         screenOptions={{
