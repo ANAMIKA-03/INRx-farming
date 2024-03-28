@@ -41,7 +41,7 @@ export const NotificationListener = () => {
   }
 
   useEffect(() => {
-    onAppBootstrap();
+    onAppBootstrap(null);
     onDisplayNotification();
   }, []);
 
@@ -81,13 +81,15 @@ export const NotificationListener = () => {
   return null;
 };
 
-export async function onAppBootstrap() {
+export async function onAppBootstrap(cb:any) {
   // Register the device with FCM
   await messaging().registerDeviceForRemoteMessages();
 
   // Get the token
   const fcmtoken = await messaging().getToken();
-
+  if(cb){
+    cb(fcmtoken);
+  }
   console.log('FCM Token', fcmtoken);
   // Save the token
   // await postToApi('/users/1234/tokens', { token });
@@ -99,10 +101,10 @@ export async function onMessageReceived(message: any) {
   showNotification(message);
 }
 
-messaging().onMessage(onMessageReceived);
+messaging().onMessage(onMessageReceived); 
+messaging().setBackgroundMessageHandler(onMessageReceived);
 messaging()
   .getInitialNotification()
   .then(res => {
     console.log(res, 'initial notifee');
   });
-messaging().setBackgroundMessageHandler(onMessageReceived);

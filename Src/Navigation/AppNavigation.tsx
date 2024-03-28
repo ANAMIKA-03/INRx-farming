@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -32,7 +32,11 @@ import NewLogin from '../Screens/Authentication/NewLogin';
 import {useSelector} from 'react-redux';
 import {RootState} from '../Services/Redux/store';
 import StakeForm from '../Screens/MainScreens/StakeFormScreen/StakeForm';
-import {NotificationListener} from '../Push-Notification/NotificationHandler';
+import {
+  NotificationListener,
+  onAppBootstrap,
+} from '../Push-Notification/NotificationHandler';
+import {saveFCMToken} from '../Services/Apis/apis';
 
 const heightScreen = Dimensions.get('window').height;
 const widthScreen = Dimensions.get('window').width;
@@ -72,7 +76,21 @@ export const setNavigator = (nav: any) => {
 };
 
 export default function RootNavigator() {
-  const {login} = useSelector((state: RootState) => state.auth);
+  const {login, user, tokenId} = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (login) {
+      onAppBootstrap((token: any) => {
+        const params = {
+          mobile: user?.mobileNumber,
+          userId: user?.userId,
+          tokenId: tokenId,
+          fcmtoken: token,
+        };
+        saveFCMToken(params);
+      });
+    }
+  }, [login]);
 
   return (
     <NavigationContainer>

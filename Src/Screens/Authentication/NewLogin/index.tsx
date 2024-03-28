@@ -17,9 +17,14 @@ import Colors from '../../../Styles/Colors';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Styles from './Styles';
 import {useDeepLink} from '../../../hooks/DeepLink';
-import {createUser, getUserDetails} from '../../../Services/Apis/apis';
+import {
+  createUser,
+  getUserDetails,
+  saveFCMToken,
+} from '../../../Services/Apis/apis';
 import {useDispatch} from 'react-redux';
 import {setAuthInfo, setSession} from '../../../Services/Redux/authSlice';
+import {onAppBootstrap} from '../../../Push-Notification/NotificationHandler';
 
 export type Props = {
   navigation: any;
@@ -109,18 +114,27 @@ const NewLogin = (props: any) => {
 
   async function saveData(data: any) {
     try {
+      let fcmtoken = '';
+      await onAppBootstrap((token: any) => {
+        fcmtoken = token;
+      });
       const params = {
         mobile: data?.mobileNumber,
         userId: data?.userId,
         name: data?.name ? data?.name : 'N/A',
         dob: data?.dob ? data?.dob : 'N/A',
         tokenId: data?.tokenId,
+        fcmtoken: fcmtoken,
       };
       // console.log(params, ' params data');
       const res = await createUser(params);
-      console.log(res,'createuser');
-      Alert.alert(res.message);
+      // console.log(res,'createuser');
+      Alert.alert(res?.message);
       if (res?.status == 200) {
+        const fcmsaveres = await saveFCMToken(params);
+        if (fcmsaveres) {
+          console.log(fcmsaveres, 'fcmsaveresp api');
+        }
         return true;
       } else {
         return false;
