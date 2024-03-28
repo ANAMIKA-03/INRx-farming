@@ -1,25 +1,24 @@
 import messaging from '@react-native-firebase/messaging';
-import notifee, {EventType} from '@notifee/react-native';
+import notifee, {AndroidImportance, EventType} from '@notifee/react-native';
 import {useEffect} from 'react';
-// Note that an async function or a function that returns a Promise
-// is required for both subscribers.
 
 async function showNotification(message: any) {
   // Create a channel (required for Android)
   //   await notifee.cancelAllNotifications();
-  console.log('Your message :showNotification():', message);
+  console.log('Your message :showNotification():');
   const notificationId = Math.floor(Math.random() * 10000) + 'INRX-Farming';
 
   const channelId = await notifee.createChannel({
     id: notificationId,
     name: 'Default Channel',
+    importance: AndroidImportance.HIGH,
   });
 
   // Display a notification
   await notifee.displayNotification({
     id: notificationId,
-    title: 'Notification Title',
-    body: 'Main body content of the notification',
+    title: message?.notification?.title,
+    body: message?.notification?.body,
     android: {
       channelId,
       //   smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
@@ -35,6 +34,10 @@ export const NotificationListener = () => {
   async function onDisplayNotification() {
     // Request permissions (required for iOS)
     await notifee.requestPermission();
+    const ispermit = await messaging().hasPermission();
+    if (!ispermit) {
+      await messaging().requestPermission();
+    }
   }
 
   useEffect(() => {
@@ -49,10 +52,10 @@ export const NotificationListener = () => {
       console.log('onForegroundEvent,');
       switch (type) {
         case EventType.DISMISSED:
-          console.log('User dismissed notification', notification);
+          console.log('User dismissed notification');
           break;
         case EventType.PRESS:
-          console.log('User pressed notification', notification);
+          console.log('User pressed notification');
           break;
       }
     });
@@ -66,10 +69,10 @@ export const NotificationListener = () => {
       console.log('onBackgroundEvent,');
       switch (type) {
         case EventType.DISMISSED:
-          console.log('User dismissed notification', notification);
+          console.log('User dismissed notification');
           break;
         case EventType.PRESS:
-          console.log('User pressed notification', notification);
+          console.log('User pressed notification');
           break;
       }
     });
@@ -92,9 +95,14 @@ export async function onAppBootstrap() {
 
 export async function onMessageReceived(message: any) {
   // Do something
-  console.log('Your message :onMessageReceived():', message);
+  console.log('Your message :onMessageReceived():', message?.notification);
   showNotification(message);
 }
 
 messaging().onMessage(onMessageReceived);
+messaging()
+  .getInitialNotification()
+  .then(res => {
+    console.log(res, 'initial notifee');
+  });
 messaging().setBackgroundMessageHandler(onMessageReceived);
