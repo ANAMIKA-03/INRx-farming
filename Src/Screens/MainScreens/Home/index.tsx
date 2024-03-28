@@ -52,9 +52,9 @@ const Home = (props: any) => {
     clearInterval(t);
     if (user.mobileNumber) {
       // t = setInterval(() => {
-        balanceUpdate(user.mobileNumber, () => {
-          updateWalletAndAssets(user.mobileNumber, dispatch);
-        });
+      balanceUpdate(user.mobileNumber, () => {
+        updateWalletAndAssets(user.mobileNumber, dispatch);
+      });
       // }, 10000);
     }
     return () => {
@@ -68,7 +68,7 @@ const Home = (props: any) => {
       source={Images.background}
       style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
-        <StatusBar barStyle={'dark-content'} />
+        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.Green} />
         <View style={Styles.mainContainer}>
           {/* Header */}
           <View style={Styles.headerContainer}>

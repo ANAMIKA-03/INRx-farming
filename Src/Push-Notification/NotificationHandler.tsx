@@ -90,7 +90,7 @@ export async function onAppBootstrap(cb:any) {
   if(cb){
     cb(fcmtoken);
   }
-  console.log('FCM Token', fcmtoken);
+  // console.log('FCM Token', fcmtoken);
   // Save the token
   // await postToApi('/users/1234/tokens', { token });
 }
