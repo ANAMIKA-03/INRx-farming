@@ -13,7 +13,8 @@ const colors = {
   MediumParot: "#ABECB2",
   DarkParrot: "#3B9D3A",
   DarkGreen: "#34BB78",
-  LightParot: "#F0FCF1"
+  LightParot: "#F0FCF1",
+  greenbar:'#c6f7cf',
 };
 
 export default colors;

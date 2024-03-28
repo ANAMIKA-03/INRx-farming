@@ -30,7 +30,7 @@ const Profile = (props: any) => {
       source={Images.profileBackground}
       style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
-        <StatusBar barStyle={'dark-content'} />
+        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White}/>
         <View style={Styles.mainContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={Styles.scrollContainer}>
