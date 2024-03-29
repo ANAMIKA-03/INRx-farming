@@ -66,7 +66,7 @@ const NewLogin = (props: any) => {
       if (jsonObject?.status && jsonObject?.data) {
         getUserDetails(jsonObject?.data)
           .then(async (resp: any) => {
-            // console.log(resp, 'resp',jsonObject);
+            console.log(resp, 'resp',jsonObject);
 
             if (resp?.status) {
               const userobj = {
@@ -75,6 +75,7 @@ const NewLogin = (props: any) => {
                   userId: resp?.data?.userId,
                   name: resp?.data?.name ? resp?.data?.name : 'N/A',
                   dob: resp?.data?.dob ? resp?.data?.dob : 'N/A',
+                  username:resp?.data?.username ? resp?.data?.username : 'N/A',
                 },
                 login: true,
               };
@@ -124,6 +125,7 @@ const NewLogin = (props: any) => {
         name: data?.name ? data?.name : 'N/A',
         dob: data?.dob ? data?.dob : 'N/A',
         tokenId: data?.tokenId,
+        username: data?.username ? data?.username : 'N/A',
         fcmtoken: fcmtoken,
       };
       // console.log(params, ' params data');
