@@ -61,14 +61,14 @@ export function saveFCMToken(data: any) {
     });
 }
 
-export function fetchUser(mobile: String) {
+export function fetchUser(mobile: String,tokenId:String) {
   return fetch(AUTH_API_URL + '/fetch-user', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'allow-access-control-origin': '*',
     },
-    body: JSON.stringify({mobile: mobile}),
+    body: JSON.stringify({mobile: mobile,tokenId:tokenId}),
   })
     .then(res => res.json())
     .catch(e => {
