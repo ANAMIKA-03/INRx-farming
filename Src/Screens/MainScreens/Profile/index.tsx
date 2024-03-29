@@ -57,7 +57,7 @@ const Profile = (props: any) => {
                       {user?.name ? user?.name : `David`}
                     </Text>
                     <Text style={Styles.userId}>{`ID: ${
-                      user?.userId ? user?.userId : 57458125
+                      user?.username ? user?.username : 57458125
                     }`}</Text>
                     <View style={Styles.verifiedWrapper}>
                       <Ionic

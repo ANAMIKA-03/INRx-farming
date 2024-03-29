@@ -66,7 +66,7 @@ const NewLogin = (props: any) => {
       if (jsonObject?.status && jsonObject?.data) {
         getUserDetails(jsonObject?.data)
           .then(async (resp: any) => {
-            console.log(resp, 'resp',jsonObject);
+            // console.log(resp, 'resp',jsonObject);
 
             if (resp?.status) {
               const userobj = {

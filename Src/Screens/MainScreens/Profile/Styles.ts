@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginTop: hp(3),
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: hp(2)
+    marginBottom: hp(2),
   },
   headerWrapper: {
     width: widthScreen / 1.14,

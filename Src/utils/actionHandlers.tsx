@@ -275,6 +275,7 @@ export async function logOutAction(
       userId: '',
       name: '',
       dob: '',
+      username:'N/A'
     };
     if (resp.logout) {
       dispatch(setAuthInfo({user: {...initaluser}, login: false}));

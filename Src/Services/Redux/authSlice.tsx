@@ -6,6 +6,7 @@ export interface User {
   userId: String;
   name: String;
   dob: String;
+  username:String;
 }
 export interface AuthSliceStates {
   login: boolean;
@@ -22,6 +23,7 @@ const initialState: AuthSliceStates = {
     userId: '',
     name: '',
     dob: '',
+    username:'N/A'
   },
   tokenId: '',
   apikey: '',
