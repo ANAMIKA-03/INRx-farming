@@ -5,12 +5,13 @@ import {
   fetchWallet,
   getStakeData,
   getTokenPriceInINR,
+  logOutUser,
   swapHistory,
   transferToken,
   updateBalance,
-  withdrawList,
+  withdrawList,  
 } from '../Services/Apis/apis';
-import {User} from '../Services/Redux/authSlice';
+import {User, setAuthInfo, setSession} from '../Services/Redux/authSlice';
 import {setAssets, setStakes, setWallet} from '../Services/Redux/walletSlice';
 import {GETDATA, TRANSFERTOKEN} from './constants';
 import Clipboard from '@react-native-community/clipboard';
@@ -113,7 +114,12 @@ export function sendHistory(mobile: String, setWithdrawList: any, cb: any) {
     });
 }
 
-export function stakeHistory(user: User, dispatch: any, tokenId: String,cb:any) {
+export function stakeHistory(
+  user: User,
+  dispatch: any,
+  tokenId: String,
+  cb: any,
+) {
   if (user.userId) {
     const data: GETDATA = {
       mobile: user.mobileNumber,
@@ -127,12 +133,12 @@ export function stakeHistory(user: User, dispatch: any, tokenId: String,cb:any) 
         } else {
           dispatch(setStakes({stakes: [], allstakes: {}}));
         }
-        if(cb){
+        if (cb) {
           cb();
         }
       })
       .catch((e: any) => {
-        if(cb){
+        if (cb) {
           cb();
         }
         console.log(e, 'Error');
@@ -241,11 +247,49 @@ export async function totalInrCalculator(assets: any, cb: any) {
     // }
 
     if (price > 0) {
-    console.log(price, item.symbol, item.available, 'dd')
+      console.log(price, item.symbol, item.available, 'dd');
       totalinr += price * item.available;
       if (i == assets.length - 1) {
         cb(0);
       }
     }
   });
+}
+
+export async function logOutAction(
+  user: User,
+  tokenId: any,
+  dispatch: any,
+  navigation: any,
+  cb: any,
+) {
+  try {
+    const data = {
+      mobile: user.mobileNumber,
+      tokenId: tokenId,
+      userId: user.userId,
+    };
+    const resp = await logOutUser(data);
+    const initaluser = {
+      mobileNumber: '',
+      userId: '',
+      name: '',
+      dob: '',
+    };
+    if (resp.logout) {
+      dispatch(setAuthInfo({user: {...initaluser}, login: false}));
+      dispatch(setSession(''));
+      navigation.replace('Splash');
+    } else {
+      Alert.alert('Sometihng went wrong!');
+    }
+    if (cb) {
+      cb();
+    }
+  } catch (e) {
+    if (cb) {
+      cb();
+    }
+    console.log(e, 'Error in logoutuser');
+  }
 }

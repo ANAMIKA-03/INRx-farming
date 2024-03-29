@@ -12,6 +12,7 @@ export interface AuthSliceStates {
   user: User;
   tokenId: String;
   apikey: String;
+  initapplication: boolean;
 }
 
 const initialState: AuthSliceStates = {
@@ -20,10 +21,11 @@ const initialState: AuthSliceStates = {
     mobileNumber: '+910000000000',
     userId: '',
     name: '',
-    dob:'',
+    dob: '',
   },
   tokenId: '',
   apikey: '',
+  initapplication: false,
 };
 
 export const authSlice = createSlice({
@@ -37,10 +39,13 @@ export const authSlice = createSlice({
     setSession: (state, action: PayloadAction<String>) => {
       state.tokenId = action.payload;
     },
+    setAppInit: (state, action) => {
+      state.initapplication = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {setAuthInfo, setSession} = authSlice.actions;
+export const {setAuthInfo, setSession, setAppInit} = authSlice.actions;
 
 export default authSlice.reducer;

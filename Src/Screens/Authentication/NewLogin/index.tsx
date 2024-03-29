@@ -135,6 +135,7 @@ const NewLogin = (props: any) => {
         if (fcmsaveres) {
           console.log(fcmsaveres, 'fcmsaveresp api');
         }
+        navigation.replace('Home');
         return true;
       } else {
         return false;

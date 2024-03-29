@@ -96,7 +96,7 @@ export default function RootNavigator() {
     <NavigationContainer>
       <NotificationListener />
       <RootStack.Navigator
-        initialRouteName={login ? 'Home' : 'Splash'}
+        initialRouteName={'Splash'}
         screenOptions={{
           headerShown: false,
           cardStyle: {backgroundColor: 'transparent'},
@@ -118,25 +118,21 @@ export default function RootNavigator() {
           }),
           presentation: 'modal',
         }}>
-        {!login ? (
-          <>
-            <RootStack.Screen
-              name="Splash"
-              component={Splash}
-              options={{headerShown: false}}
-            />
-            <RootStack.Screen
-              name="Onboarding"
-              component={Onboarding}
-              options={{headerShown: false}}
-            />
-            <RootStack.Screen
-              name="Login"
-              component={NewLogin}
-              options={{headerShown: false}}
-            />
-          </>
-        ) : null}
+        <RootStack.Screen
+          name="Splash"
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="Onboarding"
+          component={Onboarding}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="Login"
+          component={NewLogin}
+          options={{headerShown: false}}
+        />
 
         <RootStack.Screen
           name="Home"

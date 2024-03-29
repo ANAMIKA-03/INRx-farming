@@ -31,6 +31,21 @@ export function createUser(data: any) {
     });
 }
 
+export function logOutUser(data: any) {
+  return fetch(AUTH_API_URL + '/logout-user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'allow-access-control-origin': '*',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(res => res.json())
+    .catch(e => {
+      console.log(e, 'Error in logOutUser()::apis.tsx');
+    });
+}
+
 export function saveFCMToken(data: any) {
   return fetch(AUTH_API_URL + '/save-fcmtoken', {
     method: 'POST',

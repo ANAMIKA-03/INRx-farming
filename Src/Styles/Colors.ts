@@ -15,6 +15,7 @@ const colors = {
   DarkGreen: "#34BB78",
   LightParot: "#F0FCF1",
   greenbar:'#c6f7cf',
+  redColor:'#ba4943',
 };
 
 export default colors;

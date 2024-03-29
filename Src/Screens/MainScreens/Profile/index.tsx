@@ -9,14 +9,17 @@ import {
   Platform,
   ImageBackground,
   ScrollView,
+  Pressable,
+  ActivityIndicator,
 } from 'react-native';
 import Images from '../../../Styles/Images';
 import Colors from '../../../Styles/Colors';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import Styles from './Styles';
 import BottomBar from '../../../Navigation/BottomBar';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../Services/Redux/store';
+import {logOutAction} from '../../../utils/actionHandlers';
 
 export type Props = {
   navigation: any;
@@ -24,13 +27,15 @@ export type Props = {
 
 const Profile = (props: any) => {
   const {navigation} = props;
-  const {user, login} = useSelector((state: RootState) => state.auth);
+  const {user, login, tokenId} = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   return (
     <ImageBackground
       source={Images.profileBackground}
       style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White}/>
+        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White} />
         <View style={Styles.mainContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={Styles.scrollContainer}>
@@ -191,6 +196,47 @@ const Profile = (props: any) => {
               </View>
             </View>
           </ScrollView>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 10,
+            }}>
+            <Pressable
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: 5,
+              }}
+              onPress={() => {
+                // console.log('logout pressed');
+                if (!loading) {
+                  setLoading(true);
+                  logOutAction(user, tokenId, dispatch, navigation, () => {
+                    setLoading(false);
+                  });
+                }
+              }}>
+              {loading ? (
+                <ActivityIndicator color={Colors.redColor} size={23} />
+              ) : (
+                <Ionic
+                  name="log-out-outline"
+                  size={25}
+                  color={Colors.redColor}
+                />
+              )}
+
+              <Text
+                style={{
+                  color: Colors.redColor,
+                  fontSize: 16,
+                  fontFamily: 'Inter-SemiBold',
+                }}>
+                Logout
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </SafeAreaView>
     </ImageBackground>
