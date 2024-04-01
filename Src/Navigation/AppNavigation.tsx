@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Dimensions} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -77,6 +77,7 @@ export const setNavigator = (nav: any) => {
 
 export default function RootNavigator() {
   const {login, user, tokenId} = useSelector((state: RootState) => state.auth);
+  const navigationRef:any = useRef();
 
   useEffect(() => {
     if (login) {
@@ -93,8 +94,8 @@ export default function RootNavigator() {
   }, [login]);
 
   return (
-    <NavigationContainer>
-      <NotificationListener />
+    <NavigationContainer ref={navigationRef}>
+      <NotificationListener navigation ={navigationRef}/>
       <RootStack.Navigator
         initialRouteName={'Splash'}
         screenOptions={{

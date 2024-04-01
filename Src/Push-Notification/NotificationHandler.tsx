@@ -27,10 +27,12 @@ async function showNotification(message: any) {
         id: 'default',
       },
     },
+    data: message?.data,
   });
 }
 
-export const NotificationListener = () => {
+export const NotificationListener = (props: any) => {
+  const {navigation} = props;
   async function onDisplayNotification() {
     // Request permissions (required for iOS)
     await notifee.requestPermission();
@@ -48,14 +50,20 @@ export const NotificationListener = () => {
   useEffect(() => {
     const unsubscribe = notifee.onForegroundEvent(({type, detail}) => {
       const {notification, pressAction} = detail;
-
       console.log('onForegroundEvent,');
       switch (type) {
         case EventType.DISMISSED:
           console.log('User dismissed notification');
           break;
         case EventType.PRESS:
-          console.log('User pressed notification');
+          try {
+            if (notification?.data?.screen) {
+              navigation?.current.navigate(notification?.data?.screen);
+            }
+          } catch (e) {
+            console.log(e, 'errro when navigate using ref');
+          }
+          console.log('User pressed notification',notification,pressAction);
           break;
       }
     });
@@ -91,16 +99,16 @@ export async function onAppBootstrap(cb: any) {
     if (cb) {
       cb(fcmtoken);
     }
-    return fcmtoken
+    return fcmtoken;
   } catch (e) {
     console.log(e, 'Error in get FCMToken:: onAppBootstrap()');
-    return 'fcmtoken goes here'
+    return 'fcmtoken goes here';
   }
 }
 
 export async function onMessageReceived(message: any) {
   // Do something
-  console.log('Your message :onMessageReceived():', message?.notification);
+  console.log('Your message :onMessageReceived():', message);
   showNotification(message);
 }
 
