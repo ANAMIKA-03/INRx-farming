@@ -81,18 +81,21 @@ export const NotificationListener = () => {
   return null;
 };
 
-export async function onAppBootstrap(cb:any) {
-  // Register the device with FCM
-  await messaging().registerDeviceForRemoteMessages();
+export async function onAppBootstrap(cb: any) {
+  try {
+    // Register the device with FCM
+    await messaging().registerDeviceForRemoteMessages();
 
-  // Get the token
-  const fcmtoken = await messaging().getToken();
-  if(cb){
-    cb(fcmtoken);
+    // Get the token
+    const fcmtoken = await messaging().getToken();
+    if (cb) {
+      cb(fcmtoken);
+    }
+    return fcmtoken
+  } catch (e) {
+    console.log(e, 'Error in get FCMToken:: onAppBootstrap()');
+    return 'fcmtoken goes here'
   }
-  // console.log('FCM Token', fcmtoken);
-  // Save the token
-  // await postToApi('/users/1234/tokens', { token });
 }
 
 export async function onMessageReceived(message: any) {
@@ -101,7 +104,7 @@ export async function onMessageReceived(message: any) {
   showNotification(message);
 }
 
-messaging().onMessage(onMessageReceived); 
+messaging().onMessage(onMessageReceived);
 messaging().setBackgroundMessageHandler(onMessageReceived);
 messaging()
   .getInitialNotification()

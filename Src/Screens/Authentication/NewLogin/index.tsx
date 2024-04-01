@@ -75,7 +75,7 @@ const NewLogin = (props: any) => {
                   userId: resp?.data?.userId,
                   name: resp?.data?.name ? resp?.data?.name : 'N/A',
                   dob: resp?.data?.dob ? resp?.data?.dob : 'N/A',
-                  username:resp?.data?.username ? resp?.data?.username : 'N/A',
+                  username: resp?.data?.username ? resp?.data?.username : 'N/A',
                 },
                 login: true,
               };
@@ -116,7 +116,7 @@ const NewLogin = (props: any) => {
   async function saveData(data: any) {
     try {
       let fcmtoken = '';
-      await onAppBootstrap((token: any) => {
+      fcmtoken = await onAppBootstrap((token: any) => {
         fcmtoken = token;
       });
       const params = {
@@ -130,16 +130,17 @@ const NewLogin = (props: any) => {
       };
       // console.log(params, ' params data');
       const res = await createUser(params);
-      // console.log(res,'createuser');
-      Alert.alert(res?.message);
+      // console.log(res, 'createuser');
       if (res?.status == 200) {
         const fcmsaveres = await saveFCMToken(params);
         if (fcmsaveres) {
           console.log(fcmsaveres, 'fcmsaveresp api');
         }
+        Alert.alert(res?.message);
         navigation.replace('Home');
         return true;
       } else {
+        Alert.alert(res?.message);
         return false;
       }
     } catch (e: any) {
