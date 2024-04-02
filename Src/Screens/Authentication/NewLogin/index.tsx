@@ -46,10 +46,6 @@ const NewLogin = (props: any) => {
     }
   };
 
-  const goToSignUp = () => {
-    navigation.navigate('Home');
-  };
-
   function decodeDeeplinkData(deeplink: String) {
     const urlString = deeplink;
 
@@ -63,10 +59,11 @@ const NewLogin = (props: any) => {
     // Parse the JSON string
     try {
       const jsonObject = JSON.parse(jsonString);
+      console.log('jsonObject',jsonObject)
       if (jsonObject?.status && jsonObject?.data) {
         getUserDetails(jsonObject?.data)
           .then(async (resp: any) => {
-            // console.log(resp, 'resp',jsonObject);
+            console.log(resp, 'resp');
 
             if (resp?.status) {
               const userobj = {
