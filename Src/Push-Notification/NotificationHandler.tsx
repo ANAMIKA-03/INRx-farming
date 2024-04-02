@@ -63,7 +63,7 @@ export const NotificationListener = (props: any) => {
           } catch (e) {
             console.log(e, 'errro when navigate using ref');
           }
-          console.log('User pressed notification',notification,pressAction);
+          console.log('User pressed notification',);
           break;
       }
     });
