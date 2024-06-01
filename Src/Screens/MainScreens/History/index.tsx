@@ -262,7 +262,7 @@ const History = (props: any) => {
                 style={[
                   tab == 3 ? Styles.innerActiveTab : Styles.innerInActiveTab,
                 ]}>
-                {'Convert'}
+                {'Buy'}
               </Text>
             </TouchableOpacity>
 

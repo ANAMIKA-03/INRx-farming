@@ -90,6 +90,12 @@ const styles = StyleSheet.create({
     fontFamily: "Inter-SemiBold",
     marginLeft: hp(1)
   },
+  solutionsText: {
+    fontSize: 16,
+    color: Colors.Black,
+    fontFamily: "Inter-SemiBold",
+    marginLeft: hp(1)
+  },
 
   iconTitle: {
     fontSize: 16,

@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   mainHeadContent: {
-    width: widthScreen,
+    width:widthScreen,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: hp(3),
-    height: hp(20)
+    marginTop: hp(2),
+    height: hp(19)
   },
   inrTitle: {
     fontSize: 24,
@@ -185,6 +185,39 @@ const styles = StyleSheet.create({
   listIcon: {
     width: 50,
     height: 50
+  },
+  labelContainer: {
+    width: '100%', 
+    flexDirection: "row",
+    justifyContent: "space-between", 
+    alignItems: "center",
+    marginTop: -40, 
+    paddingHorizontal: 25, 
+  },
+  timeTitle: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 13,
+    color: 'black',
+    marginRight: hp(2),
+    width: 30,
+    height: 20,
+    textAlign: 'center',
+    lineHeight: 20,
+  },
+  activeTimeTitle: {
+    fontFamily: 'Inter-Medium',
+    fontSize: 13,
+    color: 'white',
+    borderRadius: 100,
+    marginRight: hp(2),
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'solid',
+    width: 30,
+    height: 20,
+    backgroundColor: 'black',
+    textAlign: 'center',
+    lineHeight: 20,
   },
 
 });

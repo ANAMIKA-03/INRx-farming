@@ -107,6 +107,11 @@ const styles = StyleSheet.create({
     color: Colors.Black,
     fontFamily: "Inter-SemiBold",
   },
+  listTitlee: {
+    fontSize: 14.6,
+    color: Colors.Black,
+    fontFamily: "Inter-SemiBold",
+  },
   listWrapper: {
     width: "90%",
     alignSelf: "center",

@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.White,
     borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 10,
     borderColor: Colors.White,
   },
   listhead: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   listInner: {
     marginTop: hp(2),
     marginBottom: hp(2),
-    width: '90%',
+    width: '80%',
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: '#000',
-    fontSize: 20,
+    fontSize: 15,
     backgroundColor: Colors.White,
     height: hp(5),
     width: wp(45),

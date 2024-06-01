@@ -25,6 +25,9 @@ const lineData = [{ value: 85 }, { value: 50 }, { value: 60 }, { value: 40 }, { 
 const Collateral = (props: any) => {
   const { navigation } = props;
 
+ 
+  const [activeLabel, setActiveLabel] = useState('1h');
+
   const WALLET_DATA = [
     {
       icon: Images.inrxLogo,
@@ -56,6 +59,10 @@ const Collateral = (props: any) => {
     }
   ]
 
+
+  const handlePress = (label: React.SetStateAction<string>) => {
+    setActiveLabel(label);
+  };
 
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
@@ -119,6 +126,21 @@ const Collateral = (props: any) => {
               color="#11A249"
             />
           </View>
+          {/* <View style={Styles.labelContainer}>
+            <Text style={Styles.timeTitle}>{`1h`}</Text>
+            <Text style={Styles.timeTitle1}>{`1w`}</Text>
+            <Text style={Styles.timeTitle2}>{`1m`}</Text>
+            <Text style={Styles.timeTitle3}>{`1y`}</Text>
+          </View> */}
+           <View style={Styles.labelContainer}>
+        {['1h', '1w', '1m', '1y'].map((label, index) => (
+          <TouchableOpacity key={index} onPress={() => handlePress(label)}>
+            <Text style={activeLabel === label ? Styles.activeTimeTitle : Styles.timeTitle}>
+              {label}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
         </View>
 
         {/* Bottom Data */}

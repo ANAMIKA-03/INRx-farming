@@ -153,13 +153,13 @@ const Stats = (props: any) => {
             <Image source={Images.graphCircle} style={Styles.graphIcon} />
             <View style={Styles.graphDataWrap}>
               <View style={Styles.graphInnerData}>
-                <Text style={Styles.graphTitle}>{`earned`}</Text>
-                <Text style={Styles.graphTitle}>{`%52.3`}</Text>
+                <Text style={Styles.graphTitle}>{`income`}</Text>
+                <Text style={Styles.graphTitle}>{`%64.6`}</Text>
               </View>
               <View style={Styles.graphLine} />
               <View style={Styles.graphInnerData}>
                 <Text style={Styles.graphTitle}>{`spent`}</Text>
-                <Text style={Styles.graphTitle}>{`%47.7`}</Text>
+                <Text style={Styles.graphTitle}>{`%35.4`}</Text>
               </View>
             </View>
           </View>

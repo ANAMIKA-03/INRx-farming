@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   notifyIcon: {
     width: 30,
     height: 30,
+    borderRadius: 37
   },
   mainDataContainer: {
     flex: 0.4,

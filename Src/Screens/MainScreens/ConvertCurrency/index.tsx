@@ -203,6 +203,10 @@ const ConvertCurrency = (props: any) => {
     }
   }, [payToken, getToken]);
 
+  // function hp(arg0: number): import("react-native").DimensionValue | undefined {
+  //   throw new Error('Function not implemented.');
+  // }
+
   return (
     <SafeAreaView style={Styles.safeAreaContainer}>
       <StatusBar barStyle={'dark-content'} />
@@ -220,7 +224,7 @@ const ConvertCurrency = (props: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Image source={Images.chevronRight} style={Styles.notifyIcon} />
+              <Image source={Images.back} style={Styles.notifyIcon} />
             </TouchableOpacity>
           </View>
         </View>
@@ -254,7 +258,7 @@ const ConvertCurrency = (props: any) => {
                   <View style={Styles.leftWrap}>
                     <View style={Styles.iconWrap}>
                       <Image
-                        source={{uri: payToken?.icon}}
+                        source={Images.inrLogo}
                         style={Styles.currencyIcon}
                         resizeMode="contain"
                       />

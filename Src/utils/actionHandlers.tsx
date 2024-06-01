@@ -282,7 +282,7 @@ export async function logOutAction(
       dispatch(setSession(''));
       navigation.replace('Splash');
     } else {
-      Alert.alert('Sometihng went wrong!');
+      Alert.alert('Something went wrong!');
     }
     if (cb) {
       cb();

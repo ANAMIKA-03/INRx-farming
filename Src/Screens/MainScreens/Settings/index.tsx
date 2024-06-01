@@ -94,7 +94,7 @@ const Settings = (props: any) => {
 						<View style={Styles.listContainer}>
 							<View style={Styles.listWrapper}>
 								<View style={Styles.listLeft}>
-									<Text style={Styles.listTitle}>{"WhatsApp Notification"}</Text>
+									<Text style={Styles.listTitlee}>{"WhatsApp Notification"}</Text>
 									<Text style={Styles.descriptionText}>{`Stay connected through familiar chat interface for personalized massages.`}</Text>
 								</View>
 								<SwitchToggle

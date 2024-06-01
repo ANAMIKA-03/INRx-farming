@@ -86,7 +86,7 @@ const Wallet = (props: any) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Image source={Images.chevronUp} style={Styles.notifyIcon} />
+              <Image source={Images.back} style={Styles.notifyIcon} />
             </TouchableOpacity>
           </View>
         </View>
@@ -141,9 +141,11 @@ const Wallet = (props: any) => {
                       <View style={Styles.completeWrap}>
                         <Image
                           source={
-                            item?.symbol == 'INRx'
-                              ? Images.inrxLogo
-                              : {uri: item?.icon}
+                            item?.symbol === 'INRx'
+                            ? Images.inrxLogo
+                            : item?.symbol === 'INR'
+                            ? Images.inrLogo
+                            : { uri: item?.icon } 
                           }
                           style={Styles.listIcon}
                           resizeMode="contain"

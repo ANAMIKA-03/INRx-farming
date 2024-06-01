@@ -57,7 +57,7 @@ const Notification = (props: any) => {
 							<Text style={Styles.userTitle}>{user.name?user.name:`David`}</Text>
 						</TouchableOpacity>
 						<TouchableOpacity onPress={() => { navigation.goBack() }}>
-							<Image source={Images.chevronUp} style={Styles.notifyIcon} />
+							<Image source={Images.back} style={Styles.notifyIcon} />
 						</TouchableOpacity>
 					</View>
 				</View>

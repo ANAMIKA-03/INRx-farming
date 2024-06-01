@@ -160,7 +160,7 @@ const Supply = (props: any) => {
                 <Image source={Images.collateralPic} style={Styles.collateralLogo} />
               </View>
               <View style={Styles.amountWrapper}>
-                <Text style={Styles.solutionText}>{`Collateral`}</Text>
+                <Text style={Styles.solutionsText}>{`Collateral`}</Text>
               </View>
               <Text style={Styles.versionTitle}>{`10,000,00 INR`}</Text>
             </View>
