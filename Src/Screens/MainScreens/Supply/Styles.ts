@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   solutionText: {
     fontSize: 16,
-    color: Colors.Parrot,
+    color: Colors.Black,
     fontFamily: "Inter-SemiBold",
     marginLeft: hp(1)
   },

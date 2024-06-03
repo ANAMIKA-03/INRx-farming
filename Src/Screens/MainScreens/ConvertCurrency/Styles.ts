@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
     height: hp(5),
     width: wp(45),
     paddingHorizontal: hp(2),
+    fontWeight: 'bold'
   },
 });
 export default styles;

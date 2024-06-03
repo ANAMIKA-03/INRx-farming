@@ -73,9 +73,11 @@ const styles = StyleSheet.create({
   },
   visitorTitle: {
     fontFamily: 'Inter-Medium',
-    fontSize: hp(2.4),
+    fontSize: hp(2.6),
     marginTop: hp(1),
-    color: "rgba(0, 0, 0, 0.7)"
+    color: "rgba(0, 0, 0, 0.7)",
+    fontWeight: 'bold'
+
   },
   visitTitle: {
     color: "rgba(0, 0, 0, 0.5)"

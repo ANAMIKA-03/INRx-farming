@@ -126,7 +126,7 @@ const Supply = (props: any) => {
                         <Text style={Styles.iconTitle}>{`BSC`}</Text>
                         <View style={Styles.rightMainWrapper}>
                           <View style={Styles.rightLeftInner}>
-                            <Text style={Styles.percentTitle}>{`30%`}</Text>
+                            <Text style={Styles.percentTitle}>{`40%`}</Text>
                           </View>
                           <View style={Styles.rightInner}>
                             <Text style={Styles.inrxAmountText}>{`30,00000 INRx`}</Text>

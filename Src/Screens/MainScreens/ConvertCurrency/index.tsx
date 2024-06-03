@@ -191,7 +191,7 @@ const ConvertCurrency = (props: any) => {
 
   useEffect(() => {
     if (payToken && getToken) {
-      const isAllowed = ['INRX', 'INR'].some(
+      const isAllowed = ['INR', 'INRX'].some(
         it => it == getToken?.symbol?.toUpperCase(),
       );
       // console.log(isAllowed, getToken?.symbol, payToken?.symbol)
