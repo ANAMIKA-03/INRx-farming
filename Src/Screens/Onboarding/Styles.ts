@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   centerPicOne: {
-    width: 129,
+    width: 100,
     alignSelf: "center",
-    height: 148,
+    height: 100,
   },
   centerPicTwo: {
     width: 168,

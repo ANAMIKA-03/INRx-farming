@@ -1,9 +1,10 @@
 const Images = {
   // Icons
   logo: require("../Assets/Icons/logo.png"),
-  onboard_one: require("../Assets/Icons/onboard_one.png"),
-  onboard_two: require("../Assets/Icons/onboard_two.png"),
-  onboard_three: require("../Assets/Icons/onboard_three.png"),
+  Group20: require("../Assets/Icons/Group20.png"),
+  Group5: require("../Assets/Icons/Group5.png"),
+  Group5ri: require("../Assets/Icons/Group5ri.png"),
+  Grou: require("../Assets/Icons/Grou.png"),
   trustid_app:require("../Assets/Icons/trustid_app.png"),
   swap_thin:require("../Assets/Icons/swap_thin.png"),
   ethericon:require("../Assets/Icons/ethereum.png"),
