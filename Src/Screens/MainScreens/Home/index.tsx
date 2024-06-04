@@ -68,7 +68,7 @@ const Home = (props: any) => {
       source={Images.background}
       style={Styles.backgroundContainer}>
       <SafeAreaView style={Styles.safeAreaContainer}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.greenbar} />
+        <StatusBar barStyle={'dark-content'}  />
         <View style={Styles.mainContainer}>
           {/* Header */}
           <View style={Styles.headerContainer}>
