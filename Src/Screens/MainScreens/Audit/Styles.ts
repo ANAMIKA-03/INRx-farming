@@ -127,7 +127,61 @@ const styles = StyleSheet.create({
     fontFamily: "Inter-Medium",
     marginTop: hp(0.3),
     textAlign: "center"
-  }
+  },
+
+	modalContainer: {
+		backgroundColor: 'white',
+		padding: 20,
+		borderRadius: 10,
+		alignItems: 'center',
+	},
+	modalTitle: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		marginBottom: 20,
+	},
+	uploadButton: {
+		backgroundColor: Colors.Green,
+		padding: 10,
+		borderRadius: 5,
+	},
+	uploadButtonText: {
+		color: 'white',
+		fontSize: 16,
+	},
+  closeIcon: {
+		position: 'absolute',
+		top: 10,
+		right: 10,
+	},
+  pdfContainer: {
+    flex: 1,
+    backgroundColor: Colors.White,
+    marginTop: 20,
+    padding: 20,
+    borderTopWidth: 1,
+    borderTopColor: Colors.Grey,
+  },
+  pdf: {
+    flex: 1,
+    width: '100%',
+    height: 300,
+    marginTop: 10,
+  },
+  deleteButton: {
+    marginTop: 10,
+    paddingVertical: 10,
+    backgroundColor: Colors.DarkYellow,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  deleteButtonText: {
+    color: Colors.White,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  
 
 });
+
 export default styles;

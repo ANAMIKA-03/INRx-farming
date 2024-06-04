@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flex: 0.8,
-    width: widthScreen / 1.2,
+    width: widthScreen / 1.1,
     alignSelf: 'center',
     justifyContent: "center",
     alignItems: "center",
@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   centerPicOne: {
-    width: 100,
+    width: 236,
     alignSelf: "center",
-    height: 100,
+    height: 179.77,
   },
   centerPicTwo: {
     width: 168,
     alignSelf: "center",
-    height: 151.11,
+    height: 168,
   },
   centerPicThree: {
     width: 146,

@@ -10,22 +10,18 @@ const slides = [
   {
     key: 1,
     title: `The First Indian Stable Asset`,
-    pic: Images.Group20,
-    height: '236px',  
-    width: '236px',
-    top: '332px',   
-    bottom: '78px',
+    pic: Images.onbord1,
   },
   {
     key: 2,
     title: `Packed on 1:1 Fiat Ratio `,
-    pic1: Images.Group5,
-    pic2: Images.Group5ri, 
+    pic1: Images.onboard2,
+    pic2: Images.onboard22, 
   },
   {
     key: 3,
     title: `Backed by Stable Asset & Fiat Collateral`,
-    pic: Images.Grou,
+    pic: Images.onboard3,
   },
 ];
 
@@ -36,44 +32,144 @@ export default function Onboarding(props: any) {
   const translateX1 = useRef(new Animated.Value(-300)).current;
   const translateX2 = useRef(new Animated.Value(300)).current;
 
+  // useEffect(() => {
+  //   if (next === 1) {
+  //     Animated.parallel([
+
+  //       Animated.timing(translateX1, {
+  //         toValue: 0,
+  //         duration: 500,
+  //         useNativeDriver: true,
+  //       }),
+  //       Animated.timing(translateX2, {
+  //         toValue: 0,
+  //         duration: 500,
+  //         useNativeDriver: true,
+  //       })
+  //     ]).start();
+
+  //     // const timer1 = setTimeout(() => {
+  //     //   Animated.timing(translateX1, {
+  //     //     toValue: 100,
+  //     //     duration: 500,
+  //     //     useNativeDriver: true,
+  //     //   }).start();
+  //     // }, 2000);
+
+  //     // const timer2 = setTimeout(() => {
+  //     //   Animated.timing(translateX2, {
+  //     //     toValue: -105,
+  //     //     duration: 500,
+  //     //     useNativeDriver: true,
+  //     //   }).start();
+  //     // }, 2500);
+
+  //     // return () => {
+  //     //   clearTimeout(timer1);
+  //     //   clearTimeout(timer2);
+  //     // };
+  //   } else {
+  //     translateX1.setValue(-300);
+  //     translateX2.setValue(300);
+  //   }
+  // }, [next]);
+
+
+  // useEffect(() => {
+  //   if (next === 1) {
+  //     const timer1 = setTimeout(() => { 
+  //       Animated.timing(translateX1, {
+  //         toValue: 100,
+  //         duration: 500,
+  //         useNativeDriver: true,
+  //       }).start();
+  //     }, 2500);
+  
+  //     const timer2 = setTimeout(() => { 
+  //       Animated.timing(translateX2, {
+  //         toValue: -100,
+  //         duration: 500,
+  //         useNativeDriver: true,
+  //       }).start();
+  //     }, 2500);
+  
+  //     return () => {
+  //       clearTimeout(timer1);
+  //       clearTimeout(timer2);
+  //     };
+  //   } else {
+  //     translateX1.setValue(-500);
+  //     translateX2.setValue(500);
+  //   }
+  // }, [next]);
+  
+
+
   useEffect(() => {
     if (next === 1) {
-      Animated.timing(translateX1, {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: true,
-      }).start();
+      
+      const animateTranslateX1 = () => {
+        return Animated.sequence([
+          Animated.timing(translateX1, {
+            toValue: 100,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateX1, {
+            toValue: 150,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateX1, {
+            toValue: 200,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]);
+      };
 
-      Animated.timing(translateX2, {
-        toValue: 0,
-        duration: 500,
-        delay: 500,
-        useNativeDriver: true,
-      }).start();
+      const animateTranslateX2 = () => {
+        return Animated.sequence([
+          Animated.timing(translateX2, {
+            toValue: -100,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateX2, {
+            toValue: -150,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateX2, {
+            toValue: -200,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]);
+        
+      };
 
       const timer1 = setTimeout(() => {
-        Animated.timing(translateX1, {
-          toValue: -300,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
-      }, 2000);
+        animateTranslateX1().start();
+      }, 2500);
 
       const timer2 = setTimeout(() => {
-        Animated.timing(translateX2, {
-          toValue: 300,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
+        animateTranslateX2().start();
       }, 2500);
+
+      const timer3 = setTimeout(() => {
+        translateX1.setValue(-300);
+        translateX2.setValue(300);
+      }, 4500); 
 
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
+        clearTimeout(timer3);
       };
     } else {
       translateX1.setValue(-300);
-      translateX2.setValue(-300);
+      translateX2.setValue(300);
     }
   }, [next]);
 
@@ -115,8 +211,8 @@ export default function Onboarding(props: any) {
                 </>
               ) : (
                 <Image
-                  source={item?.pic}
-                  style={item.key === 1 ? Styles.centerPicOne : Styles.centerPicThree}
+                  source={item?.pic} 
+                  style={item.key == "1" ? Styles.centerPicOne : item.key == "2" ? Styles.centerPicTwo : Styles.centerPicThree}
                 />
               )}
             </View>
