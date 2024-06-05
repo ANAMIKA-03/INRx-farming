@@ -32,146 +32,146 @@ export default function Onboarding(props: any) {
   const translateX1 = useRef(new Animated.Value(-300)).current;
   const translateX2 = useRef(new Animated.Value(300)).current;
 
-  // useEffect(() => {
-  //   if (next === 1) {
-  //     Animated.parallel([
-
-  //       Animated.timing(translateX1, {
-  //         toValue: 0,
-  //         duration: 500,
-  //         useNativeDriver: true,
-  //       }),
-  //       Animated.timing(translateX2, {
-  //         toValue: 0,
-  //         duration: 500,
-  //         useNativeDriver: true,
-  //       })
-  //     ]).start();
-
-  //     // const timer1 = setTimeout(() => {
-  //     //   Animated.timing(translateX1, {
-  //     //     toValue: 100,
-  //     //     duration: 500,
-  //     //     useNativeDriver: true,
-  //     //   }).start();
-  //     // }, 2000);
-
-  //     // const timer2 = setTimeout(() => {
-  //     //   Animated.timing(translateX2, {
-  //     //     toValue: -105,
-  //     //     duration: 500,
-  //     //     useNativeDriver: true,
-  //     //   }).start();
-  //     // }, 2500);
-
-  //     // return () => {
-  //     //   clearTimeout(timer1);
-  //     //   clearTimeout(timer2);
-  //     // };
-  //   } else {
-  //     translateX1.setValue(-300);
-  //     translateX2.setValue(300);
-  //   }
-  // }, [next]);
-
-
-  // useEffect(() => {
-  //   if (next === 1) {
-  //     const timer1 = setTimeout(() => { 
-  //       Animated.timing(translateX1, {
-  //         toValue: 100,
-  //         duration: 500,
-  //         useNativeDriver: true,
-  //       }).start();
-  //     }, 2500);
-  
-  //     const timer2 = setTimeout(() => { 
-  //       Animated.timing(translateX2, {
-  //         toValue: -100,
-  //         duration: 500,
-  //         useNativeDriver: true,
-  //       }).start();
-  //     }, 2500);
-  
-  //     return () => {
-  //       clearTimeout(timer1);
-  //       clearTimeout(timer2);
-  //     };
-  //   } else {
-  //     translateX1.setValue(-500);
-  //     translateX2.setValue(500);
-  //   }
-  // }, [next]);
-  
-
-
   useEffect(() => {
     if (next === 1) {
-      
-      const animateTranslateX1 = () => {
-        return Animated.sequence([
-          Animated.timing(translateX1, {
-            toValue: 100,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateX1, {
-            toValue: 150,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateX1, {
-            toValue: 200,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]);
-      };
+      Animated.parallel([
 
-      const animateTranslateX2 = () => {
-        return Animated.sequence([
-          Animated.timing(translateX2, {
-            toValue: -100,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateX2, {
-            toValue: -150,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateX2, {
-            toValue: -200,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]);
-        
-      };
+        Animated.timing(translateX1, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateX2, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        })
+      ]).start();
 
       const timer1 = setTimeout(() => {
-        animateTranslateX1().start();
-      }, 2500);
+        Animated.timing(translateX1, {
+          toValue: 100,
+          duration: 500,
+          useNativeDriver: true,
+        }).start();
+      }, 2000);
 
       const timer2 = setTimeout(() => {
-        animateTranslateX2().start();
+        Animated.timing(translateX2, {
+          toValue: -105,
+          duration: 500,
+          useNativeDriver: true,
+        }).start();
       }, 2500);
-
-      const timer3 = setTimeout(() => {
-        translateX1.setValue(-300);
-        translateX2.setValue(300);
-      }, 4500); 
 
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
-        clearTimeout(timer3);
       };
     } else {
       translateX1.setValue(-300);
       translateX2.setValue(300);
     }
   }, [next]);
+
+
+  useEffect(() => {
+    if (next === 1) {
+      const timer1 = setTimeout(() => { 
+        Animated.timing(translateX1, {
+          toValue: 100,
+          duration: 500,
+          useNativeDriver: true,
+        }).start();
+      }, 2500);
+  
+      const timer2 = setTimeout(() => { 
+        Animated.timing(translateX2, {
+          toValue: -100,
+          duration: 500,
+          useNativeDriver: true,
+        }).start();
+      }, 2500);
+  
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    } else {
+      translateX1.setValue(-500);
+      translateX2.setValue(500);
+    }
+  }, [next]);
+  
+
+
+  // useEffect(() => {
+  //   if (next === 1) {
+      
+  //     const animateTranslateX1 = () => {
+  //       return Animated.sequence([
+  //         Animated.timing(translateX1, {
+  //           toValue: 100,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(translateX1, {
+  //           toValue: 150,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(translateX1, {
+  //           toValue: 200,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //       ]);
+  //     };
+
+  //     const animateTranslateX2 = () => {
+  //       return Animated.sequence([
+  //         Animated.timing(translateX2, {
+  //           toValue: -100,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(translateX2, {
+  //           toValue: -150,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //         Animated.timing(translateX2, {
+  //           toValue: -200,
+  //           duration: 500,
+  //           useNativeDriver: true,
+  //         }),
+  //       ]);
+        
+  //     };
+
+  //     const timer1 = setTimeout(() => {
+  //       animateTranslateX1().start();
+  //     }, 2500);
+
+  //     const timer2 = setTimeout(() => {
+  //       animateTranslateX2().start();
+  //     }, 2500);
+
+  //     const timer3 = setTimeout(() => {
+  //       translateX1.setValue(-300);
+  //       translateX2.setValue(300);
+  //     }, 4500); 
+
+  //     return () => {
+  //       clearTimeout(timer1);
+  //       clearTimeout(timer2);
+  //       clearTimeout(timer3);
+  //     };
+  //   } else {
+  //     translateX1.setValue(-300);
+  //     translateX2.setValue(300);
+  //   }
+  // }, [next]);
 
   const goNext = () => {
     setNext(next + 1);
