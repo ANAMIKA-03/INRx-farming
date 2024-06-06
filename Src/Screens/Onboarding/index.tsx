@@ -9,7 +9,7 @@ import Styles from './Styles';
 const slides = [
   {
     key: 1,
-    title: `The First Indian Stable Asset`,
+    title: "The First Indian Stable Asset",
     pic: Images.onbord1,
   },
   {
@@ -20,7 +20,7 @@ const slides = [
   },
   {
     key: 3,
-    title: `Backed by Stable Asset & Fiat Collateral`,
+    title: "Backed by Stable Asset & Fiat Collateral",
     pic: Images.onboard3,
   },
 ];
@@ -34,10 +34,32 @@ export default function Onboarding(props: any) {
 
   useEffect(() => {
     if (next === 1) {
-      Animated.parallel([
-
+      const animateImage1 = Animated.sequence([
+        Animated.timing(translateX1, {
+          toValue: -200,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateX1, {
+          toValue: -100,
+          duration: 500,
+          useNativeDriver: true,
+        }),
         Animated.timing(translateX1, {
           toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]);
+
+      const animateImage2 = Animated.sequence([
+        Animated.timing(translateX2, {
+          toValue: 200,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateX2, {
+          toValue: 100,
           duration: 500,
           useNativeDriver: true,
         }),
@@ -45,133 +67,19 @@ export default function Onboarding(props: any) {
           toValue: 0,
           duration: 500,
           useNativeDriver: true,
-        })
-      ]).start();
+        }),
+      ]);
 
-      const timer1 = setTimeout(() => {
-        Animated.timing(translateX1, {
-          toValue: 100,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
-      }, 2000);
+      Animated.parallel([animateImage1, animateImage2]).start();
 
-      const timer2 = setTimeout(() => {
-        Animated.timing(translateX2, {
-          toValue: -105,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
-      }, 2500);
+     
 
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
     } else {
       translateX1.setValue(-300);
       translateX2.setValue(300);
     }
   }, [next]);
-
-
-  useEffect(() => {
-    if (next === 1) {
-      const timer1 = setTimeout(() => { 
-        Animated.timing(translateX1, {
-          toValue: 100,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
-      }, 2500);
   
-      const timer2 = setTimeout(() => { 
-        Animated.timing(translateX2, {
-          toValue: -100,
-          duration: 500,
-          useNativeDriver: true,
-        }).start();
-      }, 2500);
-  
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
-    } else {
-      translateX1.setValue(-500);
-      translateX2.setValue(500);
-    }
-  }, [next]);
-  
-
-
-  // useEffect(() => {
-  //   if (next === 1) {
-      
-  //     const animateTranslateX1 = () => {
-  //       return Animated.sequence([
-  //         Animated.timing(translateX1, {
-  //           toValue: 100,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //         Animated.timing(translateX1, {
-  //           toValue: 150,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //         Animated.timing(translateX1, {
-  //           toValue: 200,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //       ]);
-  //     };
-
-  //     const animateTranslateX2 = () => {
-  //       return Animated.sequence([
-  //         Animated.timing(translateX2, {
-  //           toValue: -100,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //         Animated.timing(translateX2, {
-  //           toValue: -150,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //         Animated.timing(translateX2, {
-  //           toValue: -200,
-  //           duration: 500,
-  //           useNativeDriver: true,
-  //         }),
-  //       ]);
-        
-  //     };
-
-  //     const timer1 = setTimeout(() => {
-  //       animateTranslateX1().start();
-  //     }, 2500);
-
-  //     const timer2 = setTimeout(() => {
-  //       animateTranslateX2().start();
-  //     }, 2500);
-
-  //     const timer3 = setTimeout(() => {
-  //       translateX1.setValue(-300);
-  //       translateX2.setValue(300);
-  //     }, 4500); 
-
-  //     return () => {
-  //       clearTimeout(timer1);
-  //       clearTimeout(timer2);
-  //       clearTimeout(timer3);
-  //     };
-  //   } else {
-  //     translateX1.setValue(-300);
-  //     translateX2.setValue(300);
-  //   }
-  // }, [next]);
 
   const goNext = () => {
     setNext(next + 1);
@@ -185,11 +93,36 @@ export default function Onboarding(props: any) {
     }
   };
 
+
+
+
+  const _renderDoneButton = () => {
+    if (next === slides.length - 1) {
+      return null; 
+    }
+    return (
+      <Text style={{ color: 'grey', fontWeight: 'bold', fontSize: 18 }}>
+        Done
+      </Text>
+    );
+  };
+
+  const _renderNextButton = () => {
+    if (next < slides.length - 1) {
+      return (
+        <Text style={{ color: 'grey', fontWeight: 'bold', fontSize: 18 }}>
+          Next
+        </Text>
+      );
+    }
+    return null;
+  };
+
   const _renderItem = ({ item }: any) => {
     return (
       <SafeAreaView style={Styles.safeAreaContainer}>
         <View style={Styles.mainContainer}>
-          <View style={Styles.headerContainer}>
+        <View style={Styles.headerContainer}>
             <Text style={Styles.headerTitle}>{item?.title}</Text>
             <View style={Styles.mainInnerWrap}>
               {item.key === 2 ? (
@@ -216,38 +149,58 @@ export default function Onboarding(props: any) {
                 />
               )}
             </View>
+            {item.key === 2 && (
+              <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                {Array(5).fill(null).map((_, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      width: hp(1.5),
+                      height: hp(1.5),
+                      marginHorizontal: hp(0.5),
+                      borderRadius: hp(0.75),
+                    }}
+                  />
+                ))}
+              </View>
+            )}
           </View>
-        </View>
+          </View>
       </SafeAreaView>
     );
   };
 
   return (
     <AppIntroSlider
-      ref={(ref: any) => (slider = ref)}
-      onSlideChange={(e) => changeSlide(e)}
-      renderItem={_renderItem}
-      data={slides}
-      bottomButton={false}
-      dotStyle={{
-        width: hp(9.5),
-        height: 6,
-        marginRight: hp(1.5),
-        marginLeft: hp(1.5),
-        borderRadius: 10,
-        backgroundColor: Colors.Black,
-        marginBottom: hp("30%"),
-      }}
-      activeDotStyle={{
-        width: hp(9.5),
-        height: 6,
-        marginRight: hp(1.5),
-        marginLeft: hp(1.5),
-        borderRadius: 10,
-        backgroundColor: Colors.DarkGreen,
-        marginBottom: hp("30%"),
-      }}
-      dotClickEnabled={true}
-    />
+    ref={(ref: any) => (slider = ref)}
+    onSlideChange={(e) => changeSlide(e)}
+    renderItem={_renderItem}
+    data={slides}
+    bottomButton={false}
+    dotStyle={{
+      width: hp(9.5),
+      height: 6,
+      marginRight: hp(1.5),
+      marginLeft: hp(1.5),
+      borderRadius: 10,
+      backgroundColor: Colors.Black,
+      marginBottom: hp("30%"),
+    }}
+    activeDotStyle={{
+      width: hp(9.5),
+      height: 6,
+      marginRight: hp(1.5),
+      marginLeft: hp(1.5),
+      borderRadius: 10,
+      backgroundColor: Colors.DarkGreen,
+      marginBottom: hp("30%"),
+    }}
+    dotClickEnabled={true}
+    renderNextButton={_renderNextButton}
+    renderDoneButton={_renderDoneButton}
+
+  />
   );
+
+
 }
