@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
     height: 179.77,
   },
   centerPicTwo: {
-    width: 168,
-    alignSelf: "center",
-    height: 168,
+   alignSelf: "center",
+    width: hp(20),
+    height: hp(20),
+    resizeMode: 'contain',
   },
   centerPicThree: {
     width: 146,

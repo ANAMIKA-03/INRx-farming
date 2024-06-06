@@ -37,17 +37,17 @@ export default function Onboarding(props: any) {
       const animateImage1 = Animated.sequence([
         Animated.timing(translateX1, {
           toValue: -200,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX1, {
           toValue: -100,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX1, {
           toValue: 0,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
       ]);
@@ -55,17 +55,17 @@ export default function Onboarding(props: any) {
       const animateImage2 = Animated.sequence([
         Animated.timing(translateX2, {
           toValue: 200,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX2, {
           toValue: 100,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX2, {
           toValue: 0,
-          duration: 500,
+          duration: 1500,
           useNativeDriver: true,
         }),
       ]);
@@ -131,21 +131,21 @@ export default function Onboarding(props: any) {
                     source={item?.pic1}
                     style={[
                       Styles.centerPicTwo,
-                      { transform: [{ translateX: translateX1 }] }
+                      { transform: [{ translateX: translateX1 }]}
                     ]}
                   />
                   <Animated.Image
                     source={item?.pic2}
                     style={[
                       Styles.centerPicTwo,
-                      { transform: [{ translateX: translateX2 }] }
+                      { transform: [{ translateX: translateX2 }]}
                     ]}
                   />
                 </>
               ) : (
                 <Image
                   source={item?.pic} 
-                  style={item.key == "1" ? Styles.centerPicOne : item.key == "2" ? Styles.centerPicTwo : Styles.centerPicThree}
+                  style={item.key == "1" ? Styles.centerPicOne  : item.key == "2" ? Styles.centerPicTwo :Styles.centerPicThree }
                 />
               )}
             </View>
