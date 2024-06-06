@@ -14,7 +14,7 @@ const slides = [
   },
   {
     key: 2,
-    title: `Packed on 1:1 Fiat Ratio `,
+    title: `Packed on 1:1 Fiat Ratio`,
     pic1: Images.onboard2,
     pic2: Images.onboard22, 
   },
@@ -37,17 +37,17 @@ export default function Onboarding(props: any) {
       const animateImage1 = Animated.sequence([
         Animated.timing(translateX1, {
           toValue: -200,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX1, {
           toValue: -100,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX1, {
           toValue: 0,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
       ]);
@@ -55,31 +55,28 @@ export default function Onboarding(props: any) {
       const animateImage2 = Animated.sequence([
         Animated.timing(translateX2, {
           toValue: 200,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX2, {
           toValue: 100,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(translateX2, {
           toValue: 0,
-          duration: 1500,
+          duration: 500,
           useNativeDriver: true,
         }),
       ]);
 
       Animated.parallel([animateImage1, animateImage2]).start();
 
-     
-
     } else {
       translateX1.setValue(-300);
       translateX2.setValue(300);
     }
   }, [next]);
-  
 
   const goNext = () => {
     setNext(next + 1);
@@ -92,9 +89,6 @@ export default function Onboarding(props: any) {
       navigation.navigate("Login");
     }
   };
-
-
-
 
   const _renderDoneButton = () => {
     if (next === slides.length - 1) {
@@ -122,30 +116,30 @@ export default function Onboarding(props: any) {
     return (
       <SafeAreaView style={Styles.safeAreaContainer}>
         <View style={Styles.mainContainer}>
-        <View style={Styles.headerContainer}>
-            <Text style={Styles.headerTitle}>{item?.title}</Text>
+          <View style={Styles.headerContainer}>
+            <Text style={Styles.headerTitle}numberOfLines={2}>{item?.title}</Text>
             <View style={Styles.mainInnerWrap}>
               {item.key === 2 ? (
-                <>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
                   <Animated.Image
                     source={item?.pic1}
                     style={[
                       Styles.centerPicTwo,
-                      { transform: [{ translateX: translateX1 }]}
+                      { transform: [{ translateX: Animated.add(translateX1, -20) }] }
                     ]}
                   />
                   <Animated.Image
                     source={item?.pic2}
                     style={[
                       Styles.centerPicTwo,
-                      { transform: [{ translateX: translateX2 }]}
+                      { transform: [{ translateX: translateX2 }] }
                     ]}
                   />
-                </>
+                </View>
               ) : (
                 <Image
                   source={item?.pic} 
-                  style={item.key == "1" ? Styles.centerPicOne  : item.key == "2" ? Styles.centerPicTwo :Styles.centerPicThree }
+                  style={item.key == 1 ? Styles.centerPicOne : item.key == 2 ? Styles.centerPicTwo : Styles.centerPicThree }
                 />
               )}
             </View>
@@ -165,42 +159,39 @@ export default function Onboarding(props: any) {
               </View>
             )}
           </View>
-          </View>
+        </View>
       </SafeAreaView>
     );
   };
 
   return (
     <AppIntroSlider
-    ref={(ref: any) => (slider = ref)}
-    onSlideChange={(e) => changeSlide(e)}
-    renderItem={_renderItem}
-    data={slides}
-    bottomButton={false}
-    dotStyle={{
-      width: hp(9.5),
-      height: 6,
-      marginRight: hp(1.5),
-      marginLeft: hp(1.5),
-      borderRadius: 10,
-      backgroundColor: Colors.Black,
-      marginBottom: hp("30%"),
-    }}
-    activeDotStyle={{
-      width: hp(9.5),
-      height: 6,
-      marginRight: hp(1.5),
-      marginLeft: hp(1.5),
-      borderRadius: 10,
-      backgroundColor: Colors.DarkGreen,
-      marginBottom: hp("30%"),
-    }}
-    dotClickEnabled={true}
-    renderNextButton={_renderNextButton}
-    renderDoneButton={_renderDoneButton}
-
-  />
+      ref={(ref: any) => (slider = ref)}
+      onSlideChange={(e) => changeSlide(e)}
+      renderItem={_renderItem}
+      data={slides}
+      bottomButton={false}
+      dotStyle={{
+        width: hp(9.5),
+        height: 6,
+        marginRight: hp(1.5),
+        marginLeft: hp(1.5),
+        borderRadius: 10,
+        backgroundColor: Colors.Black,
+        marginBottom: hp("30%"),
+      }}
+      activeDotStyle={{
+        width: hp(9.5),
+        height: 6,
+        marginRight: hp(1.5),
+        marginLeft: hp(1.5),
+        borderRadius: 10,
+        backgroundColor: Colors.DarkGreen,
+        marginBottom: hp("30%"),
+      }}
+      dotClickEnabled={true}
+      renderNextButton={_renderNextButton}
+      renderDoneButton={_renderDoneButton}
+    />
   );
-
-
 }

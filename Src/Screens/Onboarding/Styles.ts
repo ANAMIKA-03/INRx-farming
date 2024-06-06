@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerTitle: {
-    fontSize: 32,
+    fontSize: 31,
     fontFamily: "Inter-Medium",
     color: Colors.Black,
     textAlign: "center"
