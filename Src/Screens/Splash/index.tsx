@@ -11,6 +11,7 @@ import Animated, {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Services/Redux/store';
 import { setAppInit } from '../../Services/Redux/authSlice';
+import Colors from '../../Styles/Colors';
 
 const DURATION = 1000;
 const DELAY = 500;
@@ -68,7 +69,8 @@ const Splash = (props: any) => {
 
   return (
     <SafeAreaView style={Styles.backgroundWrapper}>
-      <StatusBar barStyle={'light-content'} />
+      {/* <StatusBar barStyle={'light-content'} /> */}
+      <StatusBar barStyle={'dark-content'}backgroundColor={Colors.DarkGreen}  />
       <View style={Styles.mainContainer}>
         <Image source={Images.logo} style={Styles.logoIcon} />
 

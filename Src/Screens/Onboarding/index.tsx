@@ -5,6 +5,7 @@ import Images from '../../Styles/Images';
 import Colors from '../../Styles/Colors';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Styles from './Styles';
+import { StatusBar } from 'react-native';
 
 const slides = [
   {
@@ -115,6 +116,7 @@ export default function Onboarding(props: any) {
   const _renderItem = ({ item }: any) => {
     return (
       <SafeAreaView style={Styles.safeAreaContainer}>
+       <StatusBar barStyle={'dark-content'} backgroundColor={Colors.LightParot}  />
         <View style={Styles.mainContainer}>
           <View style={Styles.headerContainer}>
             <Text style={Styles.headerTitle}numberOfLines={2}>{item?.title}</Text>
