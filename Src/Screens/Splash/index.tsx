@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Services/Redux/store';
 import { setAppInit } from '../../Services/Redux/authSlice';
 import Colors from '../../Styles/Colors';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { hideNavigationBar } from 'react-native-navigation-bar-color';
 
 const DURATION = 1000;
 const DELAY = 500;
@@ -67,6 +69,19 @@ const Splash = (props: any) => {
     return () => clearTimeout(timer);
   }, []);
 
+
+  useEffect(() => {
+    show();
+    hideNavigationBar(); 
+    changeNavigationBarColor(Colors.DarkGreen, true);
+  
+    const timer = setTimeout(() => {
+      navigateToScreen();
+    }, 4000);
+  
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <SafeAreaView style={Styles.backgroundWrapper}>
       {/* <StatusBar barStyle={'light-content'} /> */}

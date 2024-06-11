@@ -25,6 +25,7 @@ import {
 import {useDispatch} from 'react-redux';
 import {setAuthInfo, setSession} from '../../../Services/Redux/authSlice';
 import {onAppBootstrap} from '../../../Push-Notification/NotificationHandler';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 export type Props = {
   navigation: any;
@@ -145,6 +146,16 @@ const NewLogin = (props: any) => {
       return false;
     }
   }
+
+
+  useEffect(() => {
+    changeNavigationBarColor(Colors.White, false);
+  
+    return () => {
+
+      changeNavigationBarColor(Colors.White, false);
+    };
+  }, []); 
 
   useEffect(() => {
     // console.log(deeplink, 'deeplink in login with trustid screen');

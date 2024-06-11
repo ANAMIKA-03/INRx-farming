@@ -20,7 +20,8 @@ import {
   balanceUpdate,
   updateWalletAndAssets,
 } from '../../../utils/actionHandlers';
-
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { showNavigationBar } from 'react-native-navigation-bar-color';
 export type Props = {
   navigation: any;
 };
@@ -47,6 +48,15 @@ const Home = (props: any) => {
     },
   ];
 
+
+  useEffect(() => {
+    showNavigationBar(); 
+    changeNavigationBarColor(Colors.White, false);
+
+    return () => {
+      changeNavigationBarColor(Colors.White, false);
+    };
+  }, []);
   var t: any;
   useEffect(() => {
     clearInterval(t);

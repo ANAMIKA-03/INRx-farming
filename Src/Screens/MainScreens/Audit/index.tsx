@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     StatusBar,
     View,
@@ -81,6 +81,14 @@ const Audit = (props: any) => {
     const handleClosePDF = () => {
         setSelectedPDF(null);
     };
+
+
+    useEffect(() => {
+        StatusBar.setHidden(true);
+        return () => {
+            StatusBar.setHidden(false);
+        };
+    }, []);
 
     return (
         <SafeAreaView style={Styles.safeAreaContainer}>

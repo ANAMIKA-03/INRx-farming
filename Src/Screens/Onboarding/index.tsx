@@ -6,6 +6,7 @@ import Colors from '../../Styles/Colors';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Styles from './Styles';
 import { StatusBar } from 'react-native';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const slides = [
   {
@@ -32,6 +33,16 @@ export default function Onboarding(props: any) {
   const [next, setNext] = useState(0);
   const translateX1 = useRef(new Animated.Value(-300)).current;
   const translateX2 = useRef(new Animated.Value(300)).current;
+
+
+  useEffect(() => {
+    changeNavigationBarColor(Colors.LightParot, false);
+  
+    return () => {
+
+      changeNavigationBarColor(Colors.LightParot, false);
+    };
+  }, []);
 
   useEffect(() => {
     if (next === 1) {
